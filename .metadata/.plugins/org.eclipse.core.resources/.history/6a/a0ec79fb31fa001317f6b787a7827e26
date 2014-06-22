@@ -1,0 +1,9 @@
+grammar org.xtext.DSLExterno with org.eclipse.xtext.common.Terminals
+
+generate dSLExterno "http://www.xtext.org/DSLExterno"
+
+Model:
+	greetings+=Greeting*;
+	
+Greeting:
+	'Hello' name=ID '!';

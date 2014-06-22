@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.xtext.DSLExterno/src-gen" editDirectory="/org.xtext.DSLExterno.edit/src"
+    editorDirectory="/org.xtext.DSLExterno.editor/src" modelPluginID="org.xtext.DSLExterno"
+    forceOverwrite="true" modelName="MyDsl" updateClasspath="false" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    complianceLevel="5.0" copyrightFields="false" editPluginID="org.xtext.DSLExterno.edit"
+    editorPluginID="org.xtext.DSLExterno.editor" runtimeVersion="2.10" usedGenPackages="platform:/resource/org.eclipse.xtext.common.types/model/JavaVMTypes.genmodel#//types">
+  <genPackages prefix="MyDsl" basePackage="org.xtext.example.mydsl" disposableProviderFactory="true"
+      fileExtensions="mydsl" ecorePackage="MyDsl.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="MyDsl.ecore#//Dedicacion">
+      <genEnumLiterals ecoreEnumLiteral="MyDsl.ecore#//Dedicacion/Simple"/>
+      <genEnumLiterals ecoreEnumLiteral="MyDsl.ecore#//Dedicacion/Semi"/>
+      <genEnumLiterals ecoreEnumLiteral="MyDsl.ecore#//Dedicacion/Exclusiva"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="MyDsl.ecore#//Recursos">
+      <genEnumLiterals ecoreEnumLiteral="MyDsl.ecore#//Recursos/Internet"/>
+      <genEnumLiterals ecoreEnumLiteral="MyDsl.ecore#//Recursos/Proyector"/>
+      <genEnumLiterals ecoreEnumLiteral="MyDsl.ecore#//Recursos/MaquinasParaAlumnos"/>
+      <genEnumLiterals ecoreEnumLiteral="MyDsl.ecore#//Recursos/MaquinaParaElProfesor"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="MyDsl.ecore#//Dia">
+      <genEnumLiterals ecoreEnumLiteral="MyDsl.ecore#//Dia/Lunes"/>
+      <genEnumLiterals ecoreEnumLiteral="MyDsl.ecore#//Dia/Martes"/>
+      <genEnumLiterals ecoreEnumLiteral="MyDsl.ecore#//Dia/Miercoles"/>
+      <genEnumLiterals ecoreEnumLiteral="MyDsl.ecore#//Dia/Jueves"/>
+      <genEnumLiterals ecoreEnumLiteral="MyDsl.ecore#//Dia/Viernes"/>
+      <genEnumLiterals ecoreEnumLiteral="MyDsl.ecore#//Dia/Sabados"/>
+    </genEnums>
+    <genClasses ecoreClass="MyDsl.ecore#//Model">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MyDsl.ecore#//Model/clases"/>
+    </genClasses>
+    <genClasses ecoreClass="MyDsl.ecore#//Clase"/>
+    <genClasses ecoreClass="MyDsl.ecore#//Atributos"/>
+    <genClasses ecoreClass="MyDsl.ecore#//NumeroDeAula">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MyDsl.ecore#//NumeroDeAula/numero"/>
+    </genClasses>
+    <genClasses ecoreClass="MyDsl.ecore#//CantidadDeDias">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MyDsl.ecore#//CantidadDeDias/dias"/>
+    </genClasses>
+    <genClasses ecoreClass="MyDsl.ecore#//Horarios">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MyDsl.ecore#//Horarios/horarioInicion"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MyDsl.ecore#//Horarios/horarionFin"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MyDsl.ecore#//Horarios/aula"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MyDsl.ecore#//Horarios/type"/>
+    </genClasses>
+    <genClasses ecoreClass="MyDsl.ecore#//Nombre">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MyDsl.ecore#//Nombre/nombre"/>
+    </genClasses>
+    <genClasses ecoreClass="MyDsl.ecore#//Profesor">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MyDsl.ecore#//Profesor/dedicacion"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MyDsl.ecore#//Profesor/type"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MyDsl.ecore#//Profesor/atributos"/>
+    </genClasses>
+    <genClasses ecoreClass="MyDsl.ecore#//Materia">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MyDsl.ecore#//Materia/atributos"/>
+    </genClasses>
+    <genClasses ecoreClass="MyDsl.ecore#//Aula">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MyDsl.ecore#//Aula/atributos"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MyDsl.ecore#//Aula/recursos"/>
+    </genClasses>
+    <genClasses ecoreClass="MyDsl.ecore#//Planificacion">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MyDsl.ecore#//Planificacion/anio"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MyDsl.ecore#//Planificacion/semestre"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MyDsl.ecore#//Planificacion/materias"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MyDsl.ecore#//Planificacion/asignaciones"/>
+    </genClasses>
+    <genClasses ecoreClass="MyDsl.ecore#//Asignaciones">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MyDsl.ecore#//Asignaciones/dia"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MyDsl.ecore#//Asignaciones/horario"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MyDsl.ecore#//Asignaciones/materia"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MyDsl.ecore#//Asignaciones/type"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>
