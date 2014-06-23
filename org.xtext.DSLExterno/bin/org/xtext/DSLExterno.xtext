@@ -9,59 +9,49 @@ Clase:
 	Profesor | Materia | Aula | Planificacion 
 ;
 
-Atributos:
-	Nombre | Horarios | CantidadDeDias | Profesor | Aula | Asignaciones | NumeroDeAula 
-;
-
 NumeroDeAula:
-	'numeroDeAula' numero = ':' INT 
+	'numeroDeAula:' numero = INT 
 ;
 
 CantidadDeDias:
-	'CantidadDeDias' dias = ':' INT	
+	'CantidadDeDias:' dias = INT	
 ;
 
 Horarios:
-	'de' horarioInicion = ':' INT 'hasta' horarionFin= ':' INT 'en' aula = ':' type= JvmTypeReference
+	'de:' horarioInicion = INT 'hasta:' horarionFin=  INT 'en:' aula = JvmTypeReference //aulas
 	
 ;
 
-Nombre:
-	'nombre' nombre = ':' STRING	
-;
-
 Profesor:
- 'profesor' '{'
-	'dedicacion' dedicacion= ':' type = Dedicacion
-	(atributos += Atributos)*
- '}'	
+ 'profesor' nombre= STRING 'dedicacion:' dedicacion =  Dedicacion
 ;
 
 Materia:
 	{Materia}
-  'materia' '{'
-	(atributos += Atributos)*
+  'materia' nombre = STRING '{'
+	'cantidadDeDias:' cantidadDeDias= INT
+	'cargaHoraria:' cargaHoraria= INT
+	'dictadaPor' dictadaPor = JvmTypeReference //profesor
 '}' 
 ;
 Aula:
 	{Aula}
-  'aula' '{'
-	(atributos += Atributos)*
-	'recursos' (recursos += Recursos)* ';'
+    'aula' idAula= INT'{'
+	'recursos' recursos += Recursos ';'
   '}'
 ;
 
 Planificacion:
 	{Planificacion}
-	'planificacion' anio= ':' INT semestre= ':' INT'{'
-	'aDictar:' (materias+=Materia)* 
-	'asignar :' (asignaciones += Asignaciones)*
+	'planificacion:' anio= INT 'semestre:' semestre= INT'{'
+	'aDictar:' materias+= JvmTypeReference //materias
+	'asignar :' asignaciones += Asignaciones
   '}'
 ;
 
 Asignaciones:
-	'dia' dia= Dia '{' // si pongo 'dia' dia=  ':' type=Dia me tira error, preguntar porque 	
- 	 horario = Horarios	'se dicta la materia' materia = ':'  type = JvmTypeReference 
+	'dia:' dia= Dia '{' 	
+ 	 horario = Horarios	'se dicta la materia:' materia = JvmTypeReference //materias
   '}'
 ;   
 
