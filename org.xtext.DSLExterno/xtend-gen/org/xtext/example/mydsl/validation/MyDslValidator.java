@@ -3,6 +3,18 @@
  */
 package org.xtext.example.mydsl.validation;
 
+import com.google.common.collect.Iterables;
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.xtext.validation.Check;
+import org.eclipse.xtext.xbase.lib.Functions.Function1;
+import org.eclipse.xtext.xbase.lib.IterableExtensions;
+import org.xtext.example.mydsl.myDsl.Clase;
+import org.xtext.example.mydsl.myDsl.Dedicacion;
+import org.xtext.example.mydsl.myDsl.Materia;
+import org.xtext.example.mydsl.myDsl.Model;
+import org.xtext.example.mydsl.myDsl.MyDslPackage;
+import org.xtext.example.mydsl.myDsl.Profesor;
 import org.xtext.example.mydsl.validation.AbstractMyDslValidator;
 
 /**
@@ -12,4 +24,39 @@ import org.xtext.example.mydsl.validation.AbstractMyDslValidator;
  */
 @SuppressWarnings("all")
 public class MyDslValidator extends AbstractMyDslValidator {
+  @Check
+  public void checkDedicacion(final Materia m) {
+    final Profesor profesor = m.getDictadaPor();
+    EObject _eContainer = m.eContainer();
+    final Model planificacion = ((Model) _eContainer);
+    EList<Clase> _clases = planificacion.getClases();
+    final Iterable<Materia> materias = Iterables.<Materia>filter(_clases, Materia.class);
+    boolean _and = false;
+    int _cantidadDeVeces = this.cantidadDeVeces(profesor, materias);
+    boolean _greaterThan = (_cantidadDeVeces > 1);
+    if (!_greaterThan) {
+      _and = false;
+    } else {
+      Dedicacion _dedicacion = profesor.getDedicacion();
+      boolean _equals = _dedicacion.equals(Dedicacion.SIMPLE);
+      _and = _equals;
+    }
+    if (_and) {
+      if (true) {
+        this.error("El Profesor ya tiene asignada una materia", m, 
+          MyDslPackage.Literals.MATERIA__DICTADA_POR);
+      }
+    }
+  }
+  
+  public int cantidadDeVeces(final Profesor profesor, final Iterable<Materia> list) {
+    final Function1<Materia, Boolean> _function = new Function1<Materia, Boolean>() {
+      public Boolean apply(final Materia materia) {
+        Profesor _dictadaPor = materia.getDictadaPor();
+        return Boolean.valueOf(_dictadaPor.equals(profesor));
+      }
+    };
+    Iterable<Materia> cant = IterableExtensions.<Materia>filter(list, _function);
+    return IterableExtensions.size(cant);
+  }
 }

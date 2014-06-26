@@ -1,0 +1,62 @@
+grammar org.xtext.example.mydsl.MyDsl with org.eclipse.xtext.xbase.Xbase
+generate myDsl "http://www.xtext.org/example/mydsl/MyDsl"
+
+Model:
+	(clases+=Clase)*;
+	
+Clase:
+	Profesor | Materia | Aula | Planificacion | Horario | Asignacion
+;
+
+Horario:
+	'de:' horarioInicio = INT 'hasta:' horarioFin=  INT 'en:' aula = [Aula] //aulas	
+;
+
+Profesor:
+ 'profesor:' nombre= STRING 'dedicacion:' dedicacion =  Dedicacion
+;
+
+Materia:
+    'materia' nombre = STRING '{'
+	'cantidadDeDias:' cantidadDeDias= INT
+	'cargaHoraria:' cargaHoraria= INT
+	'dictadaPor:' dictadaPor =  [Profesor]  //profesor
+'}' 
+;
+Aula:
+    'aula:' idAula= INT'{'
+	'recursos:' recursos += Recursos ';'
+  '}'
+;
+
+Planificacion:
+	'planificacion:' anio= INT 'semestre:' semestre= INT'{'
+	'aDictar:' materias+= [Materia] //materias
+	 asignaciones += Asignacion
+  '}'
+;
+
+Asignacion:
+	 dia= Dia '{' 	
+ 	 horario = Horario	'se dicta la materia:' materia = [Materia] //materias
+  '}'
+;   
+
+enum Dedicacion:
+	Simple | Semi | Exclusiva
+;
+
+enum Recursos:
+	Internet | Proyector | MaquinasParaAlumnos | MaquinaParaElProfesor
+;
+
+enum Dia:
+	Lunes | Martes | Miercoles | Jueves | Viernes | Sabados
+;
+
+/*
+ * def materiaADar(Dedicacion d)
+ * switch d{
+ * 	case Simple: bla
+ *  case Semi: bla2
+ */

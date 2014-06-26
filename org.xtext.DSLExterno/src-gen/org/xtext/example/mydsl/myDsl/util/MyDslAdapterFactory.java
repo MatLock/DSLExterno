@@ -85,29 +85,9 @@ public class MyDslAdapterFactory extends AdapterFactoryImpl
         return createClaseAdapter();
       }
       @Override
-      public Adapter caseAtributos(Atributos object)
+      public Adapter caseHorario(Horario object)
       {
-        return createAtributosAdapter();
-      }
-      @Override
-      public Adapter caseNumeroDeAula(NumeroDeAula object)
-      {
-        return createNumeroDeAulaAdapter();
-      }
-      @Override
-      public Adapter caseCantidadDeDias(CantidadDeDias object)
-      {
-        return createCantidadDeDiasAdapter();
-      }
-      @Override
-      public Adapter caseHorarios(Horarios object)
-      {
-        return createHorariosAdapter();
-      }
-      @Override
-      public Adapter caseNombre(Nombre object)
-      {
-        return createNombreAdapter();
+        return createHorarioAdapter();
       }
       @Override
       public Adapter caseProfesor(Profesor object)
@@ -130,9 +110,9 @@ public class MyDslAdapterFactory extends AdapterFactoryImpl
         return createPlanificacionAdapter();
       }
       @Override
-      public Adapter caseAsignaciones(Asignaciones object)
+      public Adapter caseAsignacion(Asignacion object)
       {
-        return createAsignacionesAdapter();
+        return createAsignacionAdapter();
       }
       @Override
       public Adapter defaultCase(EObject object)
@@ -187,76 +167,16 @@ public class MyDslAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link org.xtext.example.mydsl.myDsl.Atributos <em>Atributos</em>}'.
+   * Creates a new adapter for an object of class '{@link org.xtext.example.mydsl.myDsl.Horario <em>Horario</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see org.xtext.example.mydsl.myDsl.Atributos
+   * @see org.xtext.example.mydsl.myDsl.Horario
    * @generated
    */
-  public Adapter createAtributosAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link org.xtext.example.mydsl.myDsl.NumeroDeAula <em>Numero De Aula</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see org.xtext.example.mydsl.myDsl.NumeroDeAula
-   * @generated
-   */
-  public Adapter createNumeroDeAulaAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link org.xtext.example.mydsl.myDsl.CantidadDeDias <em>Cantidad De Dias</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see org.xtext.example.mydsl.myDsl.CantidadDeDias
-   * @generated
-   */
-  public Adapter createCantidadDeDiasAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link org.xtext.example.mydsl.myDsl.Horarios <em>Horarios</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see org.xtext.example.mydsl.myDsl.Horarios
-   * @generated
-   */
-  public Adapter createHorariosAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link org.xtext.example.mydsl.myDsl.Nombre <em>Nombre</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see org.xtext.example.mydsl.myDsl.Nombre
-   * @generated
-   */
-  public Adapter createNombreAdapter()
+  public Adapter createHorarioAdapter()
   {
     return null;
   }
@@ -322,16 +242,16 @@ public class MyDslAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link org.xtext.example.mydsl.myDsl.Asignaciones <em>Asignaciones</em>}'.
+   * Creates a new adapter for an object of class '{@link org.xtext.example.mydsl.myDsl.Asignacion <em>Asignacion</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see org.xtext.example.mydsl.myDsl.Asignaciones
+   * @see org.xtext.example.mydsl.myDsl.Asignacion
    * @generated
    */
-  public Adapter createAsignacionesAdapter()
+  public Adapter createAsignacionAdapter()
   {
     return null;
   }

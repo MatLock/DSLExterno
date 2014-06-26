@@ -2,21 +2,16 @@
  */
 package org.xtext.example.mydsl.myDsl.impl;
 
-import java.util.Collection;
-
-import org.eclipse.emf.common.notify.NotificationChain;
-
-import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
-import org.eclipse.emf.ecore.util.EObjectContainmentEList;
-import org.eclipse.emf.ecore.util.InternalEList;
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
-import org.xtext.example.mydsl.myDsl.Atributos;
 import org.xtext.example.mydsl.myDsl.Materia;
 import org.xtext.example.mydsl.myDsl.MyDslPackage;
+import org.xtext.example.mydsl.myDsl.Profesor;
 
 /**
  * <!-- begin-user-doc -->
@@ -25,7 +20,10 @@ import org.xtext.example.mydsl.myDsl.MyDslPackage;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.xtext.example.mydsl.myDsl.impl.MateriaImpl#getAtributos <em>Atributos</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.myDsl.impl.MateriaImpl#getNombre <em>Nombre</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.myDsl.impl.MateriaImpl#getCantidadDeDias <em>Cantidad De Dias</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.myDsl.impl.MateriaImpl#getCargaHoraria <em>Carga Horaria</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.myDsl.impl.MateriaImpl#getDictadaPor <em>Dictada Por</em>}</li>
  * </ul>
  * </p>
  *
@@ -34,14 +32,74 @@ import org.xtext.example.mydsl.myDsl.MyDslPackage;
 public class MateriaImpl extends ClaseImpl implements Materia
 {
   /**
-   * The cached value of the '{@link #getAtributos() <em>Atributos</em>}' containment reference list.
+   * The default value of the '{@link #getNombre() <em>Nombre</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getAtributos()
+   * @see #getNombre()
    * @generated
    * @ordered
    */
-  protected EList<Atributos> atributos;
+  protected static final String NOMBRE_EDEFAULT = null;
+
+  /**
+   * The cached value of the '{@link #getNombre() <em>Nombre</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getNombre()
+   * @generated
+   * @ordered
+   */
+  protected String nombre = NOMBRE_EDEFAULT;
+
+  /**
+   * The default value of the '{@link #getCantidadDeDias() <em>Cantidad De Dias</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getCantidadDeDias()
+   * @generated
+   * @ordered
+   */
+  protected static final int CANTIDAD_DE_DIAS_EDEFAULT = 0;
+
+  /**
+   * The cached value of the '{@link #getCantidadDeDias() <em>Cantidad De Dias</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getCantidadDeDias()
+   * @generated
+   * @ordered
+   */
+  protected int cantidadDeDias = CANTIDAD_DE_DIAS_EDEFAULT;
+
+  /**
+   * The default value of the '{@link #getCargaHoraria() <em>Carga Horaria</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getCargaHoraria()
+   * @generated
+   * @ordered
+   */
+  protected static final int CARGA_HORARIA_EDEFAULT = 0;
+
+  /**
+   * The cached value of the '{@link #getCargaHoraria() <em>Carga Horaria</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getCargaHoraria()
+   * @generated
+   * @ordered
+   */
+  protected int cargaHoraria = CARGA_HORARIA_EDEFAULT;
+
+  /**
+   * The cached value of the '{@link #getDictadaPor() <em>Dictada Por</em>}' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getDictadaPor()
+   * @generated
+   * @ordered
+   */
+  protected Profesor dictadaPor;
 
   /**
    * <!-- begin-user-doc -->
@@ -69,13 +127,9 @@ public class MateriaImpl extends ClaseImpl implements Materia
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList<Atributos> getAtributos()
+  public String getNombre()
   {
-    if (atributos == null)
-    {
-      atributos = new EObjectContainmentEList<Atributos>(Atributos.class, this, MyDslPackage.MATERIA__ATRIBUTOS);
-    }
-    return atributos;
+    return nombre;
   }
 
   /**
@@ -83,15 +137,101 @@ public class MateriaImpl extends ClaseImpl implements Materia
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
-  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
+  public void setNombre(String newNombre)
   {
-    switch (featureID)
+    String oldNombre = nombre;
+    nombre = newNombre;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, MyDslPackage.MATERIA__NOMBRE, oldNombre, nombre));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public int getCantidadDeDias()
+  {
+    return cantidadDeDias;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setCantidadDeDias(int newCantidadDeDias)
+  {
+    int oldCantidadDeDias = cantidadDeDias;
+    cantidadDeDias = newCantidadDeDias;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, MyDslPackage.MATERIA__CANTIDAD_DE_DIAS, oldCantidadDeDias, cantidadDeDias));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public int getCargaHoraria()
+  {
+    return cargaHoraria;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setCargaHoraria(int newCargaHoraria)
+  {
+    int oldCargaHoraria = cargaHoraria;
+    cargaHoraria = newCargaHoraria;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, MyDslPackage.MATERIA__CARGA_HORARIA, oldCargaHoraria, cargaHoraria));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Profesor getDictadaPor()
+  {
+    if (dictadaPor != null && dictadaPor.eIsProxy())
     {
-      case MyDslPackage.MATERIA__ATRIBUTOS:
-        return ((InternalEList<?>)getAtributos()).basicRemove(otherEnd, msgs);
+      InternalEObject oldDictadaPor = (InternalEObject)dictadaPor;
+      dictadaPor = (Profesor)eResolveProxy(oldDictadaPor);
+      if (dictadaPor != oldDictadaPor)
+      {
+        if (eNotificationRequired())
+          eNotify(new ENotificationImpl(this, Notification.RESOLVE, MyDslPackage.MATERIA__DICTADA_POR, oldDictadaPor, dictadaPor));
+      }
     }
-    return super.eInverseRemove(otherEnd, featureID, msgs);
+    return dictadaPor;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Profesor basicGetDictadaPor()
+  {
+    return dictadaPor;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setDictadaPor(Profesor newDictadaPor)
+  {
+    Profesor oldDictadaPor = dictadaPor;
+    dictadaPor = newDictadaPor;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, MyDslPackage.MATERIA__DICTADA_POR, oldDictadaPor, dictadaPor));
   }
 
   /**
@@ -104,8 +244,15 @@ public class MateriaImpl extends ClaseImpl implements Materia
   {
     switch (featureID)
     {
-      case MyDslPackage.MATERIA__ATRIBUTOS:
-        return getAtributos();
+      case MyDslPackage.MATERIA__NOMBRE:
+        return getNombre();
+      case MyDslPackage.MATERIA__CANTIDAD_DE_DIAS:
+        return getCantidadDeDias();
+      case MyDslPackage.MATERIA__CARGA_HORARIA:
+        return getCargaHoraria();
+      case MyDslPackage.MATERIA__DICTADA_POR:
+        if (resolve) return getDictadaPor();
+        return basicGetDictadaPor();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -115,15 +262,22 @@ public class MateriaImpl extends ClaseImpl implements Materia
    * <!-- end-user-doc -->
    * @generated
    */
-  @SuppressWarnings("unchecked")
   @Override
   public void eSet(int featureID, Object newValue)
   {
     switch (featureID)
     {
-      case MyDslPackage.MATERIA__ATRIBUTOS:
-        getAtributos().clear();
-        getAtributos().addAll((Collection<? extends Atributos>)newValue);
+      case MyDslPackage.MATERIA__NOMBRE:
+        setNombre((String)newValue);
+        return;
+      case MyDslPackage.MATERIA__CANTIDAD_DE_DIAS:
+        setCantidadDeDias((Integer)newValue);
+        return;
+      case MyDslPackage.MATERIA__CARGA_HORARIA:
+        setCargaHoraria((Integer)newValue);
+        return;
+      case MyDslPackage.MATERIA__DICTADA_POR:
+        setDictadaPor((Profesor)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -139,8 +293,17 @@ public class MateriaImpl extends ClaseImpl implements Materia
   {
     switch (featureID)
     {
-      case MyDslPackage.MATERIA__ATRIBUTOS:
-        getAtributos().clear();
+      case MyDslPackage.MATERIA__NOMBRE:
+        setNombre(NOMBRE_EDEFAULT);
+        return;
+      case MyDslPackage.MATERIA__CANTIDAD_DE_DIAS:
+        setCantidadDeDias(CANTIDAD_DE_DIAS_EDEFAULT);
+        return;
+      case MyDslPackage.MATERIA__CARGA_HORARIA:
+        setCargaHoraria(CARGA_HORARIA_EDEFAULT);
+        return;
+      case MyDslPackage.MATERIA__DICTADA_POR:
+        setDictadaPor((Profesor)null);
         return;
     }
     super.eUnset(featureID);
@@ -156,10 +319,37 @@ public class MateriaImpl extends ClaseImpl implements Materia
   {
     switch (featureID)
     {
-      case MyDslPackage.MATERIA__ATRIBUTOS:
-        return atributos != null && !atributos.isEmpty();
+      case MyDslPackage.MATERIA__NOMBRE:
+        return NOMBRE_EDEFAULT == null ? nombre != null : !NOMBRE_EDEFAULT.equals(nombre);
+      case MyDslPackage.MATERIA__CANTIDAD_DE_DIAS:
+        return cantidadDeDias != CANTIDAD_DE_DIAS_EDEFAULT;
+      case MyDslPackage.MATERIA__CARGA_HORARIA:
+        return cargaHoraria != CARGA_HORARIA_EDEFAULT;
+      case MyDslPackage.MATERIA__DICTADA_POR:
+        return dictadaPor != null;
     }
     return super.eIsSet(featureID);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public String toString()
+  {
+    if (eIsProxy()) return super.toString();
+
+    StringBuffer result = new StringBuffer(super.toString());
+    result.append(" (nombre: ");
+    result.append(nombre);
+    result.append(", cantidadDeDias: ");
+    result.append(cantidadDeDias);
+    result.append(", cargaHoraria: ");
+    result.append(cargaHoraria);
+    result.append(')');
+    return result.toString();
   }
 
 } //MateriaImpl

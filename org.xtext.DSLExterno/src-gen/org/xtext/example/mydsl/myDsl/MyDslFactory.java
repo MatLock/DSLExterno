@@ -41,49 +41,13 @@ public interface MyDslFactory extends EFactory
   Clase createClase();
 
   /**
-   * Returns a new object of class '<em>Atributos</em>'.
+   * Returns a new object of class '<em>Horario</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Atributos</em>'.
+   * @return a new object of class '<em>Horario</em>'.
    * @generated
    */
-  Atributos createAtributos();
-
-  /**
-   * Returns a new object of class '<em>Numero De Aula</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Numero De Aula</em>'.
-   * @generated
-   */
-  NumeroDeAula createNumeroDeAula();
-
-  /**
-   * Returns a new object of class '<em>Cantidad De Dias</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Cantidad De Dias</em>'.
-   * @generated
-   */
-  CantidadDeDias createCantidadDeDias();
-
-  /**
-   * Returns a new object of class '<em>Horarios</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Horarios</em>'.
-   * @generated
-   */
-  Horarios createHorarios();
-
-  /**
-   * Returns a new object of class '<em>Nombre</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Nombre</em>'.
-   * @generated
-   */
-  Nombre createNombre();
+  Horario createHorario();
 
   /**
    * Returns a new object of class '<em>Profesor</em>'.
@@ -122,13 +86,13 @@ public interface MyDslFactory extends EFactory
   Planificacion createPlanificacion();
 
   /**
-   * Returns a new object of class '<em>Asignaciones</em>'.
+   * Returns a new object of class '<em>Asignacion</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Asignaciones</em>'.
+   * @return a new object of class '<em>Asignacion</em>'.
    * @generated
    */
-  Asignaciones createAsignaciones();
+  Asignacion createAsignacion();
 
   /**
    * Returns the package supported by this factory.

@@ -86,42 +86,11 @@ public class MyDslSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case MyDslPackage.ATRIBUTOS:
+      case MyDslPackage.HORARIO:
       {
-        Atributos atributos = (Atributos)theEObject;
-        T result = caseAtributos(atributos);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
-      case MyDslPackage.NUMERO_DE_AULA:
-      {
-        NumeroDeAula numeroDeAula = (NumeroDeAula)theEObject;
-        T result = caseNumeroDeAula(numeroDeAula);
-        if (result == null) result = caseAtributos(numeroDeAula);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
-      case MyDslPackage.CANTIDAD_DE_DIAS:
-      {
-        CantidadDeDias cantidadDeDias = (CantidadDeDias)theEObject;
-        T result = caseCantidadDeDias(cantidadDeDias);
-        if (result == null) result = caseAtributos(cantidadDeDias);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
-      case MyDslPackage.HORARIOS:
-      {
-        Horarios horarios = (Horarios)theEObject;
-        T result = caseHorarios(horarios);
-        if (result == null) result = caseAtributos(horarios);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
-      case MyDslPackage.NOMBRE:
-      {
-        Nombre nombre = (Nombre)theEObject;
-        T result = caseNombre(nombre);
-        if (result == null) result = caseAtributos(nombre);
+        Horario horario = (Horario)theEObject;
+        T result = caseHorario(horario);
+        if (result == null) result = caseClase(horario);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -130,7 +99,6 @@ public class MyDslSwitch<T> extends Switch<T>
         Profesor profesor = (Profesor)theEObject;
         T result = caseProfesor(profesor);
         if (result == null) result = caseClase(profesor);
-        if (result == null) result = caseAtributos(profesor);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -147,7 +115,6 @@ public class MyDslSwitch<T> extends Switch<T>
         Aula aula = (Aula)theEObject;
         T result = caseAula(aula);
         if (result == null) result = caseClase(aula);
-        if (result == null) result = caseAtributos(aula);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -159,11 +126,11 @@ public class MyDslSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case MyDslPackage.ASIGNACIONES:
+      case MyDslPackage.ASIGNACION:
       {
-        Asignaciones asignaciones = (Asignaciones)theEObject;
-        T result = caseAsignaciones(asignaciones);
-        if (result == null) result = caseAtributos(asignaciones);
+        Asignacion asignacion = (Asignacion)theEObject;
+        T result = caseAsignacion(asignacion);
+        if (result == null) result = caseClase(asignacion);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -204,81 +171,17 @@ public class MyDslSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Atributos</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Horario</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Atributos</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Horario</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseAtributos(Atributos object)
-  {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Numero De Aula</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Numero De Aula</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseNumeroDeAula(NumeroDeAula object)
-  {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Cantidad De Dias</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Cantidad De Dias</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseCantidadDeDias(CantidadDeDias object)
-  {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Horarios</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Horarios</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseHorarios(Horarios object)
-  {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Nombre</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Nombre</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseNombre(Nombre object)
+  public T caseHorario(Horario object)
   {
     return null;
   }
@@ -348,17 +251,17 @@ public class MyDslSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Asignaciones</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Asignacion</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Asignaciones</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Asignacion</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseAsignaciones(Asignaciones object)
+  public T caseAsignacion(Asignacion object)
   {
     return null;
   }

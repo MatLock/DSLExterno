@@ -34,12 +34,12 @@ public interface Planificacion extends Clase
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Anio</em>' attribute.
-   * @see #setAnio(String)
+   * @see #setAnio(int)
    * @see org.xtext.example.mydsl.myDsl.MyDslPackage#getPlanificacion_Anio()
    * @model
    * @generated
    */
-  String getAnio();
+  int getAnio();
 
   /**
    * Sets the value of the '{@link org.xtext.example.mydsl.myDsl.Planificacion#getAnio <em>Anio</em>}' attribute.
@@ -49,7 +49,7 @@ public interface Planificacion extends Clase
    * @see #getAnio()
    * @generated
    */
-  void setAnio(String value);
+  void setAnio(int value);
 
   /**
    * Returns the value of the '<em><b>Semestre</b></em>' attribute.
@@ -60,12 +60,12 @@ public interface Planificacion extends Clase
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Semestre</em>' attribute.
-   * @see #setSemestre(String)
+   * @see #setSemestre(int)
    * @see org.xtext.example.mydsl.myDsl.MyDslPackage#getPlanificacion_Semestre()
    * @model
    * @generated
    */
-  String getSemestre();
+  int getSemestre();
 
   /**
    * Sets the value of the '{@link org.xtext.example.mydsl.myDsl.Planificacion#getSemestre <em>Semestre</em>}' attribute.
@@ -75,27 +75,27 @@ public interface Planificacion extends Clase
    * @see #getSemestre()
    * @generated
    */
-  void setSemestre(String value);
+  void setSemestre(int value);
 
   /**
-   * Returns the value of the '<em><b>Materias</b></em>' containment reference list.
+   * Returns the value of the '<em><b>Materias</b></em>' reference list.
    * The list contents are of type {@link org.xtext.example.mydsl.myDsl.Materia}.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Materias</em>' containment reference list isn't clear,
+   * If the meaning of the '<em>Materias</em>' reference list isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Materias</em>' containment reference list.
+   * @return the value of the '<em>Materias</em>' reference list.
    * @see org.xtext.example.mydsl.myDsl.MyDslPackage#getPlanificacion_Materias()
-   * @model containment="true"
+   * @model
    * @generated
    */
   EList<Materia> getMaterias();
 
   /**
    * Returns the value of the '<em><b>Asignaciones</b></em>' containment reference list.
-   * The list contents are of type {@link org.xtext.example.mydsl.myDsl.Asignaciones}.
+   * The list contents are of type {@link org.xtext.example.mydsl.myDsl.Asignacion}.
    * <!-- begin-user-doc -->
    * <p>
    * If the meaning of the '<em>Asignaciones</em>' containment reference list isn't clear,
@@ -107,6 +107,6 @@ public interface Planificacion extends Clase
    * @model containment="true"
    * @generated
    */
-  EList<Asignaciones> getAsignaciones();
+  EList<Asignacion> getAsignaciones();
 
 } // Planificacion

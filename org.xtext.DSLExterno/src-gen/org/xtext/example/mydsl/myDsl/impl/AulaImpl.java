@@ -4,18 +4,16 @@ package org.xtext.example.mydsl.myDsl.impl;
 
 import java.util.Collection;
 
-import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
+
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import org.eclipse.emf.ecore.util.EDataTypeEList;
-import org.eclipse.emf.ecore.util.EObjectContainmentEList;
-import org.eclipse.emf.ecore.util.InternalEList;
 
-import org.xtext.example.mydsl.myDsl.Atributos;
 import org.xtext.example.mydsl.myDsl.Aula;
 import org.xtext.example.mydsl.myDsl.MyDslPackage;
 import org.xtext.example.mydsl.myDsl.Recursos;
@@ -27,7 +25,7 @@ import org.xtext.example.mydsl.myDsl.Recursos;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.xtext.example.mydsl.myDsl.impl.AulaImpl#getAtributos <em>Atributos</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.myDsl.impl.AulaImpl#getIdAula <em>Id Aula</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.myDsl.impl.AulaImpl#getRecursos <em>Recursos</em>}</li>
  * </ul>
  * </p>
@@ -37,14 +35,24 @@ import org.xtext.example.mydsl.myDsl.Recursos;
 public class AulaImpl extends ClaseImpl implements Aula
 {
   /**
-   * The cached value of the '{@link #getAtributos() <em>Atributos</em>}' containment reference list.
+   * The default value of the '{@link #getIdAula() <em>Id Aula</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getAtributos()
+   * @see #getIdAula()
    * @generated
    * @ordered
    */
-  protected EList<Atributos> atributos;
+  protected static final int ID_AULA_EDEFAULT = 0;
+
+  /**
+   * The cached value of the '{@link #getIdAula() <em>Id Aula</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getIdAula()
+   * @generated
+   * @ordered
+   */
+  protected int idAula = ID_AULA_EDEFAULT;
 
   /**
    * The cached value of the '{@link #getRecursos() <em>Recursos</em>}' attribute list.
@@ -82,13 +90,22 @@ public class AulaImpl extends ClaseImpl implements Aula
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList<Atributos> getAtributos()
+  public int getIdAula()
   {
-    if (atributos == null)
-    {
-      atributos = new EObjectContainmentEList<Atributos>(Atributos.class, this, MyDslPackage.AULA__ATRIBUTOS);
-    }
-    return atributos;
+    return idAula;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setIdAula(int newIdAula)
+  {
+    int oldIdAula = idAula;
+    idAula = newIdAula;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, MyDslPackage.AULA__ID_AULA, oldIdAula, idAula));
   }
 
   /**
@@ -111,28 +128,12 @@ public class AulaImpl extends ClaseImpl implements Aula
    * @generated
    */
   @Override
-  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
-  {
-    switch (featureID)
-    {
-      case MyDslPackage.AULA__ATRIBUTOS:
-        return ((InternalEList<?>)getAtributos()).basicRemove(otherEnd, msgs);
-    }
-    return super.eInverseRemove(otherEnd, featureID, msgs);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
   public Object eGet(int featureID, boolean resolve, boolean coreType)
   {
     switch (featureID)
     {
-      case MyDslPackage.AULA__ATRIBUTOS:
-        return getAtributos();
+      case MyDslPackage.AULA__ID_AULA:
+        return getIdAula();
       case MyDslPackage.AULA__RECURSOS:
         return getRecursos();
     }
@@ -150,9 +151,8 @@ public class AulaImpl extends ClaseImpl implements Aula
   {
     switch (featureID)
     {
-      case MyDslPackage.AULA__ATRIBUTOS:
-        getAtributos().clear();
-        getAtributos().addAll((Collection<? extends Atributos>)newValue);
+      case MyDslPackage.AULA__ID_AULA:
+        setIdAula((Integer)newValue);
         return;
       case MyDslPackage.AULA__RECURSOS:
         getRecursos().clear();
@@ -172,8 +172,8 @@ public class AulaImpl extends ClaseImpl implements Aula
   {
     switch (featureID)
     {
-      case MyDslPackage.AULA__ATRIBUTOS:
-        getAtributos().clear();
+      case MyDslPackage.AULA__ID_AULA:
+        setIdAula(ID_AULA_EDEFAULT);
         return;
       case MyDslPackage.AULA__RECURSOS:
         getRecursos().clear();
@@ -192,8 +192,8 @@ public class AulaImpl extends ClaseImpl implements Aula
   {
     switch (featureID)
     {
-      case MyDslPackage.AULA__ATRIBUTOS:
-        return atributos != null && !atributos.isEmpty();
+      case MyDslPackage.AULA__ID_AULA:
+        return idAula != ID_AULA_EDEFAULT;
       case MyDslPackage.AULA__RECURSOS:
         return recursos != null && !recursos.isEmpty();
     }
@@ -211,7 +211,9 @@ public class AulaImpl extends ClaseImpl implements Aula
     if (eIsProxy()) return super.toString();
 
     StringBuffer result = new StringBuffer(super.toString());
-    result.append(" (recursos: ");
+    result.append(" (idAula: ");
+    result.append(idAula);
+    result.append(", recursos: ");
     result.append(recursos);
     result.append(')');
     return result.toString();

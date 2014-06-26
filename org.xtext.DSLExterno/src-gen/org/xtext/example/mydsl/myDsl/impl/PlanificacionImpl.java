@@ -15,9 +15,10 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
-import org.xtext.example.mydsl.myDsl.Asignaciones;
+import org.xtext.example.mydsl.myDsl.Asignacion;
 import org.xtext.example.mydsl.myDsl.Materia;
 import org.xtext.example.mydsl.myDsl.MyDslPackage;
 import org.xtext.example.mydsl.myDsl.Planificacion;
@@ -48,7 +49,7 @@ public class PlanificacionImpl extends ClaseImpl implements Planificacion
    * @generated
    * @ordered
    */
-  protected static final String ANIO_EDEFAULT = null;
+  protected static final int ANIO_EDEFAULT = 0;
 
   /**
    * The cached value of the '{@link #getAnio() <em>Anio</em>}' attribute.
@@ -58,7 +59,7 @@ public class PlanificacionImpl extends ClaseImpl implements Planificacion
    * @generated
    * @ordered
    */
-  protected String anio = ANIO_EDEFAULT;
+  protected int anio = ANIO_EDEFAULT;
 
   /**
    * The default value of the '{@link #getSemestre() <em>Semestre</em>}' attribute.
@@ -68,7 +69,7 @@ public class PlanificacionImpl extends ClaseImpl implements Planificacion
    * @generated
    * @ordered
    */
-  protected static final String SEMESTRE_EDEFAULT = null;
+  protected static final int SEMESTRE_EDEFAULT = 0;
 
   /**
    * The cached value of the '{@link #getSemestre() <em>Semestre</em>}' attribute.
@@ -78,10 +79,10 @@ public class PlanificacionImpl extends ClaseImpl implements Planificacion
    * @generated
    * @ordered
    */
-  protected String semestre = SEMESTRE_EDEFAULT;
+  protected int semestre = SEMESTRE_EDEFAULT;
 
   /**
-   * The cached value of the '{@link #getMaterias() <em>Materias</em>}' containment reference list.
+   * The cached value of the '{@link #getMaterias() <em>Materias</em>}' reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #getMaterias()
@@ -98,7 +99,7 @@ public class PlanificacionImpl extends ClaseImpl implements Planificacion
    * @generated
    * @ordered
    */
-  protected EList<Asignaciones> asignaciones;
+  protected EList<Asignacion> asignaciones;
 
   /**
    * <!-- begin-user-doc -->
@@ -126,7 +127,7 @@ public class PlanificacionImpl extends ClaseImpl implements Planificacion
    * <!-- end-user-doc -->
    * @generated
    */
-  public String getAnio()
+  public int getAnio()
   {
     return anio;
   }
@@ -136,9 +137,9 @@ public class PlanificacionImpl extends ClaseImpl implements Planificacion
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setAnio(String newAnio)
+  public void setAnio(int newAnio)
   {
-    String oldAnio = anio;
+    int oldAnio = anio;
     anio = newAnio;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, MyDslPackage.PLANIFICACION__ANIO, oldAnio, anio));
@@ -149,7 +150,7 @@ public class PlanificacionImpl extends ClaseImpl implements Planificacion
    * <!-- end-user-doc -->
    * @generated
    */
-  public String getSemestre()
+  public int getSemestre()
   {
     return semestre;
   }
@@ -159,9 +160,9 @@ public class PlanificacionImpl extends ClaseImpl implements Planificacion
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setSemestre(String newSemestre)
+  public void setSemestre(int newSemestre)
   {
-    String oldSemestre = semestre;
+    int oldSemestre = semestre;
     semestre = newSemestre;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, MyDslPackage.PLANIFICACION__SEMESTRE, oldSemestre, semestre));
@@ -176,7 +177,7 @@ public class PlanificacionImpl extends ClaseImpl implements Planificacion
   {
     if (materias == null)
     {
-      materias = new EObjectContainmentEList<Materia>(Materia.class, this, MyDslPackage.PLANIFICACION__MATERIAS);
+      materias = new EObjectResolvingEList<Materia>(Materia.class, this, MyDslPackage.PLANIFICACION__MATERIAS);
     }
     return materias;
   }
@@ -186,11 +187,11 @@ public class PlanificacionImpl extends ClaseImpl implements Planificacion
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList<Asignaciones> getAsignaciones()
+  public EList<Asignacion> getAsignaciones()
   {
     if (asignaciones == null)
     {
-      asignaciones = new EObjectContainmentEList<Asignaciones>(Asignaciones.class, this, MyDslPackage.PLANIFICACION__ASIGNACIONES);
+      asignaciones = new EObjectContainmentEList<Asignacion>(Asignacion.class, this, MyDslPackage.PLANIFICACION__ASIGNACIONES);
     }
     return asignaciones;
   }
@@ -205,8 +206,6 @@ public class PlanificacionImpl extends ClaseImpl implements Planificacion
   {
     switch (featureID)
     {
-      case MyDslPackage.PLANIFICACION__MATERIAS:
-        return ((InternalEList<?>)getMaterias()).basicRemove(otherEnd, msgs);
       case MyDslPackage.PLANIFICACION__ASIGNACIONES:
         return ((InternalEList<?>)getAsignaciones()).basicRemove(otherEnd, msgs);
     }
@@ -247,10 +246,10 @@ public class PlanificacionImpl extends ClaseImpl implements Planificacion
     switch (featureID)
     {
       case MyDslPackage.PLANIFICACION__ANIO:
-        setAnio((String)newValue);
+        setAnio((Integer)newValue);
         return;
       case MyDslPackage.PLANIFICACION__SEMESTRE:
-        setSemestre((String)newValue);
+        setSemestre((Integer)newValue);
         return;
       case MyDslPackage.PLANIFICACION__MATERIAS:
         getMaterias().clear();
@@ -258,7 +257,7 @@ public class PlanificacionImpl extends ClaseImpl implements Planificacion
         return;
       case MyDslPackage.PLANIFICACION__ASIGNACIONES:
         getAsignaciones().clear();
-        getAsignaciones().addAll((Collection<? extends Asignaciones>)newValue);
+        getAsignaciones().addAll((Collection<? extends Asignacion>)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -301,9 +300,9 @@ public class PlanificacionImpl extends ClaseImpl implements Planificacion
     switch (featureID)
     {
       case MyDslPackage.PLANIFICACION__ANIO:
-        return ANIO_EDEFAULT == null ? anio != null : !ANIO_EDEFAULT.equals(anio);
+        return anio != ANIO_EDEFAULT;
       case MyDslPackage.PLANIFICACION__SEMESTRE:
-        return SEMESTRE_EDEFAULT == null ? semestre != null : !SEMESTRE_EDEFAULT.equals(semestre);
+        return semestre != SEMESTRE_EDEFAULT;
       case MyDslPackage.PLANIFICACION__MATERIAS:
         return materias != null && !materias.isEmpty();
       case MyDslPackage.PLANIFICACION__ASIGNACIONES:

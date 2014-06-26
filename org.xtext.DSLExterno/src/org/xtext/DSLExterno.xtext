@@ -5,53 +5,40 @@ Model:
 	(clases+=Clase)*;
 	
 Clase:
-//	'Hello' name=ID '!'
-	Profesor | Materia | Aula | Planificacion 
+	Profesor | Materia | Aula | Planificacion | Horario | Asignacion
 ;
 
-NumeroDeAula:
-	'numeroDeAula:' numero = INT 
-;
-
-CantidadDeDias:
-	'CantidadDeDias:' dias = INT	
-;
-
-Horarios:
-	'de:' horarioInicion = INT 'hasta:' horarionFin=  INT 'en:' aula = JvmTypeReference //aulas
-	
+Horario:
+	'de:' horarioInicio = INT 'hasta:' horarioFin=  INT 'en:' aula = Aula //aulas	
 ;
 
 Profesor:
- 'profesor' nombre= STRING 'dedicacion:' dedicacion =  Dedicacion
+ 'profesor:' nombre= ID 'dedicacion:' dedicacion =  Dedicacion
 ;
 
 Materia:
-	{Materia}
-  'materia' nombre = STRING '{'
+    'materia' nombre = ID '{'
 	'cantidadDeDias:' cantidadDeDias= INT
 	'cargaHoraria:' cargaHoraria= INT
-	'dictadaPor' dictadaPor = JvmTypeReference //profesor
+	'dictadaPor:' dictadaPor=  [Profesor] //profesor
 '}' 
 ;
 Aula:
-	{Aula}
-    'aula' idAula= INT'{'
-	'recursos' recursos += Recursos ';'
+    'aula:' idAula= INT'{'
+	'recursos:' recursos += Recursos ';'
   '}'
 ;
 
 Planificacion:
-	{Planificacion}
 	'planificacion:' anio= INT 'semestre:' semestre= INT'{'
-	'aDictar:' materias+= JvmTypeReference //materias
-	'asignar :' asignaciones += Asignaciones
+	'aDictar:' materias += [Materia] //materias
+	 (asignaciones += Asignacion)*
   '}'
 ;
 
-Asignaciones:
-	'dia:' dia= Dia '{' 	
- 	 horario = Horarios	'se dicta la materia:' materia = JvmTypeReference //materias
+Asignacion:
+	 dia= Dia '{' 	
+ 	 horario = Horario	'se dicta la materia:' materia = [Materia] //materias
   '}'
 ;   
 
@@ -66,3 +53,10 @@ enum Recursos:
 enum Dia:
 	Lunes | Martes | Miercoles | Jueves | Viernes | Sabados
 ;
+
+/*
+ * def materiaADar(Dedicacion d)
+ * switch d{
+ * 	case Simple: bla
+ *  case Semi: bla2
+ */

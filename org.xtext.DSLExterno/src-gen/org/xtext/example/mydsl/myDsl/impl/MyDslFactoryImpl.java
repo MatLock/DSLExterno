@@ -67,16 +67,12 @@ public class MyDslFactoryImpl extends EFactoryImpl implements MyDslFactory
     {
       case MyDslPackage.MODEL: return createModel();
       case MyDslPackage.CLASE: return createClase();
-      case MyDslPackage.ATRIBUTOS: return createAtributos();
-      case MyDslPackage.NUMERO_DE_AULA: return createNumeroDeAula();
-      case MyDslPackage.CANTIDAD_DE_DIAS: return createCantidadDeDias();
-      case MyDslPackage.HORARIOS: return createHorarios();
-      case MyDslPackage.NOMBRE: return createNombre();
+      case MyDslPackage.HORARIO: return createHorario();
       case MyDslPackage.PROFESOR: return createProfesor();
       case MyDslPackage.MATERIA: return createMateria();
       case MyDslPackage.AULA: return createAula();
       case MyDslPackage.PLANIFICACION: return createPlanificacion();
-      case MyDslPackage.ASIGNACIONES: return createAsignaciones();
+      case MyDslPackage.ASIGNACION: return createAsignacion();
       default:
         throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
     }
@@ -151,54 +147,10 @@ public class MyDslFactoryImpl extends EFactoryImpl implements MyDslFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  public Atributos createAtributos()
+  public Horario createHorario()
   {
-    AtributosImpl atributos = new AtributosImpl();
-    return atributos;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public NumeroDeAula createNumeroDeAula()
-  {
-    NumeroDeAulaImpl numeroDeAula = new NumeroDeAulaImpl();
-    return numeroDeAula;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public CantidadDeDias createCantidadDeDias()
-  {
-    CantidadDeDiasImpl cantidadDeDias = new CantidadDeDiasImpl();
-    return cantidadDeDias;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public Horarios createHorarios()
-  {
-    HorariosImpl horarios = new HorariosImpl();
-    return horarios;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public Nombre createNombre()
-  {
-    NombreImpl nombre = new NombreImpl();
-    return nombre;
+    HorarioImpl horario = new HorarioImpl();
+    return horario;
   }
 
   /**
@@ -250,10 +202,10 @@ public class MyDslFactoryImpl extends EFactoryImpl implements MyDslFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  public Asignaciones createAsignaciones()
+  public Asignacion createAsignacion()
   {
-    AsignacionesImpl asignaciones = new AsignacionesImpl();
-    return asignaciones;
+    AsignacionImpl asignacion = new AsignacionImpl();
+    return asignacion;
   }
 
   /**
