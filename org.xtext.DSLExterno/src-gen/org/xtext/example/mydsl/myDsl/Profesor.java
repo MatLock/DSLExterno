@@ -11,7 +11,7 @@ package org.xtext.example.mydsl.myDsl;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.xtext.example.mydsl.myDsl.Profesor#getNombre <em>Nombre</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.myDsl.Profesor#getName <em>Name</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.myDsl.Profesor#getDedicacion <em>Dedicacion</em>}</li>
  * </ul>
  * </p>
@@ -23,30 +23,30 @@ package org.xtext.example.mydsl.myDsl;
 public interface Profesor extends Clase
 {
   /**
-   * Returns the value of the '<em><b>Nombre</b></em>' attribute.
+   * Returns the value of the '<em><b>Name</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Nombre</em>' attribute isn't clear,
+   * If the meaning of the '<em>Name</em>' attribute isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Nombre</em>' attribute.
-   * @see #setNombre(String)
-   * @see org.xtext.example.mydsl.myDsl.MyDslPackage#getProfesor_Nombre()
+   * @return the value of the '<em>Name</em>' attribute.
+   * @see #setName(String)
+   * @see org.xtext.example.mydsl.myDsl.MyDslPackage#getProfesor_Name()
    * @model
    * @generated
    */
-  String getNombre();
+  String getName();
 
   /**
-   * Sets the value of the '{@link org.xtext.example.mydsl.myDsl.Profesor#getNombre <em>Nombre</em>}' attribute.
+   * Sets the value of the '{@link org.xtext.example.mydsl.myDsl.Profesor#getName <em>Name</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Nombre</em>' attribute.
-   * @see #getNombre()
+   * @param value the new value of the '<em>Name</em>' attribute.
+   * @see #getName()
    * @generated
    */
-  void setNombre(String value);
+  void setName(String value);
 
   /**
    * Returns the value of the '<em><b>Dedicacion</b></em>' attribute.

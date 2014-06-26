@@ -247,20 +247,15 @@ ruleHorario returns [EObject current=null]
     }
 (
 (
-		{ 
-	        newCompositeNode(grammarAccess.getHorarioAccess().getAulaAulaParserRuleCall_5_0()); 
-	    }
-		lv_aula_5_0=ruleAula		{
-	        if ($current==null) {
-	            $current = createModelElementForParent(grammarAccess.getHorarioRule());
+		{
+			if ($current==null) {
+	            $current = createModelElement(grammarAccess.getHorarioRule());
 	        }
-       		set(
-       			$current, 
-       			"aula",
-        		lv_aula_5_0, 
-        		"Aula");
-	        afterParserOrEnumRuleCall();
-	    }
+        }
+	otherlv_5=RULE_ID
+	{
+		newLeafNode(otherlv_5, grammarAccess.getHorarioAccess().getAulaAulaCrossReference_5_0()); 
+	}
 
 )
 ))
@@ -290,9 +285,9 @@ ruleProfesor returns [EObject current=null]
     }
 (
 (
-		lv_nombre_1_0=RULE_ID
+		lv_name_1_0=RULE_ID
 		{
-			newLeafNode(lv_nombre_1_0, grammarAccess.getProfesorAccess().getNombreIDTerminalRuleCall_1_0()); 
+			newLeafNode(lv_name_1_0, grammarAccess.getProfesorAccess().getNameIDTerminalRuleCall_1_0()); 
 		}
 		{
 	        if ($current==null) {
@@ -300,8 +295,8 @@ ruleProfesor returns [EObject current=null]
 	        }
        		setWithLastConsumed(
        			$current, 
-       			"nombre",
-        		lv_nombre_1_0, 
+       			"name",
+        		lv_name_1_0, 
         		"ID");
 	    }
 
@@ -349,15 +344,15 @@ ruleMateria returns [EObject current=null]
     @init { enterRule(); 
     }
     @after { leaveRule(); }:
-(	otherlv_0='materia' 
+(	otherlv_0='materia:' 
     {
     	newLeafNode(otherlv_0, grammarAccess.getMateriaAccess().getMateriaKeyword_0());
     }
 (
 (
-		lv_nombre_1_0=RULE_ID
+		lv_name_1_0=RULE_ID
 		{
-			newLeafNode(lv_nombre_1_0, grammarAccess.getMateriaAccess().getNombreIDTerminalRuleCall_1_0()); 
+			newLeafNode(lv_name_1_0, grammarAccess.getMateriaAccess().getNameIDTerminalRuleCall_1_0()); 
 		}
 		{
 	        if ($current==null) {
@@ -365,8 +360,8 @@ ruleMateria returns [EObject current=null]
 	        }
        		setWithLastConsumed(
        			$current, 
-       			"nombre",
-        		lv_nombre_1_0, 
+       			"name",
+        		lv_name_1_0, 
         		"ID");
 	    }
 
@@ -467,9 +462,9 @@ ruleAula returns [EObject current=null]
     }
 (
 (
-		lv_idAula_1_0=RULE_INT
+		lv_name_1_0=RULE_ID
 		{
-			newLeafNode(lv_idAula_1_0, grammarAccess.getAulaAccess().getIdAulaINTTerminalRuleCall_1_0()); 
+			newLeafNode(lv_name_1_0, grammarAccess.getAulaAccess().getNameIDTerminalRuleCall_1_0()); 
 		}
 		{
 	        if ($current==null) {
@@ -477,9 +472,9 @@ ruleAula returns [EObject current=null]
 	        }
        		setWithLastConsumed(
        			$current, 
-       			"idAula",
-        		lv_idAula_1_0, 
-        		"INT");
+       			"name",
+        		lv_name_1_0, 
+        		"ID");
 	    }
 
 )
@@ -509,13 +504,9 @@ ruleAula returns [EObject current=null]
 	    }
 
 )
-)	otherlv_5=';' 
+)*	otherlv_5='}' 
     {
-    	newLeafNode(otherlv_5, grammarAccess.getAulaAccess().getSemicolonKeyword_5());
-    }
-	otherlv_6='}' 
-    {
-    	newLeafNode(otherlv_6, grammarAccess.getAulaAccess().getRightCurlyBracketKeyword_6());
+    	newLeafNode(otherlv_5, grammarAccess.getAulaAccess().getRightCurlyBracketKeyword_5());
     }
 )
 ;
@@ -603,7 +594,7 @@ rulePlanificacion returns [EObject current=null]
 	}
 
 )
-)(
+)*(
 (
 		{ 
 	        newCompositeNode(grammarAccess.getPlanificacionAccess().getAsignacionesAsignacionParserRuleCall_7_0()); 

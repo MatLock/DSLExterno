@@ -5,12 +5,12 @@ package org.xtext.example.mydsl.validation
 
 import org.eclipse.xtext.validation.Check
 import org.xtext.example.mydsl.myDsl.Materia
-import org.xtext.example.mydsl.myDsl.MyDslPackage
-import org.xtext.example.mydsl.myDsl.Planificacion
-import org.xtext.example.mydsl.myDsl.Dedicacion
-import org.xtext.example.mydsl.myDsl.Profesor
-import org.eclipse.emf.common.util.EList
 import org.xtext.example.mydsl.myDsl.Model
+import org.xtext.example.mydsl.myDsl.MyDslPackage
+import org.xtext.example.mydsl.myDsl.Profesor
+
+import static org.xtext.example.mydsl.myDsl.Dedicacion.*
+import org.xtext.example.mydsl.myDsl.Planificacion
 
 //import org.eclipse.xtext.validation.Check
 
@@ -22,29 +22,39 @@ import org.xtext.example.mydsl.myDsl.Model
  
 class MyDslValidator extends AbstractMyDslValidator {
 
-//@Check
-//def bla(Profesor p){
-// 	if(true){
-//			error("El profesor " + p.nombre + "ya tiene asignada una dedicacion", p ,
-//				MyDslPackage.Literals.PROFESOR__DEDICACION)
-//			}
-//	
-//}
 	@Check
 	def checkDedicacion(Materia m) {
 		val profesor = m.dictadaPor
 		val planificacion = m.eContainer as Model
 		val materias = planificacion.clases.filter(Materia)
-		if(cantidadDeVeces(profesor,materias) > 1  && profesor.dedicacion.equals(Dedicacion.SIMPLE)){
-		if (true){	error("El Profesor ya tiene asignada una materia",m,
-			MyDslPackage.Literals.MATERIA__DICTADA_POR)
-				}
-	 }
+		if(cantidadDeVeces(profesor,materias) > profesor.cantidadDeMateriasPorDedicacion){
+			error("El Profesor: " +profesor.name+" tiene asignadas mas materias de las que puede dictar"
+			,m,MyDslPackage.Literals.MATERIA__DICTADA_POR)
+		}
 	}
 	
 	def cantidadDeVeces(Profesor profesor, Iterable<Materia> list) {
-		var cant = list.filter [materia | materia.dictadaPor.equals(profesor)]
+		val cant = list.filter [materia | materia.dictadaPor.equals(profesor)]
 		return cant.size
 	}
-		
+	
+	def cantidadDeMateriasPorDedicacion(Profesor p){
+		switch p.dedicacion{
+			case SIMPLE: return 1
+			case SEMI: return 2
+			case EXCLUSIVA: return 5
+			default:
+				 throw new RuntimeException("El profesor: "+ p.name+ " no tiene una dedicacion asignada")
+		}
+	}
+	
+//	@Check
+//	def checkMateriasAsignadas(Planificacion p){
+//		val materias = p.materias
+//		val asignaciones = p.asignaciones
+//		val expresionBooleana = asignaciones.map[asignacion | asignacion]
+//		if()
+//	}
+	
 }
+

@@ -133,7 +133,7 @@ public interface MyDslPackage extends EPackage
   int HORARIO__HORARIO_FIN = CLASE_FEATURE_COUNT + 1;
 
   /**
-   * The feature id for the '<em><b>Aula</b></em>' containment reference.
+   * The feature id for the '<em><b>Aula</b></em>' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
@@ -161,13 +161,13 @@ public interface MyDslPackage extends EPackage
   int PROFESOR = 3;
 
   /**
-   * The feature id for the '<em><b>Nombre</b></em>' attribute.
+   * The feature id for the '<em><b>Name</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int PROFESOR__NOMBRE = CLASE_FEATURE_COUNT + 0;
+  int PROFESOR__NAME = CLASE_FEATURE_COUNT + 0;
 
   /**
    * The feature id for the '<em><b>Dedicacion</b></em>' attribute.
@@ -198,13 +198,13 @@ public interface MyDslPackage extends EPackage
   int MATERIA = 4;
 
   /**
-   * The feature id for the '<em><b>Nombre</b></em>' attribute.
+   * The feature id for the '<em><b>Name</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int MATERIA__NOMBRE = CLASE_FEATURE_COUNT + 0;
+  int MATERIA__NAME = CLASE_FEATURE_COUNT + 0;
 
   /**
    * The feature id for the '<em><b>Cantidad De Dias</b></em>' attribute.
@@ -253,13 +253,13 @@ public interface MyDslPackage extends EPackage
   int AULA = 5;
 
   /**
-   * The feature id for the '<em><b>Id Aula</b></em>' attribute.
+   * The feature id for the '<em><b>Name</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int AULA__ID_AULA = CLASE_FEATURE_COUNT + 0;
+  int AULA__NAME = CLASE_FEATURE_COUNT + 0;
 
   /**
    * The feature id for the '<em><b>Recursos</b></em>' attribute list.
@@ -475,10 +475,10 @@ public interface MyDslPackage extends EPackage
   EAttribute getHorario_HorarioFin();
 
   /**
-   * Returns the meta object for the containment reference '{@link org.xtext.example.mydsl.myDsl.Horario#getAula <em>Aula</em>}'.
+   * Returns the meta object for the reference '{@link org.xtext.example.mydsl.myDsl.Horario#getAula <em>Aula</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Aula</em>'.
+   * @return the meta object for the reference '<em>Aula</em>'.
    * @see org.xtext.example.mydsl.myDsl.Horario#getAula()
    * @see #getHorario()
    * @generated
@@ -496,15 +496,15 @@ public interface MyDslPackage extends EPackage
   EClass getProfesor();
 
   /**
-   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.myDsl.Profesor#getNombre <em>Nombre</em>}'.
+   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.myDsl.Profesor#getName <em>Name</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Nombre</em>'.
-   * @see org.xtext.example.mydsl.myDsl.Profesor#getNombre()
+   * @return the meta object for the attribute '<em>Name</em>'.
+   * @see org.xtext.example.mydsl.myDsl.Profesor#getName()
    * @see #getProfesor()
    * @generated
    */
-  EAttribute getProfesor_Nombre();
+  EAttribute getProfesor_Name();
 
   /**
    * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.myDsl.Profesor#getDedicacion <em>Dedicacion</em>}'.
@@ -528,15 +528,15 @@ public interface MyDslPackage extends EPackage
   EClass getMateria();
 
   /**
-   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.myDsl.Materia#getNombre <em>Nombre</em>}'.
+   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.myDsl.Materia#getName <em>Name</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Nombre</em>'.
-   * @see org.xtext.example.mydsl.myDsl.Materia#getNombre()
+   * @return the meta object for the attribute '<em>Name</em>'.
+   * @see org.xtext.example.mydsl.myDsl.Materia#getName()
    * @see #getMateria()
    * @generated
    */
-  EAttribute getMateria_Nombre();
+  EAttribute getMateria_Name();
 
   /**
    * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.myDsl.Materia#getCantidadDeDias <em>Cantidad De Dias</em>}'.
@@ -582,15 +582,15 @@ public interface MyDslPackage extends EPackage
   EClass getAula();
 
   /**
-   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.myDsl.Aula#getIdAula <em>Id Aula</em>}'.
+   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.myDsl.Aula#getName <em>Name</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Id Aula</em>'.
-   * @see org.xtext.example.mydsl.myDsl.Aula#getIdAula()
+   * @return the meta object for the attribute '<em>Name</em>'.
+   * @see org.xtext.example.mydsl.myDsl.Aula#getName()
    * @see #getAula()
    * @generated
    */
-  EAttribute getAula_IdAula();
+  EAttribute getAula_Name();
 
   /**
    * Returns the meta object for the attribute list '{@link org.xtext.example.mydsl.myDsl.Aula#getRecursos <em>Recursos</em>}'.
@@ -808,7 +808,7 @@ public interface MyDslPackage extends EPackage
     EAttribute HORARIO__HORARIO_FIN = eINSTANCE.getHorario_HorarioFin();
 
     /**
-     * The meta object literal for the '<em><b>Aula</b></em>' containment reference feature.
+     * The meta object literal for the '<em><b>Aula</b></em>' reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -826,12 +826,12 @@ public interface MyDslPackage extends EPackage
     EClass PROFESOR = eINSTANCE.getProfesor();
 
     /**
-     * The meta object literal for the '<em><b>Nombre</b></em>' attribute feature.
+     * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute PROFESOR__NOMBRE = eINSTANCE.getProfesor_Nombre();
+    EAttribute PROFESOR__NAME = eINSTANCE.getProfesor_Name();
 
     /**
      * The meta object literal for the '<em><b>Dedicacion</b></em>' attribute feature.
@@ -852,12 +852,12 @@ public interface MyDslPackage extends EPackage
     EClass MATERIA = eINSTANCE.getMateria();
 
     /**
-     * The meta object literal for the '<em><b>Nombre</b></em>' attribute feature.
+     * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute MATERIA__NOMBRE = eINSTANCE.getMateria_Nombre();
+    EAttribute MATERIA__NAME = eINSTANCE.getMateria_Name();
 
     /**
      * The meta object literal for the '<em><b>Cantidad De Dias</b></em>' attribute feature.
@@ -894,12 +894,12 @@ public interface MyDslPackage extends EPackage
     EClass AULA = eINSTANCE.getAula();
 
     /**
-     * The meta object literal for the '<em><b>Id Aula</b></em>' attribute feature.
+     * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute AULA__ID_AULA = eINSTANCE.getAula_IdAula();
+    EAttribute AULA__NAME = eINSTANCE.getAula_Name();
 
     /**
      * The meta object literal for the '<em><b>Recursos</b></em>' attribute list feature.

@@ -261,13 +261,13 @@ public class MyDslParser extends AbstractContentAssistParser {
 					put(grammarAccess.getHorarioAccess().getHorarioInicioAssignment_1(), "rule__Horario__HorarioInicioAssignment_1");
 					put(grammarAccess.getHorarioAccess().getHorarioFinAssignment_3(), "rule__Horario__HorarioFinAssignment_3");
 					put(grammarAccess.getHorarioAccess().getAulaAssignment_5(), "rule__Horario__AulaAssignment_5");
-					put(grammarAccess.getProfesorAccess().getNombreAssignment_1(), "rule__Profesor__NombreAssignment_1");
+					put(grammarAccess.getProfesorAccess().getNameAssignment_1(), "rule__Profesor__NameAssignment_1");
 					put(grammarAccess.getProfesorAccess().getDedicacionAssignment_3(), "rule__Profesor__DedicacionAssignment_3");
-					put(grammarAccess.getMateriaAccess().getNombreAssignment_1(), "rule__Materia__NombreAssignment_1");
+					put(grammarAccess.getMateriaAccess().getNameAssignment_1(), "rule__Materia__NameAssignment_1");
 					put(grammarAccess.getMateriaAccess().getCantidadDeDiasAssignment_4(), "rule__Materia__CantidadDeDiasAssignment_4");
 					put(grammarAccess.getMateriaAccess().getCargaHorariaAssignment_6(), "rule__Materia__CargaHorariaAssignment_6");
 					put(grammarAccess.getMateriaAccess().getDictadaPorAssignment_8(), "rule__Materia__DictadaPorAssignment_8");
-					put(grammarAccess.getAulaAccess().getIdAulaAssignment_1(), "rule__Aula__IdAulaAssignment_1");
+					put(grammarAccess.getAulaAccess().getNameAssignment_1(), "rule__Aula__NameAssignment_1");
 					put(grammarAccess.getAulaAccess().getRecursosAssignment_4(), "rule__Aula__RecursosAssignment_4");
 					put(grammarAccess.getPlanificacionAccess().getAnioAssignment_1(), "rule__Planificacion__AnioAssignment_1");
 					put(grammarAccess.getPlanificacionAccess().getSemestreAssignment_3(), "rule__Planificacion__SemestreAssignment_3");

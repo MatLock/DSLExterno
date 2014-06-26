@@ -3,7 +3,6 @@
 package org.xtext.example.mydsl.myDsl.impl;
 
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
@@ -72,7 +71,7 @@ public class HorarioImpl extends ClaseImpl implements Horario
   protected int horarioFin = HORARIO_FIN_EDEFAULT;
 
   /**
-   * The cached value of the '{@link #getAula() <em>Aula</em>}' containment reference.
+   * The cached value of the '{@link #getAula() <em>Aula</em>}' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #getAula()
@@ -155,6 +154,16 @@ public class HorarioImpl extends ClaseImpl implements Horario
    */
   public Aula getAula()
   {
+    if (aula != null && aula.eIsProxy())
+    {
+      InternalEObject oldAula = (InternalEObject)aula;
+      aula = (Aula)eResolveProxy(oldAula);
+      if (aula != oldAula)
+      {
+        if (eNotificationRequired())
+          eNotify(new ENotificationImpl(this, Notification.RESOLVE, MyDslPackage.HORARIO__AULA, oldAula, aula));
+      }
+    }
     return aula;
   }
 
@@ -163,16 +172,9 @@ public class HorarioImpl extends ClaseImpl implements Horario
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetAula(Aula newAula, NotificationChain msgs)
+  public Aula basicGetAula()
   {
-    Aula oldAula = aula;
-    aula = newAula;
-    if (eNotificationRequired())
-    {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, MyDslPackage.HORARIO__AULA, oldAula, newAula);
-      if (msgs == null) msgs = notification; else msgs.add(notification);
-    }
-    return msgs;
+    return aula;
   }
 
   /**
@@ -182,34 +184,10 @@ public class HorarioImpl extends ClaseImpl implements Horario
    */
   public void setAula(Aula newAula)
   {
-    if (newAula != aula)
-    {
-      NotificationChain msgs = null;
-      if (aula != null)
-        msgs = ((InternalEObject)aula).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - MyDslPackage.HORARIO__AULA, null, msgs);
-      if (newAula != null)
-        msgs = ((InternalEObject)newAula).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - MyDslPackage.HORARIO__AULA, null, msgs);
-      msgs = basicSetAula(newAula, msgs);
-      if (msgs != null) msgs.dispatch();
-    }
-    else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, MyDslPackage.HORARIO__AULA, newAula, newAula));
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
-  {
-    switch (featureID)
-    {
-      case MyDslPackage.HORARIO__AULA:
-        return basicSetAula(null, msgs);
-    }
-    return super.eInverseRemove(otherEnd, featureID, msgs);
+    Aula oldAula = aula;
+    aula = newAula;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, MyDslPackage.HORARIO__AULA, oldAula, aula));
   }
 
   /**
@@ -227,7 +205,8 @@ public class HorarioImpl extends ClaseImpl implements Horario
       case MyDslPackage.HORARIO__HORARIO_FIN:
         return getHorarioFin();
       case MyDslPackage.HORARIO__AULA:
-        return getAula();
+        if (resolve) return getAula();
+        return basicGetAula();
     }
     return super.eGet(featureID, resolve, coreType);
   }

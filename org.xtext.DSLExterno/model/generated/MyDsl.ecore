@@ -9,20 +9,20 @@
   <eClassifiers xsi:type="ecore:EClass" name="Horario" eSuperTypes="#//Clase">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="horarioInicio" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="horarioFin" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="aula" eType="#//Aula" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="aula" eType="#//Aula"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Profesor" eSuperTypes="#//Clase">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="nombre" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="dedicacion" eType="#//Dedicacion"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Materia" eSuperTypes="#//Clase">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="nombre" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="cantidadDeDias" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="cargaHoraria" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="dictadaPor" eType="#//Profesor"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Aula" eSuperTypes="#//Clase">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="idAula" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="recursos" unique="false"
         upperBound="-1" eType="#//Recursos"/>
   </eClassifiers>

@@ -4047,9 +4047,9 @@ rule__Profesor__Group__1__Impl
     }
 :
 (
-{ before(grammarAccess.getProfesorAccess().getNombreAssignment_1()); }
-(rule__Profesor__NombreAssignment_1)
-{ after(grammarAccess.getProfesorAccess().getNombreAssignment_1()); }
+{ before(grammarAccess.getProfesorAccess().getNameAssignment_1()); }
+(rule__Profesor__NameAssignment_1)
+{ after(grammarAccess.getProfesorAccess().getNameAssignment_1()); }
 )
 
 ;
@@ -4145,7 +4145,7 @@ rule__Materia__Group__0__Impl
 (
 { before(grammarAccess.getMateriaAccess().getMateriaKeyword_0()); }
 
-	'materia' 
+	'materia:' 
 
 { after(grammarAccess.getMateriaAccess().getMateriaKeyword_0()); }
 )
@@ -4174,9 +4174,9 @@ rule__Materia__Group__1__Impl
     }
 :
 (
-{ before(grammarAccess.getMateriaAccess().getNombreAssignment_1()); }
-(rule__Materia__NombreAssignment_1)
-{ after(grammarAccess.getMateriaAccess().getNombreAssignment_1()); }
+{ before(grammarAccess.getMateriaAccess().getNameAssignment_1()); }
+(rule__Materia__NameAssignment_1)
+{ after(grammarAccess.getMateriaAccess().getNameAssignment_1()); }
 )
 
 ;
@@ -4495,9 +4495,9 @@ rule__Aula__Group__1__Impl
     }
 :
 (
-{ before(grammarAccess.getAulaAccess().getIdAulaAssignment_1()); }
-(rule__Aula__IdAulaAssignment_1)
-{ after(grammarAccess.getAulaAccess().getIdAulaAssignment_1()); }
+{ before(grammarAccess.getAulaAccess().getNameAssignment_1()); }
+(rule__Aula__NameAssignment_1)
+{ after(grammarAccess.getAulaAccess().getNameAssignment_1()); }
 )
 
 ;
@@ -4587,7 +4587,7 @@ rule__Aula__Group__4__Impl
 :
 (
 { before(grammarAccess.getAulaAccess().getRecursosAssignment_4()); }
-(rule__Aula__RecursosAssignment_4)
+(rule__Aula__RecursosAssignment_4)*
 { after(grammarAccess.getAulaAccess().getRecursosAssignment_4()); }
 )
 
@@ -4603,7 +4603,6 @@ rule__Aula__Group__5
     }
 :
 	rule__Aula__Group__5__Impl
-	rule__Aula__Group__6
 ;
 finally {
 	restoreStackSize(stackSize);
@@ -4615,49 +4614,17 @@ rule__Aula__Group__5__Impl
     }
 :
 (
-{ before(grammarAccess.getAulaAccess().getSemicolonKeyword_5()); }
-
-	';' 
-
-{ after(grammarAccess.getAulaAccess().getSemicolonKeyword_5()); }
-)
-
-;
-finally {
-	restoreStackSize(stackSize);
-}
-
-
-rule__Aula__Group__6
-    @init {
-		int stackSize = keepStackSize();
-    }
-:
-	rule__Aula__Group__6__Impl
-;
-finally {
-	restoreStackSize(stackSize);
-}
-
-rule__Aula__Group__6__Impl
-    @init {
-		int stackSize = keepStackSize();
-    }
-:
-(
-{ before(grammarAccess.getAulaAccess().getRightCurlyBracketKeyword_6()); }
+{ before(grammarAccess.getAulaAccess().getRightCurlyBracketKeyword_5()); }
 
 	'}' 
 
-{ after(grammarAccess.getAulaAccess().getRightCurlyBracketKeyword_6()); }
+{ after(grammarAccess.getAulaAccess().getRightCurlyBracketKeyword_5()); }
 )
 
 ;
 finally {
 	restoreStackSize(stackSize);
 }
-
-
 
 
 
@@ -4873,7 +4840,7 @@ rule__Planificacion__Group__6__Impl
 :
 (
 { before(grammarAccess.getPlanificacionAccess().getMateriasAssignment_6()); }
-(rule__Planificacion__MateriasAssignment_6)
+(rule__Planificacion__MateriasAssignment_6)*
 { after(grammarAccess.getPlanificacionAccess().getMateriasAssignment_6()); }
 )
 
@@ -18143,8 +18110,12 @@ rule__Horario__AulaAssignment_5
     }
 :
 (
-{ before(grammarAccess.getHorarioAccess().getAulaAulaParserRuleCall_5_0()); }
-	ruleAula{ after(grammarAccess.getHorarioAccess().getAulaAulaParserRuleCall_5_0()); }
+{ before(grammarAccess.getHorarioAccess().getAulaAulaCrossReference_5_0()); }
+(
+{ before(grammarAccess.getHorarioAccess().getAulaAulaIDTerminalRuleCall_5_0_1()); }
+	RULE_ID{ after(grammarAccess.getHorarioAccess().getAulaAulaIDTerminalRuleCall_5_0_1()); }
+)
+{ after(grammarAccess.getHorarioAccess().getAulaAulaCrossReference_5_0()); }
 )
 
 ;
@@ -18152,14 +18123,14 @@ finally {
 	restoreStackSize(stackSize);
 }
 
-rule__Profesor__NombreAssignment_1
+rule__Profesor__NameAssignment_1
     @init {
 		int stackSize = keepStackSize();
     }
 :
 (
-{ before(grammarAccess.getProfesorAccess().getNombreIDTerminalRuleCall_1_0()); }
-	RULE_ID{ after(grammarAccess.getProfesorAccess().getNombreIDTerminalRuleCall_1_0()); }
+{ before(grammarAccess.getProfesorAccess().getNameIDTerminalRuleCall_1_0()); }
+	RULE_ID{ after(grammarAccess.getProfesorAccess().getNameIDTerminalRuleCall_1_0()); }
 )
 
 ;
@@ -18182,14 +18153,14 @@ finally {
 	restoreStackSize(stackSize);
 }
 
-rule__Materia__NombreAssignment_1
+rule__Materia__NameAssignment_1
     @init {
 		int stackSize = keepStackSize();
     }
 :
 (
-{ before(grammarAccess.getMateriaAccess().getNombreIDTerminalRuleCall_1_0()); }
-	RULE_ID{ after(grammarAccess.getMateriaAccess().getNombreIDTerminalRuleCall_1_0()); }
+{ before(grammarAccess.getMateriaAccess().getNameIDTerminalRuleCall_1_0()); }
+	RULE_ID{ after(grammarAccess.getMateriaAccess().getNameIDTerminalRuleCall_1_0()); }
 )
 
 ;
@@ -18246,14 +18217,14 @@ finally {
 	restoreStackSize(stackSize);
 }
 
-rule__Aula__IdAulaAssignment_1
+rule__Aula__NameAssignment_1
     @init {
 		int stackSize = keepStackSize();
     }
 :
 (
-{ before(grammarAccess.getAulaAccess().getIdAulaINTTerminalRuleCall_1_0()); }
-	RULE_INT{ after(grammarAccess.getAulaAccess().getIdAulaINTTerminalRuleCall_1_0()); }
+{ before(grammarAccess.getAulaAccess().getNameIDTerminalRuleCall_1_0()); }
+	RULE_ID{ after(grammarAccess.getAulaAccess().getNameIDTerminalRuleCall_1_0()); }
 )
 
 ;

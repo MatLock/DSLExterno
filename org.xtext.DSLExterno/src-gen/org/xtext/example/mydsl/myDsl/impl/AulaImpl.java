@@ -25,7 +25,7 @@ import org.xtext.example.mydsl.myDsl.Recursos;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.xtext.example.mydsl.myDsl.impl.AulaImpl#getIdAula <em>Id Aula</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.myDsl.impl.AulaImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.myDsl.impl.AulaImpl#getRecursos <em>Recursos</em>}</li>
  * </ul>
  * </p>
@@ -35,24 +35,24 @@ import org.xtext.example.mydsl.myDsl.Recursos;
 public class AulaImpl extends ClaseImpl implements Aula
 {
   /**
-   * The default value of the '{@link #getIdAula() <em>Id Aula</em>}' attribute.
+   * The default value of the '{@link #getName() <em>Name</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getIdAula()
+   * @see #getName()
    * @generated
    * @ordered
    */
-  protected static final int ID_AULA_EDEFAULT = 0;
+  protected static final String NAME_EDEFAULT = null;
 
   /**
-   * The cached value of the '{@link #getIdAula() <em>Id Aula</em>}' attribute.
+   * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getIdAula()
+   * @see #getName()
    * @generated
    * @ordered
    */
-  protected int idAula = ID_AULA_EDEFAULT;
+  protected String name = NAME_EDEFAULT;
 
   /**
    * The cached value of the '{@link #getRecursos() <em>Recursos</em>}' attribute list.
@@ -90,9 +90,9 @@ public class AulaImpl extends ClaseImpl implements Aula
    * <!-- end-user-doc -->
    * @generated
    */
-  public int getIdAula()
+  public String getName()
   {
-    return idAula;
+    return name;
   }
 
   /**
@@ -100,12 +100,12 @@ public class AulaImpl extends ClaseImpl implements Aula
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setIdAula(int newIdAula)
+  public void setName(String newName)
   {
-    int oldIdAula = idAula;
-    idAula = newIdAula;
+    String oldName = name;
+    name = newName;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, MyDslPackage.AULA__ID_AULA, oldIdAula, idAula));
+      eNotify(new ENotificationImpl(this, Notification.SET, MyDslPackage.AULA__NAME, oldName, name));
   }
 
   /**
@@ -132,8 +132,8 @@ public class AulaImpl extends ClaseImpl implements Aula
   {
     switch (featureID)
     {
-      case MyDslPackage.AULA__ID_AULA:
-        return getIdAula();
+      case MyDslPackage.AULA__NAME:
+        return getName();
       case MyDslPackage.AULA__RECURSOS:
         return getRecursos();
     }
@@ -151,8 +151,8 @@ public class AulaImpl extends ClaseImpl implements Aula
   {
     switch (featureID)
     {
-      case MyDslPackage.AULA__ID_AULA:
-        setIdAula((Integer)newValue);
+      case MyDslPackage.AULA__NAME:
+        setName((String)newValue);
         return;
       case MyDslPackage.AULA__RECURSOS:
         getRecursos().clear();
@@ -172,8 +172,8 @@ public class AulaImpl extends ClaseImpl implements Aula
   {
     switch (featureID)
     {
-      case MyDslPackage.AULA__ID_AULA:
-        setIdAula(ID_AULA_EDEFAULT);
+      case MyDslPackage.AULA__NAME:
+        setName(NAME_EDEFAULT);
         return;
       case MyDslPackage.AULA__RECURSOS:
         getRecursos().clear();
@@ -192,8 +192,8 @@ public class AulaImpl extends ClaseImpl implements Aula
   {
     switch (featureID)
     {
-      case MyDslPackage.AULA__ID_AULA:
-        return idAula != ID_AULA_EDEFAULT;
+      case MyDslPackage.AULA__NAME:
+        return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
       case MyDslPackage.AULA__RECURSOS:
         return recursos != null && !recursos.isEmpty();
     }
@@ -211,8 +211,8 @@ public class AulaImpl extends ClaseImpl implements Aula
     if (eIsProxy()) return super.toString();
 
     StringBuffer result = new StringBuffer(super.toString());
-    result.append(" (idAula: ");
-    result.append(idAula);
+    result.append(" (name: ");
+    result.append(name);
     result.append(", recursos: ");
     result.append(recursos);
     result.append(')');

@@ -33,20 +33,20 @@
     <genClasses ecoreClass="MyDsl.ecore#//Horario">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MyDsl.ecore#//Horario/horarioInicio"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MyDsl.ecore#//Horario/horarioFin"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MyDsl.ecore#//Horario/aula"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference MyDsl.ecore#//Horario/aula"/>
     </genClasses>
     <genClasses ecoreClass="MyDsl.ecore#//Profesor">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MyDsl.ecore#//Profesor/nombre"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MyDsl.ecore#//Profesor/name"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MyDsl.ecore#//Profesor/dedicacion"/>
     </genClasses>
     <genClasses ecoreClass="MyDsl.ecore#//Materia">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MyDsl.ecore#//Materia/nombre"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MyDsl.ecore#//Materia/name"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MyDsl.ecore#//Materia/cantidadDeDias"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MyDsl.ecore#//Materia/cargaHoraria"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference MyDsl.ecore#//Materia/dictadaPor"/>
     </genClasses>
     <genClasses ecoreClass="MyDsl.ecore#//Aula">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MyDsl.ecore#//Aula/idAula"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MyDsl.ecore#//Aula/name"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MyDsl.ecore#//Aula/recursos"/>
     </genClasses>
     <genClasses ecoreClass="MyDsl.ecore#//Planificacion">

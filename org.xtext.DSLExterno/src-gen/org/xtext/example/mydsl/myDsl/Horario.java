@@ -76,26 +76,26 @@ public interface Horario extends Clase
   void setHorarioFin(int value);
 
   /**
-   * Returns the value of the '<em><b>Aula</b></em>' containment reference.
+   * Returns the value of the '<em><b>Aula</b></em>' reference.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Aula</em>' containment reference isn't clear,
+   * If the meaning of the '<em>Aula</em>' reference isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Aula</em>' containment reference.
+   * @return the value of the '<em>Aula</em>' reference.
    * @see #setAula(Aula)
    * @see org.xtext.example.mydsl.myDsl.MyDslPackage#getHorario_Aula()
-   * @model containment="true"
+   * @model
    * @generated
    */
   Aula getAula();
 
   /**
-   * Sets the value of the '{@link org.xtext.example.mydsl.myDsl.Horario#getAula <em>Aula</em>}' containment reference.
+   * Sets the value of the '{@link org.xtext.example.mydsl.myDsl.Horario#getAula <em>Aula</em>}' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Aula</em>' containment reference.
+   * @param value the new value of the '<em>Aula</em>' reference.
    * @see #getAula()
    * @generated
    */

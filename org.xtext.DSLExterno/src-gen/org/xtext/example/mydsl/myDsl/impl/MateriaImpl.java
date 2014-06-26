@@ -20,7 +20,7 @@ import org.xtext.example.mydsl.myDsl.Profesor;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.xtext.example.mydsl.myDsl.impl.MateriaImpl#getNombre <em>Nombre</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.myDsl.impl.MateriaImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.myDsl.impl.MateriaImpl#getCantidadDeDias <em>Cantidad De Dias</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.myDsl.impl.MateriaImpl#getCargaHoraria <em>Carga Horaria</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.myDsl.impl.MateriaImpl#getDictadaPor <em>Dictada Por</em>}</li>
@@ -32,24 +32,24 @@ import org.xtext.example.mydsl.myDsl.Profesor;
 public class MateriaImpl extends ClaseImpl implements Materia
 {
   /**
-   * The default value of the '{@link #getNombre() <em>Nombre</em>}' attribute.
+   * The default value of the '{@link #getName() <em>Name</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getNombre()
+   * @see #getName()
    * @generated
    * @ordered
    */
-  protected static final String NOMBRE_EDEFAULT = null;
+  protected static final String NAME_EDEFAULT = null;
 
   /**
-   * The cached value of the '{@link #getNombre() <em>Nombre</em>}' attribute.
+   * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getNombre()
+   * @see #getName()
    * @generated
    * @ordered
    */
-  protected String nombre = NOMBRE_EDEFAULT;
+  protected String name = NAME_EDEFAULT;
 
   /**
    * The default value of the '{@link #getCantidadDeDias() <em>Cantidad De Dias</em>}' attribute.
@@ -127,9 +127,9 @@ public class MateriaImpl extends ClaseImpl implements Materia
    * <!-- end-user-doc -->
    * @generated
    */
-  public String getNombre()
+  public String getName()
   {
-    return nombre;
+    return name;
   }
 
   /**
@@ -137,12 +137,12 @@ public class MateriaImpl extends ClaseImpl implements Materia
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setNombre(String newNombre)
+  public void setName(String newName)
   {
-    String oldNombre = nombre;
-    nombre = newNombre;
+    String oldName = name;
+    name = newName;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, MyDslPackage.MATERIA__NOMBRE, oldNombre, nombre));
+      eNotify(new ENotificationImpl(this, Notification.SET, MyDslPackage.MATERIA__NAME, oldName, name));
   }
 
   /**
@@ -244,8 +244,8 @@ public class MateriaImpl extends ClaseImpl implements Materia
   {
     switch (featureID)
     {
-      case MyDslPackage.MATERIA__NOMBRE:
-        return getNombre();
+      case MyDslPackage.MATERIA__NAME:
+        return getName();
       case MyDslPackage.MATERIA__CANTIDAD_DE_DIAS:
         return getCantidadDeDias();
       case MyDslPackage.MATERIA__CARGA_HORARIA:
@@ -267,8 +267,8 @@ public class MateriaImpl extends ClaseImpl implements Materia
   {
     switch (featureID)
     {
-      case MyDslPackage.MATERIA__NOMBRE:
-        setNombre((String)newValue);
+      case MyDslPackage.MATERIA__NAME:
+        setName((String)newValue);
         return;
       case MyDslPackage.MATERIA__CANTIDAD_DE_DIAS:
         setCantidadDeDias((Integer)newValue);
@@ -293,8 +293,8 @@ public class MateriaImpl extends ClaseImpl implements Materia
   {
     switch (featureID)
     {
-      case MyDslPackage.MATERIA__NOMBRE:
-        setNombre(NOMBRE_EDEFAULT);
+      case MyDslPackage.MATERIA__NAME:
+        setName(NAME_EDEFAULT);
         return;
       case MyDslPackage.MATERIA__CANTIDAD_DE_DIAS:
         setCantidadDeDias(CANTIDAD_DE_DIAS_EDEFAULT);
@@ -319,8 +319,8 @@ public class MateriaImpl extends ClaseImpl implements Materia
   {
     switch (featureID)
     {
-      case MyDslPackage.MATERIA__NOMBRE:
-        return NOMBRE_EDEFAULT == null ? nombre != null : !NOMBRE_EDEFAULT.equals(nombre);
+      case MyDslPackage.MATERIA__NAME:
+        return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
       case MyDslPackage.MATERIA__CANTIDAD_DE_DIAS:
         return cantidadDeDias != CANTIDAD_DE_DIAS_EDEFAULT;
       case MyDslPackage.MATERIA__CARGA_HORARIA:
@@ -342,8 +342,8 @@ public class MateriaImpl extends ClaseImpl implements Materia
     if (eIsProxy()) return super.toString();
 
     StringBuffer result = new StringBuffer(super.toString());
-    result.append(" (nombre: ");
-    result.append(nombre);
+    result.append(" (name: ");
+    result.append(name);
     result.append(", cantidadDeDias: ");
     result.append(cantidadDeDias);
     result.append(", cargaHoraria: ");

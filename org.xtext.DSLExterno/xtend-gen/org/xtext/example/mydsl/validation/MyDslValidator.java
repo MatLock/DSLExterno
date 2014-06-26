@@ -31,21 +31,14 @@ public class MyDslValidator extends AbstractMyDslValidator {
     final Model planificacion = ((Model) _eContainer);
     EList<Clase> _clases = planificacion.getClases();
     final Iterable<Materia> materias = Iterables.<Materia>filter(_clases, Materia.class);
-    boolean _and = false;
     int _cantidadDeVeces = this.cantidadDeVeces(profesor, materias);
-    boolean _greaterThan = (_cantidadDeVeces > 1);
-    if (!_greaterThan) {
-      _and = false;
-    } else {
-      Dedicacion _dedicacion = profesor.getDedicacion();
-      boolean _equals = _dedicacion.equals(Dedicacion.SIMPLE);
-      _and = _equals;
-    }
-    if (_and) {
-      if (true) {
-        this.error("El Profesor ya tiene asignada una materia", m, 
-          MyDslPackage.Literals.MATERIA__DICTADA_POR);
-      }
+    int _cantidadDeMateriasPorDedicacion = this.cantidadDeMateriasPorDedicacion(profesor);
+    boolean _greaterThan = (_cantidadDeVeces > _cantidadDeMateriasPorDedicacion);
+    if (_greaterThan) {
+      String _name = profesor.getName();
+      String _plus = ("El Profesor: " + _name);
+      String _plus_1 = (_plus + " tiene asignadas mas materias de las que puede dictar");
+      this.error(_plus_1, m, MyDslPackage.Literals.MATERIA__DICTADA_POR);
     }
   }
   
@@ -56,7 +49,31 @@ public class MyDslValidator extends AbstractMyDslValidator {
         return Boolean.valueOf(_dictadaPor.equals(profesor));
       }
     };
-    Iterable<Materia> cant = IterableExtensions.<Materia>filter(list, _function);
+    final Iterable<Materia> cant = IterableExtensions.<Materia>filter(list, _function);
     return IterableExtensions.size(cant);
+  }
+  
+  public int cantidadDeMateriasPorDedicacion(final Profesor p) {
+    Dedicacion _dedicacion = p.getDedicacion();
+    if (_dedicacion != null) {
+      switch (_dedicacion) {
+        case SIMPLE:
+          return 1;
+        case SEMI:
+          return 2;
+        case EXCLUSIVA:
+          return 5;
+        default:
+          String _name = p.getName();
+          String _plus = ("El profesor: " + _name);
+          String _plus_1 = (_plus + " no tiene una dedicacion asignada");
+          throw new RuntimeException(_plus_1);
+      }
+    } else {
+      String _name = p.getName();
+      String _plus = ("El profesor: " + _name);
+      String _plus_1 = (_plus + " no tiene una dedicacion asignada");
+      throw new RuntimeException(_plus_1);
+    }
   }
 }

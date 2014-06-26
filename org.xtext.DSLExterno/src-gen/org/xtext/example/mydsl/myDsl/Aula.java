@@ -12,7 +12,7 @@ import org.eclipse.emf.common.util.EList;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.xtext.example.mydsl.myDsl.Aula#getIdAula <em>Id Aula</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.myDsl.Aula#getName <em>Name</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.myDsl.Aula#getRecursos <em>Recursos</em>}</li>
  * </ul>
  * </p>
@@ -24,30 +24,30 @@ import org.eclipse.emf.common.util.EList;
 public interface Aula extends Clase
 {
   /**
-   * Returns the value of the '<em><b>Id Aula</b></em>' attribute.
+   * Returns the value of the '<em><b>Name</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Id Aula</em>' attribute isn't clear,
+   * If the meaning of the '<em>Name</em>' attribute isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Id Aula</em>' attribute.
-   * @see #setIdAula(int)
-   * @see org.xtext.example.mydsl.myDsl.MyDslPackage#getAula_IdAula()
+   * @return the value of the '<em>Name</em>' attribute.
+   * @see #setName(String)
+   * @see org.xtext.example.mydsl.myDsl.MyDslPackage#getAula_Name()
    * @model
    * @generated
    */
-  int getIdAula();
+  String getName();
 
   /**
-   * Sets the value of the '{@link org.xtext.example.mydsl.myDsl.Aula#getIdAula <em>Id Aula</em>}' attribute.
+   * Sets the value of the '{@link org.xtext.example.mydsl.myDsl.Aula#getName <em>Name</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Id Aula</em>' attribute.
-   * @see #getIdAula()
+   * @param value the new value of the '<em>Name</em>' attribute.
+   * @see #getName()
    * @generated
    */
-  void setIdAula(int value);
+  void setName(String value);
 
   /**
    * Returns the value of the '<em><b>Recursos</b></em>' attribute list.
