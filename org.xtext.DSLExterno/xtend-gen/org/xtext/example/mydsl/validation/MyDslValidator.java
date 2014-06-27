@@ -9,11 +9,14 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtext.validation.Check;
 import org.eclipse.xtext.xbase.lib.Functions.Function1;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
+import org.xtext.example.mydsl.myDsl.Asignacion;
 import org.xtext.example.mydsl.myDsl.Clase;
 import org.xtext.example.mydsl.myDsl.Dedicacion;
+import org.xtext.example.mydsl.myDsl.Horario;
 import org.xtext.example.mydsl.myDsl.Materia;
 import org.xtext.example.mydsl.myDsl.Model;
 import org.xtext.example.mydsl.myDsl.MyDslPackage;
+import org.xtext.example.mydsl.myDsl.Planificacion;
 import org.xtext.example.mydsl.myDsl.Profesor;
 import org.xtext.example.mydsl.validation.AbstractMyDslValidator;
 
@@ -28,8 +31,8 @@ public class MyDslValidator extends AbstractMyDslValidator {
   public void checkDedicacion(final Materia m) {
     final Profesor profesor = m.getDictadaPor();
     EObject _eContainer = m.eContainer();
-    final Model planificacion = ((Model) _eContainer);
-    EList<Clase> _clases = planificacion.getClases();
+    final Model model = ((Model) _eContainer);
+    EList<Clase> _clases = model.getClases();
     final Iterable<Materia> materias = Iterables.<Materia>filter(_clases, Materia.class);
     int _cantidadDeVeces = this.cantidadDeVeces(profesor, materias);
     int _cantidadDeMateriasPorDedicacion = this.cantidadDeMateriasPorDedicacion(profesor);
@@ -75,5 +78,36 @@ public class MyDslValidator extends AbstractMyDslValidator {
       String _plus_1 = (_plus + " no tiene una dedicacion asignada");
       throw new RuntimeException(_plus_1);
     }
+  }
+  
+  @Check
+  public void checkMateriasAsignadas(final Planificacion p) {
+    final EList<Materia> materias = p.getMaterias();
+    final EList<Asignacion> asignaciones = p.getAsignaciones();
+    final Function1<Materia, Boolean> _function = new Function1<Materia, Boolean>() {
+      public Boolean apply(final Materia materia) {
+        return Boolean.valueOf(MyDslValidator.this.perteneceAAlgunaAsignacion(materia, asignaciones));
+      }
+    };
+    final boolean expresionBooleana = IterableExtensions.<Materia>forall(materias, _function);
+    if ((!expresionBooleana)) {
+      this.error("Hay materias sin asignar", p, MyDslPackage.Literals.PLANIFICACION__MATERIAS);
+    }
+  }
+  
+  public boolean perteneceAAlgunaAsignacion(final Materia materia, final EList<Asignacion> list) {
+    final Function1<Asignacion, Boolean> _function = new Function1<Asignacion, Boolean>() {
+      public Boolean apply(final Asignacion asignacion) {
+        EList<Horario> _horarios = asignacion.getHorarios();
+        final Function1<Horario, Boolean> _function = new Function1<Horario, Boolean>() {
+          public Boolean apply(final Horario horario) {
+            Materia _materia = horario.getMateria();
+            return Boolean.valueOf(_materia.equals(materia));
+          }
+        };
+        return Boolean.valueOf(IterableExtensions.<Horario>exists(_horarios, _function));
+      }
+    };
+    return IterableExtensions.<Asignacion>exists(list, _function);
   }
 }

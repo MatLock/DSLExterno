@@ -241,9 +241,9 @@ ruleHorario returns [EObject current=null]
 	    }
 
 )
-)	otherlv_4='en:' 
+)	otherlv_4='se dicta la materia:' 
     {
-    	newLeafNode(otherlv_4, grammarAccess.getHorarioAccess().getEnKeyword_4());
+    	newLeafNode(otherlv_4, grammarAccess.getHorarioAccess().getSeDictaLaMateriaKeyword_4());
     }
 (
 (
@@ -254,7 +254,24 @@ ruleHorario returns [EObject current=null]
         }
 	otherlv_5=RULE_ID
 	{
-		newLeafNode(otherlv_5, grammarAccess.getHorarioAccess().getAulaAulaCrossReference_5_0()); 
+		newLeafNode(otherlv_5, grammarAccess.getHorarioAccess().getMateriaMateriaCrossReference_5_0()); 
+	}
+
+)
+)	otherlv_6='en:' 
+    {
+    	newLeafNode(otherlv_6, grammarAccess.getHorarioAccess().getEnKeyword_6());
+    }
+(
+(
+		{
+			if ($current==null) {
+	            $current = createModelElement(grammarAccess.getHorarioRule());
+	        }
+        }
+	otherlv_7=RULE_ID
+	{
+		newLeafNode(otherlv_7, grammarAccess.getHorarioAccess().getAulaAulaCrossReference_7_0()); 
 	}
 
 )
@@ -662,41 +679,24 @@ ruleAsignacion returns [EObject current=null]
 (
 (
 		{ 
-	        newCompositeNode(grammarAccess.getAsignacionAccess().getHorarioHorarioParserRuleCall_2_0()); 
+	        newCompositeNode(grammarAccess.getAsignacionAccess().getHorariosHorarioParserRuleCall_2_0()); 
 	    }
-		lv_horario_2_0=ruleHorario		{
+		lv_horarios_2_0=ruleHorario		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getAsignacionRule());
 	        }
-       		set(
+       		add(
        			$current, 
-       			"horario",
-        		lv_horario_2_0, 
+       			"horarios",
+        		lv_horarios_2_0, 
         		"Horario");
 	        afterParserOrEnumRuleCall();
 	    }
 
 )
-)	otherlv_3='se dicta la materia:' 
+)*	otherlv_3='}' 
     {
-    	newLeafNode(otherlv_3, grammarAccess.getAsignacionAccess().getSeDictaLaMateriaKeyword_3());
-    }
-(
-(
-		{
-			if ($current==null) {
-	            $current = createModelElement(grammarAccess.getAsignacionRule());
-	        }
-        }
-	otherlv_4=RULE_ID
-	{
-		newLeafNode(otherlv_4, grammarAccess.getAsignacionAccess().getMateriaMateriaCrossReference_4_0()); 
-	}
-
-)
-)	otherlv_5='}' 
-    {
-    	newLeafNode(otherlv_5, grammarAccess.getAsignacionAccess().getRightCurlyBracketKeyword_5());
+    	newLeafNode(otherlv_3, grammarAccess.getAsignacionAccess().getRightCurlyBracketKeyword_3());
     }
 )
 ;

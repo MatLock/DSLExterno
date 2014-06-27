@@ -33,6 +33,7 @@
     <genClasses ecoreClass="MyDsl.ecore#//Horario">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MyDsl.ecore#//Horario/horarioInicio"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MyDsl.ecore#//Horario/horarioFin"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference MyDsl.ecore#//Horario/materia"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference MyDsl.ecore#//Horario/aula"/>
     </genClasses>
     <genClasses ecoreClass="MyDsl.ecore#//Profesor">
@@ -57,8 +58,7 @@
     </genClasses>
     <genClasses ecoreClass="MyDsl.ecore#//Asignacion">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MyDsl.ecore#//Asignacion/dia"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MyDsl.ecore#//Asignacion/horario"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference MyDsl.ecore#//Asignacion/materia"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MyDsl.ecore#//Asignacion/horarios"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

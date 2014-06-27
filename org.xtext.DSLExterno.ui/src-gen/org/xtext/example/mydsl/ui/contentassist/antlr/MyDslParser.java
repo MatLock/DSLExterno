@@ -260,7 +260,8 @@ public class MyDslParser extends AbstractContentAssistParser {
 					put(grammarAccess.getModelAccess().getClasesAssignment(), "rule__Model__ClasesAssignment");
 					put(grammarAccess.getHorarioAccess().getHorarioInicioAssignment_1(), "rule__Horario__HorarioInicioAssignment_1");
 					put(grammarAccess.getHorarioAccess().getHorarioFinAssignment_3(), "rule__Horario__HorarioFinAssignment_3");
-					put(grammarAccess.getHorarioAccess().getAulaAssignment_5(), "rule__Horario__AulaAssignment_5");
+					put(grammarAccess.getHorarioAccess().getMateriaAssignment_5(), "rule__Horario__MateriaAssignment_5");
+					put(grammarAccess.getHorarioAccess().getAulaAssignment_7(), "rule__Horario__AulaAssignment_7");
 					put(grammarAccess.getProfesorAccess().getNameAssignment_1(), "rule__Profesor__NameAssignment_1");
 					put(grammarAccess.getProfesorAccess().getDedicacionAssignment_3(), "rule__Profesor__DedicacionAssignment_3");
 					put(grammarAccess.getMateriaAccess().getNameAssignment_1(), "rule__Materia__NameAssignment_1");
@@ -274,8 +275,7 @@ public class MyDslParser extends AbstractContentAssistParser {
 					put(grammarAccess.getPlanificacionAccess().getMateriasAssignment_6(), "rule__Planificacion__MateriasAssignment_6");
 					put(grammarAccess.getPlanificacionAccess().getAsignacionesAssignment_7(), "rule__Planificacion__AsignacionesAssignment_7");
 					put(grammarAccess.getAsignacionAccess().getDiaAssignment_0(), "rule__Asignacion__DiaAssignment_0");
-					put(grammarAccess.getAsignacionAccess().getHorarioAssignment_2(), "rule__Asignacion__HorarioAssignment_2");
-					put(grammarAccess.getAsignacionAccess().getMateriaAssignment_4(), "rule__Asignacion__MateriaAssignment_4");
+					put(grammarAccess.getAsignacionAccess().getHorariosAssignment_2(), "rule__Asignacion__HorariosAssignment_2");
 					put(grammarAccess.getXAssignmentAccess().getFeatureAssignment_0_1(), "rule__XAssignment__FeatureAssignment_0_1");
 					put(grammarAccess.getXAssignmentAccess().getValueAssignment_0_3(), "rule__XAssignment__ValueAssignment_0_3");
 					put(grammarAccess.getXAssignmentAccess().getFeatureAssignment_1_1_0_0_1(), "rule__XAssignment__FeatureAssignment_1_1_0_0_1");

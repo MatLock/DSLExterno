@@ -11,6 +11,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import org.xtext.example.mydsl.myDsl.Aula;
 import org.xtext.example.mydsl.myDsl.Horario;
+import org.xtext.example.mydsl.myDsl.Materia;
 import org.xtext.example.mydsl.myDsl.MyDslPackage;
 
 /**
@@ -22,6 +23,7 @@ import org.xtext.example.mydsl.myDsl.MyDslPackage;
  * <ul>
  *   <li>{@link org.xtext.example.mydsl.myDsl.impl.HorarioImpl#getHorarioInicio <em>Horario Inicio</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.myDsl.impl.HorarioImpl#getHorarioFin <em>Horario Fin</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.myDsl.impl.HorarioImpl#getMateria <em>Materia</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.myDsl.impl.HorarioImpl#getAula <em>Aula</em>}</li>
  * </ul>
  * </p>
@@ -69,6 +71,16 @@ public class HorarioImpl extends ClaseImpl implements Horario
    * @ordered
    */
   protected int horarioFin = HORARIO_FIN_EDEFAULT;
+
+  /**
+   * The cached value of the '{@link #getMateria() <em>Materia</em>}' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getMateria()
+   * @generated
+   * @ordered
+   */
+  protected Materia materia;
 
   /**
    * The cached value of the '{@link #getAula() <em>Aula</em>}' reference.
@@ -152,6 +164,49 @@ public class HorarioImpl extends ClaseImpl implements Horario
    * <!-- end-user-doc -->
    * @generated
    */
+  public Materia getMateria()
+  {
+    if (materia != null && materia.eIsProxy())
+    {
+      InternalEObject oldMateria = (InternalEObject)materia;
+      materia = (Materia)eResolveProxy(oldMateria);
+      if (materia != oldMateria)
+      {
+        if (eNotificationRequired())
+          eNotify(new ENotificationImpl(this, Notification.RESOLVE, MyDslPackage.HORARIO__MATERIA, oldMateria, materia));
+      }
+    }
+    return materia;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Materia basicGetMateria()
+  {
+    return materia;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setMateria(Materia newMateria)
+  {
+    Materia oldMateria = materia;
+    materia = newMateria;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, MyDslPackage.HORARIO__MATERIA, oldMateria, materia));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public Aula getAula()
   {
     if (aula != null && aula.eIsProxy())
@@ -204,6 +259,9 @@ public class HorarioImpl extends ClaseImpl implements Horario
         return getHorarioInicio();
       case MyDslPackage.HORARIO__HORARIO_FIN:
         return getHorarioFin();
+      case MyDslPackage.HORARIO__MATERIA:
+        if (resolve) return getMateria();
+        return basicGetMateria();
       case MyDslPackage.HORARIO__AULA:
         if (resolve) return getAula();
         return basicGetAula();
@@ -226,6 +284,9 @@ public class HorarioImpl extends ClaseImpl implements Horario
         return;
       case MyDslPackage.HORARIO__HORARIO_FIN:
         setHorarioFin((Integer)newValue);
+        return;
+      case MyDslPackage.HORARIO__MATERIA:
+        setMateria((Materia)newValue);
         return;
       case MyDslPackage.HORARIO__AULA:
         setAula((Aula)newValue);
@@ -250,6 +311,9 @@ public class HorarioImpl extends ClaseImpl implements Horario
       case MyDslPackage.HORARIO__HORARIO_FIN:
         setHorarioFin(HORARIO_FIN_EDEFAULT);
         return;
+      case MyDslPackage.HORARIO__MATERIA:
+        setMateria((Materia)null);
+        return;
       case MyDslPackage.HORARIO__AULA:
         setAula((Aula)null);
         return;
@@ -271,6 +335,8 @@ public class HorarioImpl extends ClaseImpl implements Horario
         return horarioInicio != HORARIO_INICIO_EDEFAULT;
       case MyDslPackage.HORARIO__HORARIO_FIN:
         return horarioFin != HORARIO_FIN_EDEFAULT;
+      case MyDslPackage.HORARIO__MATERIA:
+        return materia != null;
       case MyDslPackage.HORARIO__AULA:
         return aula != null;
     }

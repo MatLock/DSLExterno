@@ -9,7 +9,8 @@ Clase:
 ;
 
 Horario:
-	'de:' horarioInicio = INT 'hasta:' horarioFin=  INT 'en:' aula = [Aula] //aulas	
+	'de:' horarioInicio = INT 'hasta:' horarioFin=  INT
+	'se dicta la materia:' materia= [Materia] 'en:' aula = [Aula] //aulas	
 ;
 
 Profesor:
@@ -31,14 +32,14 @@ Aula:
 
 Planificacion:
 	'planificacion:' anio= INT 'semestre:' semestre= INT'{'
-	'aDictar:' (materias += [Materia])* //materias
+	'aDictar:' (materias += [Materia])*  //materias
 	 (asignaciones += Asignacion)*
   '}'
 ;
 
 Asignacion:
 	 dia= Dia '{' 	
- 	 horario = Horario	'se dicta la materia:' materia = [Materia] //materias
+ 	 (horarios += Horario)*
   '}'
 ;   
 

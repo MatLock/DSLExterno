@@ -133,13 +133,22 @@ public interface MyDslPackage extends EPackage
   int HORARIO__HORARIO_FIN = CLASE_FEATURE_COUNT + 1;
 
   /**
+   * The feature id for the '<em><b>Materia</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int HORARIO__MATERIA = CLASE_FEATURE_COUNT + 2;
+
+  /**
    * The feature id for the '<em><b>Aula</b></em>' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int HORARIO__AULA = CLASE_FEATURE_COUNT + 2;
+  int HORARIO__AULA = CLASE_FEATURE_COUNT + 3;
 
   /**
    * The number of structural features of the '<em>Horario</em>' class.
@@ -148,7 +157,7 @@ public interface MyDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int HORARIO_FEATURE_COUNT = CLASE_FEATURE_COUNT + 3;
+  int HORARIO_FEATURE_COUNT = CLASE_FEATURE_COUNT + 4;
 
   /**
    * The meta object id for the '{@link org.xtext.example.mydsl.myDsl.impl.ProfesorImpl <em>Profesor</em>}' class.
@@ -354,22 +363,13 @@ public interface MyDslPackage extends EPackage
   int ASIGNACION__DIA = CLASE_FEATURE_COUNT + 0;
 
   /**
-   * The feature id for the '<em><b>Horario</b></em>' containment reference.
+   * The feature id for the '<em><b>Horarios</b></em>' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int ASIGNACION__HORARIO = CLASE_FEATURE_COUNT + 1;
-
-  /**
-   * The feature id for the '<em><b>Materia</b></em>' reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int ASIGNACION__MATERIA = CLASE_FEATURE_COUNT + 2;
+  int ASIGNACION__HORARIOS = CLASE_FEATURE_COUNT + 1;
 
   /**
    * The number of structural features of the '<em>Asignacion</em>' class.
@@ -378,7 +378,7 @@ public interface MyDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int ASIGNACION_FEATURE_COUNT = CLASE_FEATURE_COUNT + 3;
+  int ASIGNACION_FEATURE_COUNT = CLASE_FEATURE_COUNT + 2;
 
   /**
    * The meta object id for the '{@link org.xtext.example.mydsl.myDsl.Dedicacion <em>Dedicacion</em>}' enum.
@@ -473,6 +473,17 @@ public interface MyDslPackage extends EPackage
    * @generated
    */
   EAttribute getHorario_HorarioFin();
+
+  /**
+   * Returns the meta object for the reference '{@link org.xtext.example.mydsl.myDsl.Horario#getMateria <em>Materia</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference '<em>Materia</em>'.
+   * @see org.xtext.example.mydsl.myDsl.Horario#getMateria()
+   * @see #getHorario()
+   * @generated
+   */
+  EReference getHorario_Materia();
 
   /**
    * Returns the meta object for the reference '{@link org.xtext.example.mydsl.myDsl.Horario#getAula <em>Aula</em>}'.
@@ -679,26 +690,15 @@ public interface MyDslPackage extends EPackage
   EAttribute getAsignacion_Dia();
 
   /**
-   * Returns the meta object for the containment reference '{@link org.xtext.example.mydsl.myDsl.Asignacion#getHorario <em>Horario</em>}'.
+   * Returns the meta object for the containment reference list '{@link org.xtext.example.mydsl.myDsl.Asignacion#getHorarios <em>Horarios</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Horario</em>'.
-   * @see org.xtext.example.mydsl.myDsl.Asignacion#getHorario()
+   * @return the meta object for the containment reference list '<em>Horarios</em>'.
+   * @see org.xtext.example.mydsl.myDsl.Asignacion#getHorarios()
    * @see #getAsignacion()
    * @generated
    */
-  EReference getAsignacion_Horario();
-
-  /**
-   * Returns the meta object for the reference '{@link org.xtext.example.mydsl.myDsl.Asignacion#getMateria <em>Materia</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the reference '<em>Materia</em>'.
-   * @see org.xtext.example.mydsl.myDsl.Asignacion#getMateria()
-   * @see #getAsignacion()
-   * @generated
-   */
-  EReference getAsignacion_Materia();
+  EReference getAsignacion_Horarios();
 
   /**
    * Returns the meta object for enum '{@link org.xtext.example.mydsl.myDsl.Dedicacion <em>Dedicacion</em>}'.
@@ -806,6 +806,14 @@ public interface MyDslPackage extends EPackage
      * @generated
      */
     EAttribute HORARIO__HORARIO_FIN = eINSTANCE.getHorario_HorarioFin();
+
+    /**
+     * The meta object literal for the '<em><b>Materia</b></em>' reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference HORARIO__MATERIA = eINSTANCE.getHorario_Materia();
 
     /**
      * The meta object literal for the '<em><b>Aula</b></em>' reference feature.
@@ -970,20 +978,12 @@ public interface MyDslPackage extends EPackage
     EAttribute ASIGNACION__DIA = eINSTANCE.getAsignacion_Dia();
 
     /**
-     * The meta object literal for the '<em><b>Horario</b></em>' containment reference feature.
+     * The meta object literal for the '<em><b>Horarios</b></em>' containment reference list feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference ASIGNACION__HORARIO = eINSTANCE.getAsignacion_Horario();
-
-    /**
-     * The meta object literal for the '<em><b>Materia</b></em>' reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference ASIGNACION__MATERIA = eINSTANCE.getAsignacion_Materia();
+    EReference ASIGNACION__HORARIOS = eINSTANCE.getAsignacion_Horarios();
 
     /**
      * The meta object literal for the '{@link org.xtext.example.mydsl.myDsl.Dedicacion <em>Dedicacion</em>}' enum.

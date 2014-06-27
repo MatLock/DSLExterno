@@ -13,6 +13,7 @@ package org.xtext.example.mydsl.myDsl;
  * <ul>
  *   <li>{@link org.xtext.example.mydsl.myDsl.Horario#getHorarioInicio <em>Horario Inicio</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.myDsl.Horario#getHorarioFin <em>Horario Fin</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.myDsl.Horario#getMateria <em>Materia</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.myDsl.Horario#getAula <em>Aula</em>}</li>
  * </ul>
  * </p>
@@ -74,6 +75,32 @@ public interface Horario extends Clase
    * @generated
    */
   void setHorarioFin(int value);
+
+  /**
+   * Returns the value of the '<em><b>Materia</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Materia</em>' reference isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Materia</em>' reference.
+   * @see #setMateria(Materia)
+   * @see org.xtext.example.mydsl.myDsl.MyDslPackage#getHorario_Materia()
+   * @model
+   * @generated
+   */
+  Materia getMateria();
+
+  /**
+   * Sets the value of the '{@link org.xtext.example.mydsl.myDsl.Horario#getMateria <em>Materia</em>}' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Materia</em>' reference.
+   * @see #getMateria()
+   * @generated
+   */
+  void setMateria(Materia value);
 
   /**
    * Returns the value of the '<em><b>Aula</b></em>' reference.
