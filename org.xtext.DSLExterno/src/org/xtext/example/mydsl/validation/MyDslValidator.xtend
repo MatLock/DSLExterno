@@ -140,7 +140,7 @@ class MyDslValidator extends AbstractMyDslValidator {
 	
 // chequeo de compatibilidad de aula y materia
 	@Check
-	def recursosSatisfechos(Horario horario){
+	def checkRecursosSatisfechos(Horario horario){
 		val recursosAsignados = horario.aula.recursos
 		val recursosMateria = horario.materia.recursos
 
@@ -152,7 +152,7 @@ class MyDslValidator extends AbstractMyDslValidator {
 
 //Check del primer Bonus (inscritos caben en aula)	
 	@Check
-	def inscriptosCabenEnAula2(Horario h){
+	def checkInscriptosCabenEnAula(Horario h){
 		if (h.aula.capacidad < h.materia.cantidadDeInscriptos){
 			error("La cantidad de inscriptos de la materia: "+h.materia.name+
 			" supera la capacidad del aula: "+h.aula.name,h,MyDslPackage.Literals.HORARIO__AULA)

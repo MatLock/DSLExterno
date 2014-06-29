@@ -230,7 +230,7 @@ public class MyDslValidator extends AbstractMyDslValidator {
   }
   
   @Check
-  public void recursosSatisfechos(final Horario horario) {
+  public void checkRecursosSatisfechos(final Horario horario) {
     Aula _aula = horario.getAula();
     final EList<Recursos> recursosAsignados = _aula.getRecursos();
     Materia _materia = horario.getMateria();
@@ -247,7 +247,7 @@ public class MyDslValidator extends AbstractMyDslValidator {
   }
   
   @Check
-  public void inscriptosCabenEnAula2(final Horario h) {
+  public void checkInscriptosCabenEnAula(final Horario h) {
     Aula _aula = h.getAula();
     int _capacidad = _aula.getCapacidad();
     Materia _materia = h.getMateria();
