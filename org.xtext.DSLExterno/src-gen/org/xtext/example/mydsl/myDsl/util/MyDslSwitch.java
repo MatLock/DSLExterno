@@ -94,6 +94,13 @@ public class MyDslSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case MyDslPackage.DIAS_HABILIDATOS:
+      {
+        DiasHabilidatos diasHabilidatos = (DiasHabilidatos)theEObject;
+        T result = caseDiasHabilidatos(diasHabilidatos);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       case MyDslPackage.PROFESOR:
       {
         Profesor profesor = (Profesor)theEObject;
@@ -182,6 +189,22 @@ public class MyDslSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseHorario(Horario object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Dias Habilidatos</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Dias Habilidatos</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseDiasHabilidatos(DiasHabilidatos object)
   {
     return null;
   }

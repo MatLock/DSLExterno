@@ -90,11 +90,11 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cAulaAulaIDTerminalRuleCall_7_0_1 = (RuleCall)cAulaAulaCrossReference_7_0.eContents().get(1);
 		
 		//Horario:
-		//	"de:" horarioInicio=INT "hasta:" horarioFin=INT "se dicta la materia:" materia=[Materia] "en:" aula= //aulas	
+		//	"de:" horarioInicio=INT "hasta:" horarioFin=INT "se dicta la materia:" materia=[Materia] "en:" aula= //aulas
 		//	[Aula];
 		public ParserRule getRule() { return rule; }
 
-		//"de:" horarioInicio=INT "hasta:" horarioFin=INT "se dicta la materia:" materia=[Materia] "en:" aula= //aulas	
+		//"de:" horarioInicio=INT "hasta:" horarioFin=INT "se dicta la materia:" materia=[Materia] "en:" aula= //aulas
 		//[Aula]
 		public Group getGroup() { return cGroup; }
 
@@ -131,16 +131,65 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		//"en:"
 		public Keyword getEnKeyword_6() { return cEnKeyword_6; }
 
-		//aula= //aulas	
+		//aula= //aulas
 		//[Aula]
 		public Assignment getAulaAssignment_7() { return cAulaAssignment_7; }
 
-		////aulas	
+		////aulas
 		//[Aula]
 		public CrossReference getAulaAulaCrossReference_7_0() { return cAulaAulaCrossReference_7_0; }
 
 		//ID
 		public RuleCall getAulaAulaIDTerminalRuleCall_7_0_1() { return cAulaAulaIDTerminalRuleCall_7_0_1; }
+	}
+
+	public class DiasHabilidatosElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "DiasHabilidatos");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Keyword cPuedeKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Assignment cDiaAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cDiaDiaEnumRuleCall_1_0 = (RuleCall)cDiaAssignment_1.eContents().get(0);
+		private final Keyword cDeKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		private final Assignment cHoraInicioAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final RuleCall cHoraInicioINTTerminalRuleCall_3_0 = (RuleCall)cHoraInicioAssignment_3.eContents().get(0);
+		private final Keyword cHastaKeyword_4 = (Keyword)cGroup.eContents().get(4);
+		private final Assignment cHoraFinalAssignment_5 = (Assignment)cGroup.eContents().get(5);
+		private final RuleCall cHoraFinalINTTerminalRuleCall_5_0 = (RuleCall)cHoraFinalAssignment_5.eContents().get(0);
+		
+		////Agregado para bonus 2
+		//DiasHabilidatos:
+		//	"puede:" dia=Dia "de:" horaInicio=INT "hasta:" horaFinal=INT;
+		public ParserRule getRule() { return rule; }
+
+		//"puede:" dia=Dia "de:" horaInicio=INT "hasta:" horaFinal=INT
+		public Group getGroup() { return cGroup; }
+
+		//"puede:"
+		public Keyword getPuedeKeyword_0() { return cPuedeKeyword_0; }
+
+		//dia=Dia
+		public Assignment getDiaAssignment_1() { return cDiaAssignment_1; }
+
+		//Dia
+		public RuleCall getDiaDiaEnumRuleCall_1_0() { return cDiaDiaEnumRuleCall_1_0; }
+
+		//"de:"
+		public Keyword getDeKeyword_2() { return cDeKeyword_2; }
+
+		//horaInicio=INT
+		public Assignment getHoraInicioAssignment_3() { return cHoraInicioAssignment_3; }
+
+		//INT
+		public RuleCall getHoraInicioINTTerminalRuleCall_3_0() { return cHoraInicioINTTerminalRuleCall_3_0; }
+
+		//"hasta:"
+		public Keyword getHastaKeyword_4() { return cHastaKeyword_4; }
+
+		//horaFinal=INT
+		public Assignment getHoraFinalAssignment_5() { return cHoraFinalAssignment_5; }
+
+		//INT
+		public RuleCall getHoraFinalINTTerminalRuleCall_5_0() { return cHoraFinalINTTerminalRuleCall_5_0; }
 	}
 
 	public class ProfesorElements extends AbstractParserRuleElementFinder {
@@ -152,12 +201,15 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cDedicacionKeyword_2 = (Keyword)cGroup.eContents().get(2);
 		private final Assignment cDedicacionAssignment_3 = (Assignment)cGroup.eContents().get(3);
 		private final RuleCall cDedicacionDedicacionEnumRuleCall_3_0 = (RuleCall)cDedicacionAssignment_3.eContents().get(0);
+		private final Assignment cDiasQuePuedeAssignment_4 = (Assignment)cGroup.eContents().get(4);
+		private final RuleCall cDiasQuePuedeDiasHabilidatosParserRuleCall_4_0 = (RuleCall)cDiasQuePuedeAssignment_4.eContents().get(0);
 		
 		//Profesor:
-		//	"profesor:" name=ID "dedicacion:" dedicacion=Dedicacion;
+		//	"profesor:" name=ID "dedicacion:" dedicacion=Dedicacion diasQuePuede+=DiasHabilidatos //Agregado para bonus 2 
+		//;
 		public ParserRule getRule() { return rule; }
 
-		//"profesor:" name=ID "dedicacion:" dedicacion=Dedicacion
+		//"profesor:" name=ID "dedicacion:" dedicacion=Dedicacion diasQuePuede+=DiasHabilidatos //Agregado para bonus 2
 		public Group getGroup() { return cGroup; }
 
 		//"profesor:"
@@ -177,6 +229,12 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 
 		//Dedicacion
 		public RuleCall getDedicacionDedicacionEnumRuleCall_3_0() { return cDedicacionDedicacionEnumRuleCall_3_0; }
+
+		//diasQuePuede+=DiasHabilidatos
+		public Assignment getDiasQuePuedeAssignment_4() { return cDiasQuePuedeAssignment_4; }
+
+		//DiasHabilidatos
+		public RuleCall getDiasQuePuedeDiasHabilidatosParserRuleCall_4_0() { return cDiasQuePuedeDiasHabilidatosParserRuleCall_4_0; }
 	}
 
 	public class MateriaElements extends AbstractParserRuleElementFinder {
@@ -196,15 +254,21 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cDictadaPorAssignment_8 = (Assignment)cGroup.eContents().get(8);
 		private final CrossReference cDictadaPorProfesorCrossReference_8_0 = (CrossReference)cDictadaPorAssignment_8.eContents().get(0);
 		private final RuleCall cDictadaPorProfesorIDTerminalRuleCall_8_0_1 = (RuleCall)cDictadaPorProfesorCrossReference_8_0.eContents().get(1);
-		private final Keyword cRightCurlyBracketKeyword_9 = (Keyword)cGroup.eContents().get(9);
+		private final Keyword cRequiereKeyword_9 = (Keyword)cGroup.eContents().get(9);
+		private final Assignment cRecursosAssignment_10 = (Assignment)cGroup.eContents().get(10);
+		private final RuleCall cRecursosRecursosEnumRuleCall_10_0 = (RuleCall)cRecursosAssignment_10.eContents().get(0);
+		private final Keyword cInscriptosKeyword_11 = (Keyword)cGroup.eContents().get(11);
+		private final Assignment cCantidadDeInscriptosAssignment_12 = (Assignment)cGroup.eContents().get(12);
+		private final RuleCall cCantidadDeInscriptosINTTerminalRuleCall_12_0 = (RuleCall)cCantidadDeInscriptosAssignment_12.eContents().get(0);
+		private final Keyword cRightCurlyBracketKeyword_13 = (Keyword)cGroup.eContents().get(13);
 		
 		//Materia:
-		//	"materia:" name=ID "{" "cantidadDeDias:" cantidadDeDias=INT "cargaHoraria:" cargaHoraria=INT "dictadaPor:" dictadaPor= //profesor
-		//	[Profesor] "}";
+		//	"materia:" name=ID "{" "cantidadDeDias:" cantidadDeDias=INT "cargaHoraria:" cargaHoraria=INT "dictadaPor:"
+		//	dictadaPor=[Profesor] "requiere:" recursos+=Recursos* "inscriptos:" cantidadDeInscriptos=INT "}";
 		public ParserRule getRule() { return rule; }
 
-		//"materia:" name=ID "{" "cantidadDeDias:" cantidadDeDias=INT "cargaHoraria:" cargaHoraria=INT "dictadaPor:" dictadaPor= //profesor
-		//[Profesor] "}"
+		//"materia:" name=ID "{" "cantidadDeDias:" cantidadDeDias=INT "cargaHoraria:" cargaHoraria=INT "dictadaPor:"
+		//dictadaPor=[Profesor] "requiere:" recursos+=Recursos* "inscriptos:" cantidadDeInscriptos=INT "}"
 		public Group getGroup() { return cGroup; }
 
 		//"materia:"
@@ -240,19 +304,35 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		//"dictadaPor:"
 		public Keyword getDictadaPorKeyword_7() { return cDictadaPorKeyword_7; }
 
-		//dictadaPor= //profesor
-		//[Profesor]
+		//dictadaPor=[Profesor]
 		public Assignment getDictadaPorAssignment_8() { return cDictadaPorAssignment_8; }
 
-		////profesor
 		//[Profesor]
 		public CrossReference getDictadaPorProfesorCrossReference_8_0() { return cDictadaPorProfesorCrossReference_8_0; }
 
 		//ID
 		public RuleCall getDictadaPorProfesorIDTerminalRuleCall_8_0_1() { return cDictadaPorProfesorIDTerminalRuleCall_8_0_1; }
 
+		//"requiere:"
+		public Keyword getRequiereKeyword_9() { return cRequiereKeyword_9; }
+
+		//recursos+=Recursos*
+		public Assignment getRecursosAssignment_10() { return cRecursosAssignment_10; }
+
+		//Recursos
+		public RuleCall getRecursosRecursosEnumRuleCall_10_0() { return cRecursosRecursosEnumRuleCall_10_0; }
+
+		//"inscriptos:"
+		public Keyword getInscriptosKeyword_11() { return cInscriptosKeyword_11; }
+
+		//cantidadDeInscriptos=INT
+		public Assignment getCantidadDeInscriptosAssignment_12() { return cCantidadDeInscriptosAssignment_12; }
+
+		//INT
+		public RuleCall getCantidadDeInscriptosINTTerminalRuleCall_12_0() { return cCantidadDeInscriptosINTTerminalRuleCall_12_0; }
+
 		//"}"
-		public Keyword getRightCurlyBracketKeyword_9() { return cRightCurlyBracketKeyword_9; }
+		public Keyword getRightCurlyBracketKeyword_13() { return cRightCurlyBracketKeyword_13; }
 	}
 
 	public class AulaElements extends AbstractParserRuleElementFinder {
@@ -265,13 +345,18 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cRecursosKeyword_3 = (Keyword)cGroup.eContents().get(3);
 		private final Assignment cRecursosAssignment_4 = (Assignment)cGroup.eContents().get(4);
 		private final RuleCall cRecursosRecursosEnumRuleCall_4_0 = (RuleCall)cRecursosAssignment_4.eContents().get(0);
-		private final Keyword cRightCurlyBracketKeyword_5 = (Keyword)cGroup.eContents().get(5);
+		private final Keyword cCapacidadKeyword_5 = (Keyword)cGroup.eContents().get(5);
+		private final Assignment cCapacidadAssignment_6 = (Assignment)cGroup.eContents().get(6);
+		private final RuleCall cCapacidadINTTerminalRuleCall_6_0 = (RuleCall)cCapacidadAssignment_6.eContents().get(0);
+		private final Keyword cRightCurlyBracketKeyword_7 = (Keyword)cGroup.eContents().get(7);
 		
 		//Aula:
-		//	"aula:" name=ID "{" "recursos:" recursos+=Recursos* "}";
+		//	"aula:" name=ID "{" "recursos:" recursos+=Recursos* "capacidad:" capacidad= //Agregado para bonus 1
+		//	INT "}";
 		public ParserRule getRule() { return rule; }
 
-		//"aula:" name=ID "{" "recursos:" recursos+=Recursos* "}"
+		//"aula:" name=ID "{" "recursos:" recursos+=Recursos* "capacidad:" capacidad= //Agregado para bonus 1
+		//INT "}"
 		public Group getGroup() { return cGroup; }
 
 		//"aula:"
@@ -295,8 +380,19 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		//Recursos
 		public RuleCall getRecursosRecursosEnumRuleCall_4_0() { return cRecursosRecursosEnumRuleCall_4_0; }
 
+		//"capacidad:"
+		public Keyword getCapacidadKeyword_5() { return cCapacidadKeyword_5; }
+
+		//capacidad= //Agregado para bonus 1
+		//INT
+		public Assignment getCapacidadAssignment_6() { return cCapacidadAssignment_6; }
+
+		////Agregado para bonus 1
+		//INT
+		public RuleCall getCapacidadINTTerminalRuleCall_6_0() { return cCapacidadINTTerminalRuleCall_6_0; }
+
 		//"}"
-		public Keyword getRightCurlyBracketKeyword_5() { return cRightCurlyBracketKeyword_5; }
+		public Keyword getRightCurlyBracketKeyword_7() { return cRightCurlyBracketKeyword_7; }
 	}
 
 	public class PlanificacionElements extends AbstractParserRuleElementFinder {
@@ -502,12 +598,7 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		private final EnumLiteralDeclaration cSabadosEnumLiteralDeclaration_5 = (EnumLiteralDeclaration)cAlternatives.eContents().get(5);
 		private final Keyword cSabadosSabadosKeyword_5_0 = (Keyword)cSabadosEnumLiteralDeclaration_5.eContents().get(0);
 		
-		/// *
-		// * def materiaADar(Dedicacion d)
-		// * switch d{
-		// * 	case Simple: bla
-		// *  case Semi: bla2
-		// * / enum Dia:
+		//enum Dia:
 		//	Lunes | Martes | Miercoles | Jueves | Viernes | Sabados;
 		public EnumRule getRule() { return rule; }
 
@@ -554,6 +645,7 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 	private ModelElements pModel;
 	private ClaseElements pClase;
 	private HorarioElements pHorario;
+	private DiasHabilidatosElements pDiasHabilidatos;
 	private ProfesorElements pProfesor;
 	private MateriaElements pMateria;
 	private AulaElements pAula;
@@ -622,7 +714,7 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Horario:
-	//	"de:" horarioInicio=INT "hasta:" horarioFin=INT "se dicta la materia:" materia=[Materia] "en:" aula= //aulas	
+	//	"de:" horarioInicio=INT "hasta:" horarioFin=INT "se dicta la materia:" materia=[Materia] "en:" aula= //aulas
 	//	[Aula];
 	public HorarioElements getHorarioAccess() {
 		return (pHorario != null) ? pHorario : (pHorario = new HorarioElements());
@@ -632,8 +724,20 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		return getHorarioAccess().getRule();
 	}
 
+	////Agregado para bonus 2
+	//DiasHabilidatos:
+	//	"puede:" dia=Dia "de:" horaInicio=INT "hasta:" horaFinal=INT;
+	public DiasHabilidatosElements getDiasHabilidatosAccess() {
+		return (pDiasHabilidatos != null) ? pDiasHabilidatos : (pDiasHabilidatos = new DiasHabilidatosElements());
+	}
+	
+	public ParserRule getDiasHabilidatosRule() {
+		return getDiasHabilidatosAccess().getRule();
+	}
+
 	//Profesor:
-	//	"profesor:" name=ID "dedicacion:" dedicacion=Dedicacion;
+	//	"profesor:" name=ID "dedicacion:" dedicacion=Dedicacion diasQuePuede+=DiasHabilidatos //Agregado para bonus 2 
+	//;
 	public ProfesorElements getProfesorAccess() {
 		return (pProfesor != null) ? pProfesor : (pProfesor = new ProfesorElements());
 	}
@@ -643,8 +747,8 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Materia:
-	//	"materia:" name=ID "{" "cantidadDeDias:" cantidadDeDias=INT "cargaHoraria:" cargaHoraria=INT "dictadaPor:" dictadaPor= //profesor
-	//	[Profesor] "}";
+	//	"materia:" name=ID "{" "cantidadDeDias:" cantidadDeDias=INT "cargaHoraria:" cargaHoraria=INT "dictadaPor:"
+	//	dictadaPor=[Profesor] "requiere:" recursos+=Recursos* "inscriptos:" cantidadDeInscriptos=INT "}";
 	public MateriaElements getMateriaAccess() {
 		return (pMateria != null) ? pMateria : (pMateria = new MateriaElements());
 	}
@@ -654,7 +758,8 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Aula:
-	//	"aula:" name=ID "{" "recursos:" recursos+=Recursos* "}";
+	//	"aula:" name=ID "{" "recursos:" recursos+=Recursos* "capacidad:" capacidad= //Agregado para bonus 1
+	//	INT "}";
 	public AulaElements getAulaAccess() {
 		return (pAula != null) ? pAula : (pAula = new AulaElements());
 	}
@@ -704,12 +809,7 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		return getRecursosAccess().getRule();
 	}
 
-	/// *
-	// * def materiaADar(Dedicacion d)
-	// * switch d{
-	// * 	case Simple: bla
-	// *  case Semi: bla2
-	// * / enum Dia:
+	//enum Dia:
 	//	Lunes | Martes | Miercoles | Jueves | Viernes | Sabados;
 	public DiaElements getDiaAccess() {
 		return (unknownRuleDia != null) ? unknownRuleDia : (unknownRuleDia = new DiaElements());

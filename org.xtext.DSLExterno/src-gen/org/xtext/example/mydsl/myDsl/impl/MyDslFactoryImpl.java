@@ -68,6 +68,7 @@ public class MyDslFactoryImpl extends EFactoryImpl implements MyDslFactory
       case MyDslPackage.MODEL: return createModel();
       case MyDslPackage.CLASE: return createClase();
       case MyDslPackage.HORARIO: return createHorario();
+      case MyDslPackage.DIAS_HABILIDATOS: return createDiasHabilidatos();
       case MyDslPackage.PROFESOR: return createProfesor();
       case MyDslPackage.MATERIA: return createMateria();
       case MyDslPackage.AULA: return createAula();
@@ -151,6 +152,17 @@ public class MyDslFactoryImpl extends EFactoryImpl implements MyDslFactory
   {
     HorarioImpl horario = new HorarioImpl();
     return horario;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public DiasHabilidatos createDiasHabilidatos()
+  {
+    DiasHabilidatosImpl diasHabilidatos = new DiasHabilidatosImpl();
+    return diasHabilidatos;
   }
 
   /**

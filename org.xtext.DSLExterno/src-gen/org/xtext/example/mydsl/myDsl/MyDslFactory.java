@@ -50,6 +50,15 @@ public interface MyDslFactory extends EFactory
   Horario createHorario();
 
   /**
+   * Returns a new object of class '<em>Dias Habilidatos</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Dias Habilidatos</em>'.
+   * @generated
+   */
+  DiasHabilidatos createDiasHabilidatos();
+
+  /**
    * Returns a new object of class '<em>Profesor</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

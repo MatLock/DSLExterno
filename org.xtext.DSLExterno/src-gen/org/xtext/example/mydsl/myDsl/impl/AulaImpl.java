@@ -27,6 +27,7 @@ import org.xtext.example.mydsl.myDsl.Recursos;
  * <ul>
  *   <li>{@link org.xtext.example.mydsl.myDsl.impl.AulaImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.myDsl.impl.AulaImpl#getRecursos <em>Recursos</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.myDsl.impl.AulaImpl#getCapacidad <em>Capacidad</em>}</li>
  * </ul>
  * </p>
  *
@@ -63,6 +64,26 @@ public class AulaImpl extends ClaseImpl implements Aula
    * @ordered
    */
   protected EList<Recursos> recursos;
+
+  /**
+   * The default value of the '{@link #getCapacidad() <em>Capacidad</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getCapacidad()
+   * @generated
+   * @ordered
+   */
+  protected static final int CAPACIDAD_EDEFAULT = 0;
+
+  /**
+   * The cached value of the '{@link #getCapacidad() <em>Capacidad</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getCapacidad()
+   * @generated
+   * @ordered
+   */
+  protected int capacidad = CAPACIDAD_EDEFAULT;
 
   /**
    * <!-- begin-user-doc -->
@@ -127,6 +148,29 @@ public class AulaImpl extends ClaseImpl implements Aula
    * <!-- end-user-doc -->
    * @generated
    */
+  public int getCapacidad()
+  {
+    return capacidad;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setCapacidad(int newCapacidad)
+  {
+    int oldCapacidad = capacidad;
+    capacidad = newCapacidad;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, MyDslPackage.AULA__CAPACIDAD, oldCapacidad, capacidad));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   @Override
   public Object eGet(int featureID, boolean resolve, boolean coreType)
   {
@@ -136,6 +180,8 @@ public class AulaImpl extends ClaseImpl implements Aula
         return getName();
       case MyDslPackage.AULA__RECURSOS:
         return getRecursos();
+      case MyDslPackage.AULA__CAPACIDAD:
+        return getCapacidad();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -158,6 +204,9 @@ public class AulaImpl extends ClaseImpl implements Aula
         getRecursos().clear();
         getRecursos().addAll((Collection<? extends Recursos>)newValue);
         return;
+      case MyDslPackage.AULA__CAPACIDAD:
+        setCapacidad((Integer)newValue);
+        return;
     }
     super.eSet(featureID, newValue);
   }
@@ -178,6 +227,9 @@ public class AulaImpl extends ClaseImpl implements Aula
       case MyDslPackage.AULA__RECURSOS:
         getRecursos().clear();
         return;
+      case MyDslPackage.AULA__CAPACIDAD:
+        setCapacidad(CAPACIDAD_EDEFAULT);
+        return;
     }
     super.eUnset(featureID);
   }
@@ -196,6 +248,8 @@ public class AulaImpl extends ClaseImpl implements Aula
         return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
       case MyDslPackage.AULA__RECURSOS:
         return recursos != null && !recursos.isEmpty();
+      case MyDslPackage.AULA__CAPACIDAD:
+        return capacidad != CAPACIDAD_EDEFAULT;
     }
     return super.eIsSet(featureID);
   }
@@ -215,6 +269,8 @@ public class AulaImpl extends ClaseImpl implements Aula
     result.append(name);
     result.append(", recursos: ");
     result.append(recursos);
+    result.append(", capacidad: ");
+    result.append(capacidad);
     result.append(')');
     return result.toString();
   }
