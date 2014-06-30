@@ -3,6 +3,7 @@ package org.xtext.example.mydsl.jvmmodel;
 import com.google.inject.Inject;
 import java.util.Arrays;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.xtext.common.types.JvmGenericType;
 import org.eclipse.xtext.xbase.jvmmodel.AbstractModelInferrer;
 import org.eclipse.xtext.xbase.jvmmodel.IJvmDeclaredTypeAcceptor;
 import org.eclipse.xtext.xbase.jvmmodel.JvmTypesBuilder;
@@ -50,6 +51,8 @@ public class MyDslJvmModelInferrer extends AbstractModelInferrer {
    *            <code>true</code>.
    */
   protected void _infer(final Model element, final IJvmDeclaredTypeAcceptor acceptor, final boolean isPreIndexingPhase) {
+    JvmGenericType _class = this._jvmTypesBuilder.toClass(element, "my.company.greeting.MyGreetings");
+    acceptor.<JvmGenericType>accept(_class);
   }
   
   public void infer(final EObject element, final IJvmDeclaredTypeAcceptor acceptor, final boolean isPreIndexingPhase) {

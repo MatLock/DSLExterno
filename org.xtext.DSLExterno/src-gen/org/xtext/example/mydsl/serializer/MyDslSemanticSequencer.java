@@ -77,8 +77,7 @@ public class MyDslSemanticSequencer extends XbaseSemanticSequencer {
 	public void createSequence(EObject context, EObject semanticObject) {
 		if(semanticObject.eClass().getEPackage() == MyDslPackage.eINSTANCE) switch(semanticObject.eClass().getClassifierID()) {
 			case MyDslPackage.ASIGNACION:
-				if(context == grammarAccess.getAsignacionRule() ||
-				   context == grammarAccess.getClaseRule()) {
+				if(context == grammarAccess.getAsignacionRule()) {
 					sequence_Asignacion(context, (Asignacion) semanticObject); 
 					return; 
 				}
@@ -97,8 +96,7 @@ public class MyDslSemanticSequencer extends XbaseSemanticSequencer {
 				}
 				else break;
 			case MyDslPackage.HORARIO:
-				if(context == grammarAccess.getClaseRule() ||
-				   context == grammarAccess.getHorarioRule()) {
+				if(context == grammarAccess.getHorarioRule()) {
 					sequence_Horario(context, (Horario) semanticObject); 
 					return; 
 				}

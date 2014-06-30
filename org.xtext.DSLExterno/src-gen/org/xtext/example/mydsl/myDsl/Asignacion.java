@@ -4,6 +4,8 @@ package org.xtext.example.mydsl.myDsl;
 
 import org.eclipse.emf.common.util.EList;
 
+import org.eclipse.emf.ecore.EObject;
+
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Asignacion</b></em>'.
@@ -21,7 +23,7 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface Asignacion extends Clase
+public interface Asignacion extends EObject
 {
   /**
    * Returns the value of the '<em><b>Dia</b></em>' attribute.

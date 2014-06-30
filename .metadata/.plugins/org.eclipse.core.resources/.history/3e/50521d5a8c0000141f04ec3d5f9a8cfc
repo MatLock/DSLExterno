@@ -1,0 +1,35 @@
+package org.xtext.example.mydsl.interpreter
+
+class DSLExternotInterpreter {
+	
+		
+	def static void main(String[] args) {
+		if (args.isEmpty) {
+			throw new RuntimeException("Debe invocar este interprete con la ruta completa a un archivo .mydsl como argumento!")
+		}
+		val fileName = args.get(0)
+		val model = parsear(fileName)
+		new SaludosInterpreter().interpret(model)
+	}
+	
+	def static parsear(String fileName) {
+		val injector = new SaludosDSLStandaloneSetup().createInjectorAndDoEMFRegistration()
+		val resourceSet = injector.getInstance(XtextResourceSet)
+		val resource = resourceSet.createResource(URI.createURI(fileName))
+		
+		validate(injector, resource)
+		
+		resource.load(#{})
+		return resource.contents.get(0) as Model
+	}
+	
+	def static validate(Injector injector, Resource resource) {
+		val validator = injector.getInstance(IResourceValidator)
+		val issues = validator.validate(resource, CheckMode.ALL, null)
+		if (!issues.isEmpty) {
+			issues.forEach[println(it.toString)]
+			System.exit(-1)
+		}
+	}
+	
+}

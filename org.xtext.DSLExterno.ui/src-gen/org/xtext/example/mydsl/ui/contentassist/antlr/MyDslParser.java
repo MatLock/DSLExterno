@@ -80,13 +80,13 @@ public class MyDslParser extends AbstractContentAssistParser {
 					put(grammarAccess.getDedicacionAccess().getAlternatives(), "rule__Dedicacion__Alternatives");
 					put(grammarAccess.getRecursosAccess().getAlternatives(), "rule__Recursos__Alternatives");
 					put(grammarAccess.getDiaAccess().getAlternatives(), "rule__Dia__Alternatives");
-					put(grammarAccess.getHorarioAccess().getGroup(), "rule__Horario__Group__0");
 					put(grammarAccess.getDiasHabilidatosAccess().getGroup(), "rule__DiasHabilidatos__Group__0");
 					put(grammarAccess.getProfesorAccess().getGroup(), "rule__Profesor__Group__0");
 					put(grammarAccess.getMateriaAccess().getGroup(), "rule__Materia__Group__0");
 					put(grammarAccess.getAulaAccess().getGroup(), "rule__Aula__Group__0");
 					put(grammarAccess.getPlanificacionAccess().getGroup(), "rule__Planificacion__Group__0");
 					put(grammarAccess.getAsignacionAccess().getGroup(), "rule__Asignacion__Group__0");
+					put(grammarAccess.getHorarioAccess().getGroup(), "rule__Horario__Group__0");
 					put(grammarAccess.getXAssignmentAccess().getGroup_0(), "rule__XAssignment__Group_0__0");
 					put(grammarAccess.getXAssignmentAccess().getGroup_1(), "rule__XAssignment__Group_1__0");
 					put(grammarAccess.getXAssignmentAccess().getGroup_1_1(), "rule__XAssignment__Group_1_1__0");
@@ -259,10 +259,6 @@ public class MyDslParser extends AbstractContentAssistParser {
 					put(grammarAccess.getXImportDeclarationAccess().getGroup_1_0(), "rule__XImportDeclaration__Group_1_0__0");
 					put(grammarAccess.getQualifiedNameInStaticImportAccess().getGroup(), "rule__QualifiedNameInStaticImport__Group__0");
 					put(grammarAccess.getModelAccess().getClasesAssignment(), "rule__Model__ClasesAssignment");
-					put(grammarAccess.getHorarioAccess().getHorarioInicioAssignment_1(), "rule__Horario__HorarioInicioAssignment_1");
-					put(grammarAccess.getHorarioAccess().getHorarioFinAssignment_3(), "rule__Horario__HorarioFinAssignment_3");
-					put(grammarAccess.getHorarioAccess().getMateriaAssignment_5(), "rule__Horario__MateriaAssignment_5");
-					put(grammarAccess.getHorarioAccess().getAulaAssignment_7(), "rule__Horario__AulaAssignment_7");
 					put(grammarAccess.getDiasHabilidatosAccess().getDiaAssignment_1(), "rule__DiasHabilidatos__DiaAssignment_1");
 					put(grammarAccess.getDiasHabilidatosAccess().getHoraInicioAssignment_3(), "rule__DiasHabilidatos__HoraInicioAssignment_3");
 					put(grammarAccess.getDiasHabilidatosAccess().getHoraFinalAssignment_5(), "rule__DiasHabilidatos__HoraFinalAssignment_5");
@@ -284,6 +280,10 @@ public class MyDslParser extends AbstractContentAssistParser {
 					put(grammarAccess.getPlanificacionAccess().getAsignacionesAssignment_7(), "rule__Planificacion__AsignacionesAssignment_7");
 					put(grammarAccess.getAsignacionAccess().getDiaAssignment_0(), "rule__Asignacion__DiaAssignment_0");
 					put(grammarAccess.getAsignacionAccess().getHorariosAssignment_2(), "rule__Asignacion__HorariosAssignment_2");
+					put(grammarAccess.getHorarioAccess().getHorarioInicioAssignment_1(), "rule__Horario__HorarioInicioAssignment_1");
+					put(grammarAccess.getHorarioAccess().getHorarioFinAssignment_3(), "rule__Horario__HorarioFinAssignment_3");
+					put(grammarAccess.getHorarioAccess().getMateriaAssignment_5(), "rule__Horario__MateriaAssignment_5");
+					put(grammarAccess.getHorarioAccess().getAulaAssignment_7(), "rule__Horario__AulaAssignment_7");
 					put(grammarAccess.getXAssignmentAccess().getFeatureAssignment_0_1(), "rule__XAssignment__FeatureAssignment_0_1");
 					put(grammarAccess.getXAssignmentAccess().getValueAssignment_0_3(), "rule__XAssignment__ValueAssignment_0_3");
 					put(grammarAccess.getXAssignmentAccess().getFeatureAssignment_1_1_0_0_1(), "rule__XAssignment__FeatureAssignment_1_1_0_0_1");

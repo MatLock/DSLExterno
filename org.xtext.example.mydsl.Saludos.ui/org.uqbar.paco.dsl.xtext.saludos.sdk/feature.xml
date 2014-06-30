@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feature id="org.uqbar.paco.dsl.xtext.saludos.sdk"
+	label="SaludosDSL SDK Feature "
+	version="1.0.0.qualifier">
+	<plugin
+			id="org.uqbar.paco.dsl.xtext.saludos"
+			download-size="0"
+			install-size="0"
+			version="0.0.0"
+			unpack="false"/>
+	<plugin
+			id="org.uqbar.paco.dsl.xtext.saludos.ui"
+			download-size="0"
+			install-size="0"
+			version="0.0.0"
+			unpack="false"/>
+</feature>

@@ -478,3 +478,6 @@ org.w3c.dom.svg,1.1.0.v201011041433,file:/home/matlock/Escritorio/eclipseDSL/plu
 org.xtext.DSLExterno,1.0.0.qualifier,file:/home/matlock/workspace/DSLExterno/org.xtext.DSLExterno/,4,false
 org.xtext.DSLExterno.tests,1.0.0.qualifier,file:/home/matlock/workspace/DSLExterno/org.xtext.DSLExterno.tests/,4,false
 org.xtext.DSLExterno.ui,1.0.0.qualifier,file:/home/matlock/workspace/DSLExterno/org.xtext.DSLExterno.ui/,4,false
+org.xtext.example.mydsl.Saludos,1.0.0.qualifier,file:/home/matlock/workspace/DSLExterno/org.xtext.example.mydsl.Saludos/,4,false
+org.xtext.example.mydsl.Saludos.tests,1.0.0.qualifier,file:/home/matlock/workspace/DSLExterno/org.xtext.example.mydsl.Saludos.tests/,4,false
+org.xtext.example.mydsl.Saludos.ui,1.0.0.qualifier,file:/home/matlock/workspace/DSLExterno/org.xtext.example.mydsl.Saludos.ui/,4,false

@@ -52,13 +52,6 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass horarioEClass = null;
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   private EClass diasHabilidatosEClass = null;
 
   /**
@@ -95,6 +88,13 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * @generated
    */
   private EClass asignacionEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass horarioEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -208,56 +208,6 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
   public EClass getClase()
   {
     return claseEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EClass getHorario()
-  {
-    return horarioEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EAttribute getHorario_HorarioInicio()
-  {
-    return (EAttribute)horarioEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EAttribute getHorario_HorarioFin()
-  {
-    return (EAttribute)horarioEClass.getEStructuralFeatures().get(1);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getHorario_Materia()
-  {
-    return (EReference)horarioEClass.getEStructuralFeatures().get(2);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getHorario_Aula()
-  {
-    return (EReference)horarioEClass.getEStructuralFeatures().get(3);
   }
 
   /**
@@ -535,6 +485,56 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  public EClass getHorario()
+  {
+    return horarioEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getHorario_HorarioInicio()
+  {
+    return (EAttribute)horarioEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getHorario_HorarioFin()
+  {
+    return (EAttribute)horarioEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getHorario_Materia()
+  {
+    return (EReference)horarioEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getHorario_Aula()
+  {
+    return (EReference)horarioEClass.getEStructuralFeatures().get(3);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EEnum getDedicacion()
   {
     return dedicacionEEnum;
@@ -595,12 +595,6 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
 
     claseEClass = createEClass(CLASE);
 
-    horarioEClass = createEClass(HORARIO);
-    createEAttribute(horarioEClass, HORARIO__HORARIO_INICIO);
-    createEAttribute(horarioEClass, HORARIO__HORARIO_FIN);
-    createEReference(horarioEClass, HORARIO__MATERIA);
-    createEReference(horarioEClass, HORARIO__AULA);
-
     diasHabilidatosEClass = createEClass(DIAS_HABILIDATOS);
     createEAttribute(diasHabilidatosEClass, DIAS_HABILIDATOS__DIA);
     createEAttribute(diasHabilidatosEClass, DIAS_HABILIDATOS__HORA_INICIO);
@@ -633,6 +627,12 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
     asignacionEClass = createEClass(ASIGNACION);
     createEAttribute(asignacionEClass, ASIGNACION__DIA);
     createEReference(asignacionEClass, ASIGNACION__HORARIOS);
+
+    horarioEClass = createEClass(HORARIO);
+    createEAttribute(horarioEClass, HORARIO__HORARIO_INICIO);
+    createEAttribute(horarioEClass, HORARIO__HORARIO_FIN);
+    createEReference(horarioEClass, HORARIO__MATERIA);
+    createEReference(horarioEClass, HORARIO__AULA);
 
     // Create enums
     dedicacionEEnum = createEEnum(DEDICACION);
@@ -669,24 +669,16 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
     // Set bounds for type parameters
 
     // Add supertypes to classes
-    horarioEClass.getESuperTypes().add(this.getClase());
     profesorEClass.getESuperTypes().add(this.getClase());
     materiaEClass.getESuperTypes().add(this.getClase());
     aulaEClass.getESuperTypes().add(this.getClase());
     planificacionEClass.getESuperTypes().add(this.getClase());
-    asignacionEClass.getESuperTypes().add(this.getClase());
 
     // Initialize classes and features; add operations and parameters
     initEClass(modelEClass, Model.class, "Model", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getModel_Clases(), this.getClase(), null, "clases", null, 0, -1, Model.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(claseEClass, Clase.class, "Clase", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-    initEClass(horarioEClass, Horario.class, "Horario", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getHorario_HorarioInicio(), ecorePackage.getEInt(), "horarioInicio", null, 0, 1, Horario.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getHorario_HorarioFin(), ecorePackage.getEInt(), "horarioFin", null, 0, 1, Horario.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getHorario_Materia(), this.getMateria(), null, "materia", null, 0, 1, Horario.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getHorario_Aula(), this.getAula(), null, "aula", null, 0, 1, Horario.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(diasHabilidatosEClass, DiasHabilidatos.class, "DiasHabilidatos", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getDiasHabilidatos_Dia(), this.getDia(), "dia", null, 0, 1, DiasHabilidatos.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -720,6 +712,12 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
     initEClass(asignacionEClass, Asignacion.class, "Asignacion", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getAsignacion_Dia(), this.getDia(), "dia", null, 0, 1, Asignacion.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getAsignacion_Horarios(), this.getHorario(), null, "horarios", null, 0, -1, Asignacion.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(horarioEClass, Horario.class, "Horario", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getHorario_HorarioInicio(), ecorePackage.getEInt(), "horarioInicio", null, 0, 1, Horario.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getHorario_HorarioFin(), ecorePackage.getEInt(), "horarioFin", null, 0, 1, Horario.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getHorario_Materia(), this.getMateria(), null, "materia", null, 0, 1, Horario.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getHorario_Aula(), this.getAula(), null, "aula", null, 0, 1, Horario.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     // Initialize enums and add enum literals
     initEEnum(dedicacionEEnum, Dedicacion.class, "Dedicacion");

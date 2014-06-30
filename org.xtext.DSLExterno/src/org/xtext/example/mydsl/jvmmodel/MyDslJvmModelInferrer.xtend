@@ -48,7 +48,7 @@ class MyDslJvmModelInferrer extends AbstractModelInferrer {
    		// Here you explain how your model is mapped to Java elements, by writing the actual translation code.
    		
    		// An implementation for the initial hello world example could look like this:
-//   		acceptor.accept(element.toClass("my.company.greeting.MyGreetings"))
+   		acceptor.accept(element.toClass("my.company.greeting.MyGreetings"))
 //   			.initializeLater([
 //   				for (greeting : element.greetings) {
 //   					members += greeting.toMethod("hello" + greeting.name, greeting.newTypeRef(typeof(String))) [

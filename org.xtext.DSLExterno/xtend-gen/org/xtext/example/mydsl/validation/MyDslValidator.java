@@ -3,19 +3,19 @@
  */
 package org.xtext.example.mydsl.validation;
 
+import com.google.common.base.Objects;
 import com.google.common.collect.Iterables;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtext.validation.Check;
-import org.eclipse.xtext.xbase.lib.Conversions;
 import org.eclipse.xtext.xbase.lib.Functions.Function1;
+import org.eclipse.xtext.xbase.lib.Functions.Function2;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.eclipse.xtext.xbase.lib.Procedures.Procedure1;
 import org.xtext.example.mydsl.myDsl.Asignacion;
 import org.xtext.example.mydsl.myDsl.Aula;
 import org.xtext.example.mydsl.myDsl.Clase;
 import org.xtext.example.mydsl.myDsl.Dedicacion;
-import org.xtext.example.mydsl.myDsl.Dia;
 import org.xtext.example.mydsl.myDsl.Horario;
 import org.xtext.example.mydsl.myDsl.Materia;
 import org.xtext.example.mydsl.myDsl.Model;
@@ -37,8 +37,7 @@ public class MyDslValidator extends AbstractMyDslValidator {
     final Profesor profesor = m.getDictadaPor();
     EObject _eContainer = m.eContainer();
     final Model model = ((Model) _eContainer);
-    EList<Clase> _clases = model.getClases();
-    final Iterable<Materia> materias = Iterables.<Materia>filter(_clases, Materia.class);
+    final Iterable<Materia> materias = this.materias(model);
     int _cantidadDeVeces = this.cantidadDeVeces(profesor, materias);
     int _cantidadDeMateriasPorDedicacion = this.cantidadDeMateriasPorDedicacion(profesor);
     boolean _greaterThan = (_cantidadDeVeces > _cantidadDeMateriasPorDedicacion);
@@ -48,6 +47,11 @@ public class MyDslValidator extends AbstractMyDslValidator {
       String _plus_1 = (_plus + " tiene asignadas mas materias de las que puede dictar");
       this.error(_plus_1, m, MyDslPackage.Literals.MATERIA__DICTADA_POR);
     }
+  }
+  
+  public Iterable<Materia> materias(final Model m) {
+    EList<Clase> _clases = m.getClases();
+    return Iterables.<Materia>filter(_clases, Materia.class);
   }
   
   private int cantidadDeVeces(final Profesor profesor, final Iterable<Materia> list) {
@@ -100,20 +104,24 @@ public class MyDslValidator extends AbstractMyDslValidator {
     }
   }
   
-  private boolean perteneceAAlgunaAsignacion(final Materia materia, final EList<Asignacion> list) {
+  private boolean perteneceAAlgunaAsignacion(final Materia materia, final EList<Asignacion> asignaciones) {
     final Function1<Asignacion, Boolean> _function = new Function1<Asignacion, Boolean>() {
-      public Boolean apply(final Asignacion asignacion) {
-        EList<Horario> _horarios = asignacion.getHorarios();
-        final Function1<Horario, Boolean> _function = new Function1<Horario, Boolean>() {
-          public Boolean apply(final Horario horario) {
-            Materia _materia = horario.getMateria();
-            return Boolean.valueOf(_materia.equals(materia));
-          }
-        };
-        return Boolean.valueOf(IterableExtensions.<Horario>exists(_horarios, _function));
+      public Boolean apply(final Asignacion it) {
+        return Boolean.valueOf(MyDslValidator.this.tieneMateria(it, materia));
       }
     };
-    return IterableExtensions.<Asignacion>exists(list, _function);
+    return IterableExtensions.<Asignacion>exists(asignaciones, _function);
+  }
+  
+  private boolean tieneMateria(final Asignacion a, final Materia materia) {
+    EList<Horario> _horarios = a.getHorarios();
+    final Function1<Horario, Boolean> _function = new Function1<Horario, Boolean>() {
+      public Boolean apply(final Horario h) {
+        Materia _materia = h.getMateria();
+        return Boolean.valueOf(Objects.equal(_materia, materia));
+      }
+    };
+    return IterableExtensions.<Horario>exists(_horarios, _function);
   }
   
   @Check
@@ -128,13 +136,12 @@ public class MyDslValidator extends AbstractMyDslValidator {
   }
   
   private void chequearHorarios(final Materia materia, final Planificacion p) {
-    final EList<Asignacion> asignaciones = p.getAsignaciones();
-    final Iterable<Asignacion> asignacionesDeMateria = this.asignacionesConMateria(materia, asignaciones);
-    int cargaHorariaDeMateria = this.obtenerCargaDeMateria(asignacionesDeMateria, materia);
-    int cantidadDeDiasDeMateria = this.diasDeMateria(asignacionesDeMateria, materia);
+    final Iterable<Asignacion> asignacionesDeMateria = this.asignaciones(materia, p);
+    Integer cargaHorariaDeMateria = this.obtenerCargaDeMateria(asignacionesDeMateria, materia);
+    int cantidadDeDiasDeMateria = IterableExtensions.size(asignacionesDeMateria);
     boolean _and = false;
     int _cargaHoraria = materia.getCargaHoraria();
-    boolean _equals = (cargaHorariaDeMateria == _cargaHoraria);
+    boolean _equals = ((cargaHorariaDeMateria).intValue() == _cargaHoraria);
     if (!_equals) {
       _and = false;
     } else {
@@ -151,71 +158,48 @@ public class MyDslValidator extends AbstractMyDslValidator {
     }
   }
   
-  private int obtenerCargaDeMateria(final Iterable<Asignacion> asignacionesDeMateria, final Materia m) {
-    final Function1<Asignacion, EList<Horario>> _function = new Function1<Asignacion, EList<Horario>>() {
-      public EList<Horario> apply(final Asignacion asignacion) {
-        return asignacion.getHorarios();
+  private Iterable<Asignacion> asignaciones(final Materia m, final Planificacion p) {
+    EList<Asignacion> _asignaciones = p.getAsignaciones();
+    final Function1<Asignacion, Boolean> _function = new Function1<Asignacion, Boolean>() {
+      public Boolean apply(final Asignacion asignacion) {
+        return Boolean.valueOf(MyDslValidator.this.contieneAMateria(asignacion, m));
       }
     };
-    final Iterable<EList<Horario>> horariosDeAsignaciones = IterableExtensions.<Asignacion, EList<Horario>>map(asignacionesDeMateria, _function);
-    Iterable<Iterable<Horario>> _obtenerHorariosDeMateria = this.obtenerHorariosDeMateria(horariosDeAsignaciones, m);
-    final int cargaHoraria = this.cargaHorariaDeMateria(_obtenerHorariosDeMateria);
-    return cargaHoraria;
+    return IterableExtensions.<Asignacion>filter(_asignaciones, _function);
   }
   
-  private int diasDeMateria(final Iterable<Asignacion> asignacionesDeMateria, final Materia m) {
-    final Function1<Asignacion, Dia> _function = new Function1<Asignacion, Dia>() {
-      public Dia apply(final Asignacion asignacion) {
-        return asignacion.getDia();
-      }
-    };
-    final Iterable<Dia> cantidadDeDias = IterableExtensions.<Asignacion, Dia>map(asignacionesDeMateria, _function);
-    return IterableExtensions.size(cantidadDeDias);
-  }
-  
-  private int cargaHorariaDeMateria(final Iterable<Iterable<Horario>> listaDeHorarios) {
-    int cargaHoraria = 0;
-    for (final Iterable<Horario> h : listaDeHorarios) {
-      int _cargaHoraria = cargaHoraria;
-      Horario _get = ((Horario[])Conversions.unwrapArray(h, Horario.class))[0];
-      int _obtenerCargaDeMateria = this.obtenerCargaDeMateria(_get);
-      cargaHoraria = (_cargaHoraria + _obtenerCargaDeMateria);
+  private Integer obtenerCargaDeMateria(final Iterable<Asignacion> asignaciones, final Materia m) {
+    Integer _xblockexpression = null;
+    {
+      final Function1<Asignacion, EList<Horario>> _function = new Function1<Asignacion, EList<Horario>>() {
+        public EList<Horario> apply(final Asignacion it) {
+          return it.getHorarios();
+        }
+      };
+      Iterable<EList<Horario>> _map = IterableExtensions.<Asignacion, EList<Horario>>map(asignaciones, _function);
+      final Iterable<Horario> horarios = Iterables.<Horario>concat(_map);
+      final Function1<Horario, Boolean> _function_1 = new Function1<Horario, Boolean>() {
+        public Boolean apply(final Horario it) {
+          Materia _materia = it.getMateria();
+          return Boolean.valueOf(Objects.equal(_materia, m));
+        }
+      };
+      Iterable<Horario> _filter = IterableExtensions.<Horario>filter(horarios, _function_1);
+      final Function2<Integer, Horario, Integer> _function_2 = new Function2<Integer, Horario, Integer>() {
+        public Integer apply(final Integer sum, final Horario h) {
+          int _obtenerCargaDeMateria = MyDslValidator.this.obtenerCargaDeMateria(h);
+          return Integer.valueOf(((sum).intValue() + _obtenerCargaDeMateria));
+        }
+      };
+      _xblockexpression = IterableExtensions.<Horario, Integer>fold(_filter, Integer.valueOf(0), _function_2);
     }
-    return cargaHoraria;
+    return _xblockexpression;
   }
   
   private int obtenerCargaDeMateria(final Horario h) {
     int _horarioFin = h.getHorarioFin();
     int _horarioInicio = h.getHorarioInicio();
     return (_horarioFin - _horarioInicio);
-  }
-  
-  private Iterable<Iterable<Horario>> obtenerHorariosDeMateria(final Iterable<EList<Horario>> h, final Materia m) {
-    final Function1<EList<Horario>, Iterable<Horario>> _function = new Function1<EList<Horario>, Iterable<Horario>>() {
-      public Iterable<Horario> apply(final EList<Horario> horarios) {
-        return MyDslValidator.this.obtenerHorasConMateria(horarios, m);
-      }
-    };
-    return IterableExtensions.<EList<Horario>, Iterable<Horario>>map(h, _function);
-  }
-  
-  private Iterable<Horario> obtenerHorasConMateria(final EList<Horario> h, final Materia m) {
-    final Function1<Horario, Boolean> _function = new Function1<Horario, Boolean>() {
-      public Boolean apply(final Horario horario) {
-        Materia _materia = horario.getMateria();
-        return Boolean.valueOf(_materia.equals(m));
-      }
-    };
-    return IterableExtensions.<Horario>filter(h, _function);
-  }
-  
-  private Iterable<Asignacion> asignacionesConMateria(final Materia m, final EList<Asignacion> asignaciones) {
-    final Function1<Asignacion, Boolean> _function = new Function1<Asignacion, Boolean>() {
-      public Boolean apply(final Asignacion asignacion) {
-        return Boolean.valueOf(MyDslValidator.this.contieneAMateria(asignacion, m));
-      }
-    };
-    return IterableExtensions.<Asignacion>filter(asignaciones, _function);
   }
   
   private boolean contieneAMateria(final Asignacion asignacion, final Materia m) {

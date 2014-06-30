@@ -5,14 +5,8 @@ Model:
 (clases+=Clase)*;
 
 Clase:
-	Profesor | Materia | Aula | Planificacion | Horario | Asignacion
+	Profesor | Materia | Aula | Planificacion
 ;
-
-Horario:
-	'de:' horarioInicio=INT 'hasta:' horarioFin=INT
-	'se dicta la materia:' materia=[Materia] 'en:' aula=[Aula] //aulas
-;
-
 
 DiasHabilidatos: //Agregado para bonus 2
 	'puede:' dia= Dia 'de:' horaInicio=INT 'hasta:' horaFinal=INT
@@ -55,6 +49,11 @@ Asignacion:
 	(horarios += Horario)*
  '}'
 ;   
+
+Horario:
+	'de:' horarioInicio=INT 'hasta:' horarioFin=INT
+	'se dicta la materia:' materia=[Materia] 'en:' aula=[Aula] //aulas
+;
 
 enum Dedicacion:
 	Simple | Semi | Exclusiva

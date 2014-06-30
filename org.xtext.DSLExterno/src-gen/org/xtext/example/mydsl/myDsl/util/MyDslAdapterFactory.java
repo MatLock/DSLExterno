@@ -85,11 +85,6 @@ public class MyDslAdapterFactory extends AdapterFactoryImpl
         return createClaseAdapter();
       }
       @Override
-      public Adapter caseHorario(Horario object)
-      {
-        return createHorarioAdapter();
-      }
-      @Override
       public Adapter caseDiasHabilidatos(DiasHabilidatos object)
       {
         return createDiasHabilidatosAdapter();
@@ -118,6 +113,11 @@ public class MyDslAdapterFactory extends AdapterFactoryImpl
       public Adapter caseAsignacion(Asignacion object)
       {
         return createAsignacionAdapter();
+      }
+      @Override
+      public Adapter caseHorario(Horario object)
+      {
+        return createHorarioAdapter();
       }
       @Override
       public Adapter defaultCase(EObject object)
@@ -167,21 +167,6 @@ public class MyDslAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createClaseAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link org.xtext.example.mydsl.myDsl.Horario <em>Horario</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see org.xtext.example.mydsl.myDsl.Horario
-   * @generated
-   */
-  public Adapter createHorarioAdapter()
   {
     return null;
   }
@@ -272,6 +257,21 @@ public class MyDslAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createAsignacionAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.xtext.example.mydsl.myDsl.Horario <em>Horario</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.xtext.example.mydsl.myDsl.Horario
+   * @generated
+   */
+  public Adapter createHorarioAdapter()
   {
     return null;
   }

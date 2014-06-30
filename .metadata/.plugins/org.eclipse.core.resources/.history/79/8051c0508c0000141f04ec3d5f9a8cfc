@@ -1,0 +1,37 @@
+package org.xtext.example.mydsl.interpreter;
+
+@SuppressWarnings("all")
+public class DSLExternetInterpreter {
+  public static void main(final String[] args) {
+    throw new Error("Unresolved compilation problems:"
+      + "\nSaludosInterpreter cannot be resolved."
+      + "\ninterpret cannot be resolved");
+  }
+  
+  public static Model parsear(final String fileName) {
+    throw new Error("Unresolved compilation problems:"
+      + "\nModel cannot be resolved to a type."
+      + "\nSaludosDSLStandaloneSetup cannot be resolved."
+      + "\nThe method or field XtextResourceSet is undefined for the type DSLExternetInterpreter"
+      + "\nThe method or field URI is undefined for the type DSLExternetInterpreter"
+      + "\ncreateInjectorAndDoEMFRegistration cannot be resolved"
+      + "\ngetInstance cannot be resolved"
+      + "\ncreateResource cannot be resolved"
+      + "\ncreateURI cannot be resolved"
+      + "\nload cannot be resolved"
+      + "\ncontents cannot be resolved"
+      + "\nget cannot be resolved");
+  }
+  
+  public static void validate(final /* Injector */Object injector, final /* Resource */Object resource) {
+    throw new Error("Unresolved compilation problems:"
+      + "\nThe method or field IResourceValidator is undefined for the type DSLExternetInterpreter"
+      + "\nThe method or field CheckMode is undefined for the type DSLExternetInterpreter"
+      + "\ngetInstance cannot be resolved"
+      + "\nvalidate cannot be resolved"
+      + "\nALL cannot be resolved"
+      + "\nisEmpty cannot be resolved"
+      + "\n! cannot be resolved"
+      + "\nforEach cannot be resolved");
+  }
+}

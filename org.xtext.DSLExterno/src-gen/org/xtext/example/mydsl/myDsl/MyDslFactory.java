@@ -41,15 +41,6 @@ public interface MyDslFactory extends EFactory
   Clase createClase();
 
   /**
-   * Returns a new object of class '<em>Horario</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Horario</em>'.
-   * @generated
-   */
-  Horario createHorario();
-
-  /**
    * Returns a new object of class '<em>Dias Habilidatos</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -102,6 +93,15 @@ public interface MyDslFactory extends EFactory
    * @generated
    */
   Asignacion createAsignacion();
+
+  /**
+   * Returns a new object of class '<em>Horario</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Horario</em>'.
+   * @generated
+   */
+  Horario createHorario();
 
   /**
    * Returns the package supported by this factory.

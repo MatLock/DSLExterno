@@ -6,12 +6,6 @@
         eType="#//Clase" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Clase"/>
-  <eClassifiers xsi:type="ecore:EClass" name="Horario" eSuperTypes="#//Clase">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="horarioInicio" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="horarioFin" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="materia" eType="#//Materia"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="aula" eType="#//Aula"/>
-  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="DiasHabilidatos">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="dia" eType="#//Dia"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="horaInicio" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
@@ -46,10 +40,16 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="asignaciones" upperBound="-1"
         eType="#//Asignacion" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Asignacion" eSuperTypes="#//Clase">
+  <eClassifiers xsi:type="ecore:EClass" name="Asignacion">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="dia" eType="#//Dia"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="horarios" upperBound="-1"
         eType="#//Horario" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Horario">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="horarioInicio" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="horarioFin" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="materia" eType="#//Materia"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="aula" eType="#//Aula"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="Dedicacion">
     <eLiterals name="Simple" literal="Simple"/>

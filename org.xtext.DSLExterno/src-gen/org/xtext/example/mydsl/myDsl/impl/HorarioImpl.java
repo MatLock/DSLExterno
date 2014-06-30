@@ -8,6 +8,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.xtext.example.mydsl.myDsl.Aula;
 import org.xtext.example.mydsl.myDsl.Horario;
@@ -30,7 +31,7 @@ import org.xtext.example.mydsl.myDsl.MyDslPackage;
  *
  * @generated
  */
-public class HorarioImpl extends ClaseImpl implements Horario
+public class HorarioImpl extends MinimalEObjectImpl.Container implements Horario
 {
   /**
    * The default value of the '{@link #getHorarioInicio() <em>Horario Inicio</em>}' attribute.
