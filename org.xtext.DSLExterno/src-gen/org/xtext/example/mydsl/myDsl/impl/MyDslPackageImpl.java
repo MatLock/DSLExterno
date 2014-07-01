@@ -13,6 +13,7 @@ import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.xtext.example.mydsl.myDsl.Asignacion;
 import org.xtext.example.mydsl.myDsl.Aula;
 import org.xtext.example.mydsl.myDsl.Clase;
+import org.xtext.example.mydsl.myDsl.Curso;
 import org.xtext.example.mydsl.myDsl.Dedicacion;
 import org.xtext.example.mydsl.myDsl.Dia;
 import org.xtext.example.mydsl.myDsl.DiasHabilidatos;
@@ -81,6 +82,13 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * @generated
    */
   private EClass planificacionEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass cursoEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -335,29 +343,9 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getMateria_DictadaPor()
-  {
-    return (EReference)materiaEClass.getEStructuralFeatures().get(3);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   public EAttribute getMateria_Recursos()
   {
-    return (EAttribute)materiaEClass.getEStructuralFeatures().get(4);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EAttribute getMateria_CantidadDeInscriptos()
-  {
-    return (EAttribute)materiaEClass.getEStructuralFeatures().get(5);
+    return (EAttribute)materiaEClass.getEStructuralFeatures().get(3);
   }
 
   /**
@@ -435,7 +423,7 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getPlanificacion_Materias()
+  public EReference getPlanificacion_Cursos()
   {
     return (EReference)planificacionEClass.getEStructuralFeatures().get(2);
   }
@@ -448,6 +436,46 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
   public EReference getPlanificacion_Asignaciones()
   {
     return (EReference)planificacionEClass.getEStructuralFeatures().get(3);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getCurso()
+  {
+    return cursoEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getCurso_Materia()
+  {
+    return (EReference)cursoEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getCurso_DictadaPor()
+  {
+    return (EReference)cursoEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getCurso_Inscriptos()
+  {
+    return (EAttribute)cursoEClass.getEStructuralFeatures().get(2);
   }
 
   /**
@@ -609,9 +637,7 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
     createEAttribute(materiaEClass, MATERIA__NAME);
     createEAttribute(materiaEClass, MATERIA__CANTIDAD_DE_DIAS);
     createEAttribute(materiaEClass, MATERIA__CARGA_HORARIA);
-    createEReference(materiaEClass, MATERIA__DICTADA_POR);
     createEAttribute(materiaEClass, MATERIA__RECURSOS);
-    createEAttribute(materiaEClass, MATERIA__CANTIDAD_DE_INSCRIPTOS);
 
     aulaEClass = createEClass(AULA);
     createEAttribute(aulaEClass, AULA__NAME);
@@ -621,8 +647,13 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
     planificacionEClass = createEClass(PLANIFICACION);
     createEAttribute(planificacionEClass, PLANIFICACION__ANIO);
     createEAttribute(planificacionEClass, PLANIFICACION__SEMESTRE);
-    createEReference(planificacionEClass, PLANIFICACION__MATERIAS);
+    createEReference(planificacionEClass, PLANIFICACION__CURSOS);
     createEReference(planificacionEClass, PLANIFICACION__ASIGNACIONES);
+
+    cursoEClass = createEClass(CURSO);
+    createEReference(cursoEClass, CURSO__MATERIA);
+    createEReference(cursoEClass, CURSO__DICTADA_POR);
+    createEAttribute(cursoEClass, CURSO__INSCRIPTOS);
 
     asignacionEClass = createEClass(ASIGNACION);
     createEAttribute(asignacionEClass, ASIGNACION__DIA);
@@ -694,9 +725,7 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
     initEAttribute(getMateria_Name(), ecorePackage.getEString(), "name", null, 0, 1, Materia.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getMateria_CantidadDeDias(), ecorePackage.getEInt(), "cantidadDeDias", null, 0, 1, Materia.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getMateria_CargaHoraria(), ecorePackage.getEInt(), "cargaHoraria", null, 0, 1, Materia.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getMateria_DictadaPor(), this.getProfesor(), null, "dictadaPor", null, 0, 1, Materia.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getMateria_Recursos(), this.getRecursos(), "recursos", null, 0, -1, Materia.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getMateria_CantidadDeInscriptos(), ecorePackage.getEInt(), "cantidadDeInscriptos", null, 0, 1, Materia.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(aulaEClass, Aula.class, "Aula", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getAula_Name(), ecorePackage.getEString(), "name", null, 0, 1, Aula.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -706,8 +735,13 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
     initEClass(planificacionEClass, Planificacion.class, "Planificacion", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getPlanificacion_Anio(), ecorePackage.getEInt(), "anio", null, 0, 1, Planificacion.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getPlanificacion_Semestre(), ecorePackage.getEInt(), "semestre", null, 0, 1, Planificacion.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getPlanificacion_Materias(), this.getMateria(), null, "materias", null, 0, -1, Planificacion.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getPlanificacion_Cursos(), this.getCurso(), null, "cursos", null, 0, -1, Planificacion.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getPlanificacion_Asignaciones(), this.getAsignacion(), null, "asignaciones", null, 0, -1, Planificacion.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(cursoEClass, Curso.class, "Curso", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getCurso_Materia(), this.getMateria(), null, "materia", null, 0, 1, Curso.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getCurso_DictadaPor(), this.getProfesor(), null, "dictadaPor", null, 0, 1, Curso.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getCurso_Inscriptos(), ecorePackage.getEInt(), "inscriptos", null, 0, 1, Curso.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(asignacionEClass, Asignacion.class, "Asignacion", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getAsignacion_Dia(), this.getDia(), "dia", null, 0, 1, Asignacion.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

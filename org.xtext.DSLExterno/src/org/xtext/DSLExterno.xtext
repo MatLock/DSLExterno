@@ -5,7 +5,7 @@ Model:
 (clases+=Clase)*;
 
 Clase:
-	Profesor | Materia | Aula | Planificacion
+	Profesor | Planificacion | Materia | Aula
 ;
 
 DiasHabilidatos: //Agregado para bonus 2
@@ -21,9 +21,7 @@ Materia:
     'materia:' name = ID '{'
 	'cantidadDeDias:' cantidadDeDias= INT
 	'cargaHoraria:' cargaHoraria= INT
-	'dictadaPor:' dictadaPor=  [Profesor] 
 	'requiere:' (recursos += Recursos)*
-	'inscriptos:' cantidadDeInscriptos = INT
 '}' 
 ;
 
@@ -39,9 +37,13 @@ Aula:
 
 Planificacion:
 	'planificacion:' anio= INT 'semestre:' semestre= INT'{'
-	'aDictar:' (materias += [Materia])*  //materias
+	'aDictar:' '{' (cursos += Curso)*  '}'//materias
 	(asignaciones += Asignacion)*
  '}'
+;
+
+Curso:
+	materia = [Materia] 'dictadaPor:' dictadaPor = [Profesor] 'cantidad de inscriptos:' inscriptos= INT
 ;
 
 Asignacion:

@@ -86,6 +86,15 @@ public interface MyDslFactory extends EFactory
   Planificacion createPlanificacion();
 
   /**
+   * Returns a new object of class '<em>Curso</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Curso</em>'.
+   * @generated
+   */
+  Curso createCurso();
+
+  /**
    * Returns a new object of class '<em>Asignacion</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

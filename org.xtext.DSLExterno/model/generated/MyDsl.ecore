@@ -21,10 +21,8 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="cantidadDeDias" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="cargaHoraria" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="dictadaPor" eType="#//Profesor"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="recursos" unique="false"
         upperBound="-1" eType="#//Recursos"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="cantidadDeInscriptos" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Aula" eSuperTypes="#//Clase">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -35,10 +33,15 @@
   <eClassifiers xsi:type="ecore:EClass" name="Planificacion" eSuperTypes="#//Clase">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="anio" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="semestre" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="materias" unique="false"
-        upperBound="-1" eType="#//Materia"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="cursos" upperBound="-1"
+        eType="#//Curso" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="asignaciones" upperBound="-1"
         eType="#//Asignacion" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Curso">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="materia" eType="#//Materia"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="dictadaPor" eType="#//Profesor"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="inscriptos" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Asignacion">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="dia" eType="#//Dia"/>

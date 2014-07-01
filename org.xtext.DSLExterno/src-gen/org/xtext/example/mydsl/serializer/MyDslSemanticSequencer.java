@@ -59,6 +59,7 @@ import org.eclipse.xtext.xtype.XImportSection;
 import org.eclipse.xtext.xtype.XtypePackage;
 import org.xtext.example.mydsl.myDsl.Asignacion;
 import org.xtext.example.mydsl.myDsl.Aula;
+import org.xtext.example.mydsl.myDsl.Curso;
 import org.xtext.example.mydsl.myDsl.DiasHabilidatos;
 import org.xtext.example.mydsl.myDsl.Horario;
 import org.xtext.example.mydsl.myDsl.Materia;
@@ -86,6 +87,12 @@ public class MyDslSemanticSequencer extends XbaseSemanticSequencer {
 				if(context == grammarAccess.getAulaRule() ||
 				   context == grammarAccess.getClaseRule()) {
 					sequence_Aula(context, (Aula) semanticObject); 
+					return; 
+				}
+				else break;
+			case MyDslPackage.CURSO:
+				if(context == grammarAccess.getCursoRule()) {
+					sequence_Curso(context, (Curso) semanticObject); 
 					return; 
 				}
 				else break;
@@ -1244,6 +1251,28 @@ public class MyDslSemanticSequencer extends XbaseSemanticSequencer {
 	
 	/**
 	 * Constraint:
+	 *     (materia=[Materia|ID] dictadaPor=[Profesor|ID] inscriptos=INT)
+	 */
+	protected void sequence_Curso(EObject context, Curso semanticObject) {
+		if(errorAcceptor != null) {
+			if(transientValues.isValueTransient(semanticObject, MyDslPackage.Literals.CURSO__MATERIA) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, MyDslPackage.Literals.CURSO__MATERIA));
+			if(transientValues.isValueTransient(semanticObject, MyDslPackage.Literals.CURSO__DICTADA_POR) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, MyDslPackage.Literals.CURSO__DICTADA_POR));
+			if(transientValues.isValueTransient(semanticObject, MyDslPackage.Literals.CURSO__INSCRIPTOS) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, MyDslPackage.Literals.CURSO__INSCRIPTOS));
+		}
+		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
+		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
+		feeder.accept(grammarAccess.getCursoAccess().getMateriaMateriaIDTerminalRuleCall_0_0_1(), semanticObject.getMateria());
+		feeder.accept(grammarAccess.getCursoAccess().getDictadaPorProfesorIDTerminalRuleCall_2_0_1(), semanticObject.getDictadaPor());
+		feeder.accept(grammarAccess.getCursoAccess().getInscriptosINTTerminalRuleCall_4_0(), semanticObject.getInscriptos());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Constraint:
 	 *     (dia=Dia horaInicio=INT horaFinal=INT)
 	 */
 	protected void sequence_DiasHabilidatos(EObject context, DiasHabilidatos semanticObject) {
@@ -1291,14 +1320,7 @@ public class MyDslSemanticSequencer extends XbaseSemanticSequencer {
 	
 	/**
 	 * Constraint:
-	 *     (
-	 *         name=ID 
-	 *         cantidadDeDias=INT 
-	 *         cargaHoraria=INT 
-	 *         dictadaPor=[Profesor|ID] 
-	 *         recursos+=Recursos* 
-	 *         cantidadDeInscriptos=INT
-	 *     )
+	 *     (name=ID cantidadDeDias=INT cargaHoraria=INT recursos+=Recursos*)
 	 */
 	protected void sequence_Materia(EObject context, Materia semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -1316,7 +1338,7 @@ public class MyDslSemanticSequencer extends XbaseSemanticSequencer {
 	
 	/**
 	 * Constraint:
-	 *     (anio=INT semestre=INT materias+=[Materia|ID]* asignaciones+=Asignacion*)
+	 *     (anio=INT semestre=INT cursos+=Curso* asignaciones+=Asignacion*)
 	 */
 	protected void sequence_Planificacion(EObject context, Planificacion semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

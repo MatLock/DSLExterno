@@ -5,20 +5,22 @@ package org.xtext.example.mydsl.validation;
 
 import com.google.common.base.Objects;
 import com.google.common.collect.Iterables;
+import java.util.List;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtext.validation.Check;
+import org.eclipse.xtext.xbase.lib.Conversions;
 import org.eclipse.xtext.xbase.lib.Functions.Function1;
 import org.eclipse.xtext.xbase.lib.Functions.Function2;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
+import org.eclipse.xtext.xbase.lib.ListExtensions;
 import org.eclipse.xtext.xbase.lib.Procedures.Procedure1;
 import org.xtext.example.mydsl.myDsl.Asignacion;
 import org.xtext.example.mydsl.myDsl.Aula;
-import org.xtext.example.mydsl.myDsl.Clase;
+import org.xtext.example.mydsl.myDsl.Curso;
 import org.xtext.example.mydsl.myDsl.Dedicacion;
 import org.xtext.example.mydsl.myDsl.Horario;
 import org.xtext.example.mydsl.myDsl.Materia;
-import org.xtext.example.mydsl.myDsl.Model;
 import org.xtext.example.mydsl.myDsl.MyDslPackage;
 import org.xtext.example.mydsl.myDsl.Planificacion;
 import org.xtext.example.mydsl.myDsl.Profesor;
@@ -33,36 +35,41 @@ import org.xtext.example.mydsl.validation.AbstractMyDslValidator;
 @SuppressWarnings("all")
 public class MyDslValidator extends AbstractMyDslValidator {
   @Check
-  public void checkDedicacion(final Materia m) {
-    final Profesor profesor = m.getDictadaPor();
-    EObject _eContainer = m.eContainer();
-    final Model model = ((Model) _eContainer);
-    final Iterable<Materia> materias = this.materias(model);
-    int _cantidadDeVeces = this.cantidadDeVeces(profesor, materias);
+  public void dedicacion(final Planificacion p) {
+    final EList<Curso> cursos = p.getCursos();
+    final Procedure1<Curso> _function = new Procedure1<Curso>() {
+      public void apply(final Curso c) {
+        MyDslValidator.this.checkDedicacion(c);
+      }
+    };
+    IterableExtensions.<Curso>forEach(cursos, _function);
+  }
+  
+  public void checkDedicacion(final Curso curso) {
+    final Profesor profesor = curso.getDictadaPor();
+    EObject _eContainer = curso.eContainer();
+    final Planificacion planificacion = ((Planificacion) _eContainer);
+    final EList<Curso> cursos = planificacion.getCursos();
+    int _cantidadDeVeces = this.cantidadDeVeces(profesor, cursos);
     int _cantidadDeMateriasPorDedicacion = this.cantidadDeMateriasPorDedicacion(profesor);
     boolean _greaterThan = (_cantidadDeVeces > _cantidadDeMateriasPorDedicacion);
     if (_greaterThan) {
       String _name = profesor.getName();
       String _plus = ("El Profesor: " + _name);
       String _plus_1 = (_plus + " tiene asignadas mas materias de las que puede dictar");
-      this.error(_plus_1, m, MyDslPackage.Literals.MATERIA__DICTADA_POR);
+      this.error(_plus_1, profesor, MyDslPackage.Literals.PROFESOR__DEDICACION);
     }
   }
   
-  public Iterable<Materia> materias(final Model m) {
-    EList<Clase> _clases = m.getClases();
-    return Iterables.<Materia>filter(_clases, Materia.class);
-  }
-  
-  private int cantidadDeVeces(final Profesor profesor, final Iterable<Materia> list) {
-    final Function1<Materia, Boolean> _function = new Function1<Materia, Boolean>() {
-      public Boolean apply(final Materia materia) {
-        Profesor _dictadaPor = materia.getDictadaPor();
+  private int cantidadDeVeces(final Profesor profesor, final Iterable<Curso> cursos) {
+    final Function1<Curso, Boolean> _function = new Function1<Curso, Boolean>() {
+      public Boolean apply(final Curso it) {
+        Profesor _dictadaPor = it.getDictadaPor();
         return Boolean.valueOf(_dictadaPor.equals(profesor));
       }
     };
-    final Iterable<Materia> cant = IterableExtensions.<Materia>filter(list, _function);
-    return IterableExtensions.size(cant);
+    Iterable<Curso> _filter = IterableExtensions.<Curso>filter(cursos, _function);
+    return IterableExtensions.size(_filter);
   }
   
   private int cantidadDeMateriasPorDedicacion(final Profesor p) {
@@ -91,7 +98,8 @@ public class MyDslValidator extends AbstractMyDslValidator {
   
   @Check
   public void checkMateriasAsignadas(final Planificacion p) {
-    final EList<Materia> materias = p.getMaterias();
+    EList<Curso> _cursos = p.getCursos();
+    final List<Materia> materias = this.materias(_cursos);
     final EList<Asignacion> asignaciones = p.getAsignaciones();
     final Function1<Materia, Boolean> _function = new Function1<Materia, Boolean>() {
       public Boolean apply(final Materia materia) {
@@ -100,8 +108,17 @@ public class MyDslValidator extends AbstractMyDslValidator {
     };
     final boolean expresionBooleana = IterableExtensions.<Materia>forall(materias, _function);
     if ((!expresionBooleana)) {
-      this.error("Hay materias sin asignar", p, MyDslPackage.Literals.PLANIFICACION__MATERIAS);
+      this.error("Hay materias sin asignar", p, MyDslPackage.Literals.PLANIFICACION__CURSOS);
     }
+  }
+  
+  private List<Materia> materias(final EList<Curso> cursos) {
+    final Function1<Curso, Materia> _function = new Function1<Curso, Materia>() {
+      public Materia apply(final Curso it) {
+        return it.getMateria();
+      }
+    };
+    return ListExtensions.<Curso, Materia>map(cursos, _function);
   }
   
   private boolean perteneceAAlgunaAsignacion(final Materia materia, final EList<Asignacion> asignaciones) {
@@ -126,7 +143,8 @@ public class MyDslValidator extends AbstractMyDslValidator {
   
   @Check
   public void checkCargaHorariaDeMateria(final Planificacion p) {
-    final EList<Materia> materias = p.getMaterias();
+    EList<Curso> _cursos = p.getCursos();
+    final List<Materia> materias = this.materias(_cursos);
     final Procedure1<Materia> _function = new Procedure1<Materia>() {
       public void apply(final Materia materia) {
         MyDslValidator.this.chequearHorarios(materia, p);
@@ -187,8 +205,8 @@ public class MyDslValidator extends AbstractMyDslValidator {
       Iterable<Horario> _filter = IterableExtensions.<Horario>filter(horarios, _function_1);
       final Function2<Integer, Horario, Integer> _function_2 = new Function2<Integer, Horario, Integer>() {
         public Integer apply(final Integer sum, final Horario h) {
-          int _obtenerCargaDeMateria = MyDslValidator.this.obtenerCargaDeMateria(h);
-          return Integer.valueOf(((sum).intValue() + _obtenerCargaDeMateria));
+          int _obtenerCantidadDeHorasDeMateria = MyDslValidator.this.obtenerCantidadDeHorasDeMateria(h);
+          return Integer.valueOf(((sum).intValue() + _obtenerCantidadDeHorasDeMateria));
         }
       };
       _xblockexpression = IterableExtensions.<Horario, Integer>fold(_filter, Integer.valueOf(0), _function_2);
@@ -196,7 +214,7 @@ public class MyDslValidator extends AbstractMyDslValidator {
     return _xblockexpression;
   }
   
-  private int obtenerCargaDeMateria(final Horario h) {
+  private int obtenerCantidadDeHorasDeMateria(final Horario h) {
     int _horarioFin = h.getHorarioFin();
     int _horarioInicio = h.getHorarioInicio();
     return (_horarioFin - _horarioInicio);
@@ -226,18 +244,23 @@ public class MyDslValidator extends AbstractMyDslValidator {
       String _name = _aula_1.getName();
       String _plus = ("El aula: " + _name);
       String _plus_1 = (_plus + " no tiene las recursos necesarios");
-      this.error(_plus_1, horario, MyDslPackage.Literals.HORARIO__MATERIA);
+      this.error(_plus_1, horario, MyDslPackage.Literals.HORARIO__AULA);
     }
   }
   
   @Check
   public void checkInscriptosCabenEnAula(final Horario h) {
+    EObject _eContainer = h.eContainer();
+    EObject _eContainer_1 = _eContainer.eContainer();
+    final Planificacion planificacion = ((Planificacion) _eContainer_1);
+    EList<Curso> _cursos = planificacion.getCursos();
+    Materia _materia = h.getMateria();
+    final Curso curso = this.obtenerCursoConMateria(_cursos, _materia);
+    int _inscriptos = curso.getInscriptos();
     Aula _aula = h.getAula();
     int _capacidad = _aula.getCapacidad();
-    Materia _materia = h.getMateria();
-    int _cantidadDeInscriptos = _materia.getCantidadDeInscriptos();
-    boolean _lessThan = (_capacidad < _cantidadDeInscriptos);
-    if (_lessThan) {
+    boolean _greaterThan = (_inscriptos > _capacidad);
+    if (_greaterThan) {
       Materia _materia_1 = h.getMateria();
       String _name = _materia_1.getName();
       String _plus = ("La cantidad de inscriptos de la materia: " + _name);
@@ -246,7 +269,18 @@ public class MyDslValidator extends AbstractMyDslValidator {
       Aula _aula_1 = h.getAula();
       String _name_1 = _aula_1.getName();
       String _plus_2 = (_plus_1 + _name_1);
-      this.error(_plus_2, h, MyDslPackage.Literals.HORARIO__AULA);
+      this.error(_plus_2, h, MyDslPackage.Literals.HORARIO__MATERIA);
     }
+  }
+  
+  private Curso obtenerCursoConMateria(final EList<Curso> cursos, final Materia m) {
+    final Function1<Curso, Boolean> _function = new Function1<Curso, Boolean>() {
+      public Boolean apply(final Curso c) {
+        Materia _materia = c.getMateria();
+        return Boolean.valueOf(Objects.equal(_materia, m));
+      }
+    };
+    Iterable<Curso> _filter = IterableExtensions.<Curso>filter(cursos, _function);
+    return ((Curso[])Conversions.unwrapArray(_filter, Curso.class))[0];
   }
 }

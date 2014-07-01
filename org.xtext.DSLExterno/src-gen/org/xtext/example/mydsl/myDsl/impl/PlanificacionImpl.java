@@ -15,11 +15,10 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
-import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.xtext.example.mydsl.myDsl.Asignacion;
-import org.xtext.example.mydsl.myDsl.Materia;
+import org.xtext.example.mydsl.myDsl.Curso;
 import org.xtext.example.mydsl.myDsl.MyDslPackage;
 import org.xtext.example.mydsl.myDsl.Planificacion;
 
@@ -32,7 +31,7 @@ import org.xtext.example.mydsl.myDsl.Planificacion;
  * <ul>
  *   <li>{@link org.xtext.example.mydsl.myDsl.impl.PlanificacionImpl#getAnio <em>Anio</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.myDsl.impl.PlanificacionImpl#getSemestre <em>Semestre</em>}</li>
- *   <li>{@link org.xtext.example.mydsl.myDsl.impl.PlanificacionImpl#getMaterias <em>Materias</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.myDsl.impl.PlanificacionImpl#getCursos <em>Cursos</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.myDsl.impl.PlanificacionImpl#getAsignaciones <em>Asignaciones</em>}</li>
  * </ul>
  * </p>
@@ -82,14 +81,14 @@ public class PlanificacionImpl extends ClaseImpl implements Planificacion
   protected int semestre = SEMESTRE_EDEFAULT;
 
   /**
-   * The cached value of the '{@link #getMaterias() <em>Materias</em>}' reference list.
+   * The cached value of the '{@link #getCursos() <em>Cursos</em>}' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getMaterias()
+   * @see #getCursos()
    * @generated
    * @ordered
    */
-  protected EList<Materia> materias;
+  protected EList<Curso> cursos;
 
   /**
    * The cached value of the '{@link #getAsignaciones() <em>Asignaciones</em>}' containment reference list.
@@ -173,13 +172,13 @@ public class PlanificacionImpl extends ClaseImpl implements Planificacion
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList<Materia> getMaterias()
+  public EList<Curso> getCursos()
   {
-    if (materias == null)
+    if (cursos == null)
     {
-      materias = new EObjectResolvingEList<Materia>(Materia.class, this, MyDslPackage.PLANIFICACION__MATERIAS);
+      cursos = new EObjectContainmentEList<Curso>(Curso.class, this, MyDslPackage.PLANIFICACION__CURSOS);
     }
-    return materias;
+    return cursos;
   }
 
   /**
@@ -206,6 +205,8 @@ public class PlanificacionImpl extends ClaseImpl implements Planificacion
   {
     switch (featureID)
     {
+      case MyDslPackage.PLANIFICACION__CURSOS:
+        return ((InternalEList<?>)getCursos()).basicRemove(otherEnd, msgs);
       case MyDslPackage.PLANIFICACION__ASIGNACIONES:
         return ((InternalEList<?>)getAsignaciones()).basicRemove(otherEnd, msgs);
     }
@@ -226,8 +227,8 @@ public class PlanificacionImpl extends ClaseImpl implements Planificacion
         return getAnio();
       case MyDslPackage.PLANIFICACION__SEMESTRE:
         return getSemestre();
-      case MyDslPackage.PLANIFICACION__MATERIAS:
-        return getMaterias();
+      case MyDslPackage.PLANIFICACION__CURSOS:
+        return getCursos();
       case MyDslPackage.PLANIFICACION__ASIGNACIONES:
         return getAsignaciones();
     }
@@ -251,9 +252,9 @@ public class PlanificacionImpl extends ClaseImpl implements Planificacion
       case MyDslPackage.PLANIFICACION__SEMESTRE:
         setSemestre((Integer)newValue);
         return;
-      case MyDslPackage.PLANIFICACION__MATERIAS:
-        getMaterias().clear();
-        getMaterias().addAll((Collection<? extends Materia>)newValue);
+      case MyDslPackage.PLANIFICACION__CURSOS:
+        getCursos().clear();
+        getCursos().addAll((Collection<? extends Curso>)newValue);
         return;
       case MyDslPackage.PLANIFICACION__ASIGNACIONES:
         getAsignaciones().clear();
@@ -279,8 +280,8 @@ public class PlanificacionImpl extends ClaseImpl implements Planificacion
       case MyDslPackage.PLANIFICACION__SEMESTRE:
         setSemestre(SEMESTRE_EDEFAULT);
         return;
-      case MyDslPackage.PLANIFICACION__MATERIAS:
-        getMaterias().clear();
+      case MyDslPackage.PLANIFICACION__CURSOS:
+        getCursos().clear();
         return;
       case MyDslPackage.PLANIFICACION__ASIGNACIONES:
         getAsignaciones().clear();
@@ -303,8 +304,8 @@ public class PlanificacionImpl extends ClaseImpl implements Planificacion
         return anio != ANIO_EDEFAULT;
       case MyDslPackage.PLANIFICACION__SEMESTRE:
         return semestre != SEMESTRE_EDEFAULT;
-      case MyDslPackage.PLANIFICACION__MATERIAS:
-        return materias != null && !materias.isEmpty();
+      case MyDslPackage.PLANIFICACION__CURSOS:
+        return cursos != null && !cursos.isEmpty();
       case MyDslPackage.PLANIFICACION__ASIGNACIONES:
         return asignaciones != null && !asignaciones.isEmpty();
     }

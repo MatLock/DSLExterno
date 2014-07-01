@@ -14,7 +14,7 @@ import org.eclipse.emf.common.util.EList;
  * <ul>
  *   <li>{@link org.xtext.example.mydsl.myDsl.Planificacion#getAnio <em>Anio</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.myDsl.Planificacion#getSemestre <em>Semestre</em>}</li>
- *   <li>{@link org.xtext.example.mydsl.myDsl.Planificacion#getMaterias <em>Materias</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.myDsl.Planificacion#getCursos <em>Cursos</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.myDsl.Planificacion#getAsignaciones <em>Asignaciones</em>}</li>
  * </ul>
  * </p>
@@ -78,20 +78,20 @@ public interface Planificacion extends Clase
   void setSemestre(int value);
 
   /**
-   * Returns the value of the '<em><b>Materias</b></em>' reference list.
-   * The list contents are of type {@link org.xtext.example.mydsl.myDsl.Materia}.
+   * Returns the value of the '<em><b>Cursos</b></em>' containment reference list.
+   * The list contents are of type {@link org.xtext.example.mydsl.myDsl.Curso}.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Materias</em>' reference list isn't clear,
+   * If the meaning of the '<em>Cursos</em>' containment reference list isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Materias</em>' reference list.
-   * @see org.xtext.example.mydsl.myDsl.MyDslPackage#getPlanificacion_Materias()
-   * @model
+   * @return the value of the '<em>Cursos</em>' containment reference list.
+   * @see org.xtext.example.mydsl.myDsl.MyDslPackage#getPlanificacion_Cursos()
+   * @model containment="true"
    * @generated
    */
-  EList<Materia> getMaterias();
+  EList<Curso> getCursos();
 
   /**
    * Returns the value of the '<em><b>Asignaciones</b></em>' containment reference list.

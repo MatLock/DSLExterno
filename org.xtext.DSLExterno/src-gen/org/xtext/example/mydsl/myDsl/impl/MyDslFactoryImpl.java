@@ -72,6 +72,7 @@ public class MyDslFactoryImpl extends EFactoryImpl implements MyDslFactory
       case MyDslPackage.MATERIA: return createMateria();
       case MyDslPackage.AULA: return createAula();
       case MyDslPackage.PLANIFICACION: return createPlanificacion();
+      case MyDslPackage.CURSO: return createCurso();
       case MyDslPackage.ASIGNACION: return createAsignacion();
       case MyDslPackage.HORARIO: return createHorario();
       default:
@@ -196,6 +197,17 @@ public class MyDslFactoryImpl extends EFactoryImpl implements MyDslFactory
   {
     PlanificacionImpl planificacion = new PlanificacionImpl();
     return planificacion;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Curso createCurso()
+  {
+    CursoImpl curso = new CursoImpl();
+    return curso;
   }
 
   /**

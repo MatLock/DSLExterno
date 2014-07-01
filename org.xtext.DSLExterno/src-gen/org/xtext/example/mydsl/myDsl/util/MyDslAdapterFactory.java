@@ -110,6 +110,11 @@ public class MyDslAdapterFactory extends AdapterFactoryImpl
         return createPlanificacionAdapter();
       }
       @Override
+      public Adapter caseCurso(Curso object)
+      {
+        return createCursoAdapter();
+      }
+      @Override
       public Adapter caseAsignacion(Asignacion object)
       {
         return createAsignacionAdapter();
@@ -242,6 +247,21 @@ public class MyDslAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createPlanificacionAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.xtext.example.mydsl.myDsl.Curso <em>Curso</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.xtext.example.mydsl.myDsl.Curso
+   * @generated
+   */
+  public Adapter createCursoAdapter()
   {
     return null;
   }
