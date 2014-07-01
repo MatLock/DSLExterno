@@ -255,7 +255,8 @@ public class MyDslValidator extends AbstractMyDslValidator {
     final Planificacion planificacion = ((Planificacion) _eContainer_1);
     EList<Curso> _cursos = planificacion.getCursos();
     Materia _materia = h.getMateria();
-    final Curso curso = this.obtenerCursoConMateria(_cursos, _materia);
+    Iterable<Curso> _obtenerCursoConMateria = this.obtenerCursoConMateria(_cursos, _materia);
+    final Curso curso = ((Curso[])Conversions.unwrapArray(_obtenerCursoConMateria, Curso.class))[0];
     int _inscriptos = curso.getInscriptos();
     Aula _aula = h.getAula();
     int _capacidad = _aula.getCapacidad();
@@ -273,14 +274,115 @@ public class MyDslValidator extends AbstractMyDslValidator {
     }
   }
   
-  private Curso obtenerCursoConMateria(final EList<Curso> cursos, final Materia m) {
+  private Iterable<Curso> obtenerCursoConMateria(final EList<Curso> cursos, final Materia m) {
     final Function1<Curso, Boolean> _function = new Function1<Curso, Boolean>() {
       public Boolean apply(final Curso c) {
         Materia _materia = c.getMateria();
         return Boolean.valueOf(Objects.equal(_materia, m));
       }
     };
-    Iterable<Curso> _filter = IterableExtensions.<Curso>filter(cursos, _function);
-    return ((Curso[])Conversions.unwrapArray(_filter, Curso.class))[0];
+    return IterableExtensions.<Curso>filter(cursos, _function);
+  }
+  
+  @Check
+  public void checkSuperposicion(final Horario horario) {
+    EObject _eContainer = horario.eContainer();
+    final Asignacion asignacionQueContieneAHorario = ((Asignacion) _eContainer);
+    EList<Horario> _horarios = asignacionQueContieneAHorario.getHorarios();
+    final Function1<Horario, Boolean> _function = new Function1<Horario, Boolean>() {
+      public Boolean apply(final Horario h) {
+        boolean _equals = MyDslValidator.this.operator_equals(h, horario);
+        return Boolean.valueOf((!_equals));
+      }
+    };
+    final Iterable<Horario> horariosDelDia = IterableExtensions.<Horario>filter(_horarios, _function);
+    final Procedure1<Horario> _function_1 = new Procedure1<Horario>() {
+      public void apply(final Horario it) {
+        MyDslValidator.this.colapsaCon(it, horario);
+      }
+    };
+    IterableExtensions.<Horario>forEach(horariosDelDia, _function_1);
+  }
+  
+  public void colapsaCon(final Horario h1, final Horario h2) {
+    boolean _and = false;
+    Aula _aula = h1.getAula();
+    Aula _aula_1 = h2.getAula();
+    boolean _equals = Objects.equal(_aula, _aula_1);
+    if (!_equals) {
+      _and = false;
+    } else {
+      boolean _or = false;
+      int _horarioInicio = h1.getHorarioInicio();
+      int _horarioInicio_1 = h2.getHorarioInicio();
+      int _horarioFin = h2.getHorarioFin();
+      boolean _estaEntre = this.estaEntre(Integer.valueOf(_horarioInicio), Integer.valueOf(_horarioInicio_1), Integer.valueOf(_horarioFin));
+      if (_estaEntre) {
+        _or = true;
+      } else {
+        int _horarioFin_1 = h1.getHorarioFin();
+        int _horarioInicio_2 = h2.getHorarioInicio();
+        int _horarioFin_2 = h2.getHorarioFin();
+        boolean _estaEntre_1 = this.estaEntre(Integer.valueOf(_horarioFin_1), Integer.valueOf(_horarioInicio_2), Integer.valueOf(_horarioFin_2));
+        _or = _estaEntre_1;
+      }
+      _and = _or;
+    }
+    if (_and) {
+      Materia _materia = h1.getMateria();
+      String _name = _materia.getName();
+      String _plus = ("el horario de la materia: " + _name);
+      String _plus_1 = (_plus + " colapsa con el horario de la materia: ");
+      Materia _materia_1 = h2.getMateria();
+      String _name_1 = _materia_1.getName();
+      String _plus_2 = (_plus_1 + _name_1);
+      this.error(_plus_2, h1, MyDslPackage.Literals.HORARIO__HORARIO_INICIO);
+    }
+  }
+  
+  private boolean estaEntre(final Integer i, final Integer i2, final Integer i3) {
+    boolean _and = false;
+    boolean _lessThan = (i2.compareTo(i) < 0);
+    if (!_lessThan) {
+      _and = false;
+    } else {
+      boolean _lessThan_1 = (i.compareTo(i3) < 0);
+      _and = _lessThan_1;
+    }
+    return _and;
+  }
+  
+  private boolean operator_equals(final Horario h1, final Horario h2) {
+    boolean _and = false;
+    boolean _and_1 = false;
+    boolean _and_2 = false;
+    Aula _aula = h1.getAula();
+    Aula _aula_1 = h2.getAula();
+    boolean _equals = Objects.equal(_aula, _aula_1);
+    if (!_equals) {
+      _and_2 = false;
+    } else {
+      int _horarioInicio = h1.getHorarioInicio();
+      int _horarioInicio_1 = h2.getHorarioInicio();
+      boolean _equals_1 = (_horarioInicio == _horarioInicio_1);
+      _and_2 = _equals_1;
+    }
+    if (!_and_2) {
+      _and_1 = false;
+    } else {
+      int _horarioFin = h1.getHorarioFin();
+      int _horarioFin_1 = h2.getHorarioFin();
+      boolean _equals_2 = (_horarioFin == _horarioFin_1);
+      _and_1 = _equals_2;
+    }
+    if (!_and_1) {
+      _and = false;
+    } else {
+      Materia _materia = h1.getMateria();
+      Materia _materia_1 = h2.getMateria();
+      boolean _equals_3 = Objects.equal(_materia, _materia_1);
+      _and = _equals_3;
+    }
+    return _and;
   }
 }

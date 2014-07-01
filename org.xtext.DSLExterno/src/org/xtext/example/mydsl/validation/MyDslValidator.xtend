@@ -138,7 +138,7 @@ class MyDslValidator extends AbstractMyDslValidator {
 	@Check
 	def checkInscriptosCabenEnAula(Horario h){
 		val planificacion = (h.eContainer.eContainer) as Planificacion
-		val curso = planificacion.cursos.obtenerCursoConMateria(h.materia)
+		val curso = planificacion.cursos.obtenerCursoConMateria(h.materia).get(0)
 		if (curso.inscriptos > h.aula.capacidad){
 			error("La cantidad de inscriptos de la materia: "+h.materia.name+
 			" supera la capacidad del aula: "+h.aula.name,h,MyDslPackage.Literals.HORARIO__MATERIA)
@@ -146,8 +146,33 @@ class MyDslValidator extends AbstractMyDslValidator {
 	}
 	
 	private def obtenerCursoConMateria(EList<Curso> cursos ,Materia m){
-		cursos.filter[c | c.materia == m ].get(0)
+		cursos.filter[c | c.materia == m ]
 	}
-			
+	
+	// Check super posicion de aulas con horarios
+	@Check
+	def checkSuperposicion(Horario horario){
+		val asignacionQueContieneAHorario = horario.eContainer as Asignacion
+		val horariosDelDia = asignacionQueContieneAHorario.horarios.filter[h| !(h==horario)]
+		horariosDelDia.forEach[colapsaCon(horario)]
+	}
+	
+	def colapsaCon(Horario h1 ,Horario h2) {
+		if (h1.aula == h2.aula && (h1.horarioInicio.estaEntre(h2.horarioInicio,h2.horarioFin) ||
+			h1.horarioFin.estaEntre(h2.horarioInicio,h2.horarioFin))){
+				error("el horario de la materia: " +h1.materia.name +" colapsa con el horario de la materia: "
+					+h2.materia.name,h1,MyDslPackage.Literals.HORARIO__HORARIO_INICIO)
+			}
+	}
+	
+	private def estaEntre(Integer i , Integer i2, Integer i3){
+		return i2 < i  && i < i3
+	}
+	
+	private def operator_equals(Horario h1 , Horario h2){
+		return h1.aula == h2.aula && h1.horarioInicio == h2.horarioInicio && 
+			   h1.horarioFin == h2.horarioFin && h1.materia == h2.materia	
+	}	
+	
 }
 
