@@ -1,0 +1,5 @@
+package org.xtext.example.mydsl.interpreter;
+
+@SuppressWarnings("all")
+public class Pairt {
+}

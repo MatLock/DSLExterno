@@ -1,0 +1,9 @@
+package org.xtext.example.mydsl.interpreter
+
+import org.xtext.example.mydsl.myDsl.Aula
+
+class Pair {
+	 @Property Aula aula
+	@Property Integer i
+	
+}

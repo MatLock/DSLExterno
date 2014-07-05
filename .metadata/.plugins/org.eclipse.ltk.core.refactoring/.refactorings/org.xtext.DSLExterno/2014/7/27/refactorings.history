@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;org.xtext.DSLExterno/src/org/xtext/example/mydsl/interpreter/Pairt.xtend&apos; to &apos;Pair.xtend&apos;" description="Rename resource &apos;Pairt.xtend&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="src/org/xtext/example/mydsl/interpreter/Pairt.xtend" name="Pair.xtend" stamp="1404409280962" updateReferences="true"/>
+</session>

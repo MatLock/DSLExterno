@@ -1,0 +1,228 @@
+package org.xtext.example.mydsl.interpreter
+
+import com.google.inject.Injector
+import java.util.HashMap
+import java.util.List
+import org.eclipse.emf.common.util.EList
+import org.eclipse.emf.common.util.URI
+import org.eclipse.emf.ecore.resource.Resource
+import org.eclipse.xtext.resource.XtextResourceSet
+import org.eclipse.xtext.validation.CheckMode
+import org.eclipse.xtext.validation.IResourceValidator
+import org.xtext.example.mydsl.MyDslStandaloneSetup
+import org.xtext.example.mydsl.myDsl.Asignacion
+import org.xtext.example.mydsl.myDsl.Aula
+import org.xtext.example.mydsl.myDsl.Horario
+import org.xtext.example.mydsl.myDsl.Model
+import org.xtext.example.mydsl.myDsl.Planificacion
+
+class DSLExternoInterpreter {
+	
+		
+	def static void main(String[] args) {
+		if (args.isEmpty) {
+			throw new RuntimeException("Debe invocar este interprete con la ruta completa a un archivo .mydsl como argumento!")
+		}
+		val fileName = args.get(0)
+		val model = parsear(fileName)
+		new DSLExternoInterpreter().interpret(model)
+	}
+	
+	def static parsear(String fileName) {
+		val injector = new MyDslStandaloneSetup().createInjectorAndDoEMFRegistration()
+		val resourceSet = injector.getInstance(XtextResourceSet)
+		val resource = resourceSet.createResource(URI.createURI(fileName))
+		
+		validate(injector, resource)
+		
+		resource.load(#{})
+		return resource.contents.get(0) as Model
+	}
+	
+	def static validate(Injector injector, Resource resource) {
+		val validator = injector.getInstance(IResourceValidator)
+		val issues = validator.validate(resource, CheckMode.ALL, null)
+		if (!issues.isEmpty) {
+			issues.forEach[println(it.toString)]
+			System.exit(-1)
+		}
+	}
+	
+	def interpret(Model model) {
+		val list = model.clases.filter(Planificacion)
+		list.forEach[p | p.obtenerEstadisticas]
+	}
+	
+	def void obtenerEstadisticas(Planificacion planificacion){
+		println("Planificacion: "+planificacion.anio+ " semestre: "+planificacion.semestre+"{ \n")
+		println("Aula mas utilizada: " +planificacion.aulaMasUsada.name)
+		println("Horarios sin clase: ")
+		planificacion.horariosEnLosQueSeDictanClasePor
+		planificacion.porcentajesPorTurnos
+		println("\n }")
+	}
+	
+	
+	// Primer estadistica //
+	def aulasUsadas(Iterable<Horario> horarios){
+		val aulasUsadas = new HashMap<Aula,Integer>()
+		horarios.forEach[ h | 
+						if(! aulasUsadas.containsKey(h.aula)){
+								aulasUsadas.put(h.aula,1)
+						}
+						else{
+								aulasUsadas.put(h.aula,(aulasUsadas.get(h.aula)+1))
+						}
+					   ]
+		 aulasUsadas
+	}
+	
+	def horarios(EList<Asignacion>asignaciones){
+		asignaciones.map[a | a.horarios].flatten
+	}
+	
+	def aulaMasUsada(Planificacion p){
+		val mapAulas = p.asignaciones.horarios.aulasUsadas
+		val aulas = mapAulas.keySet
+		var maximo = 0
+		var Aula aula = null 
+		
+		for(a : aulas){
+			if(mapAulas.get(a) > maximo){
+				maximo = mapAulas.get(a)
+				aula = a
+			}
+		}
+		aula
+	}
+	
+	// segunda estadistica
+	
+	
+	////////////////////////////////		
+	//->Horarios que no tiene clase
+	///////////////////////////////
+	
+	def horariosEnLosQueSeDictanClasePor(Horario horario,List<Integer>listaConHorarios){
+		val horaInicio = horario.horarioInicio
+		val horaFin = horario.horarioFin
+		
+		for (h : horaInicio .. horaFin) {
+			if(listaConHorarios.contains(h)){
+				listaConHorarios.remove(h)
+			}
+		}
+	}
+		
+	def horariosEnLosQueSeDictanClasePor(Planificacion planificacion){
+		val listaDeHorarios = planificacion.asignaciones.map[a | a.horarios].flatten
+		val horariosDelDia= (7..22).toList
+		for(a :listaDeHorarios){
+			a.horariosEnLosQueSeDictanClasePor(horariosDelDia)
+		}
+		horariosDelDia.imprimirHorarios
+	
+	}
+	def imprimirHorarios(List<Integer> horarios){
+		for(h : horarios)
+			println(h+" horas")
+	}	
+
+
+
+	////////////////////////////////////
+	//->Porcentaje de materias por turno
+	//////////////////////////////////
+	
+	
+	//Cant de horarios de todas las asignaciones
+	def cantHorarios(Iterable<Asignacion> asignaciones){
+		var cant = 0
+		for( a : asignaciones){
+			cant= cant + a.horarios.size
+		}
+		return cant
+	}
+	
+	
+	def cantMateriasPorTurno(Iterable<Horario> horarios,Integer desde,Integer hasta){
+		horarios.filter[ h | h.horarioInicio >= desde && h.horarioFin <= hasta].size
+	}
+	
+	
+	def horariosDePlanificacion(Planificacion p){
+		p.asignaciones.map[a | a.horarios].flatten
+	}
+	
+	
+	
+		def porcentajeTurno(Planificacion p){
+		val horarios = p.horariosDePlanificacion
+		
+	}
+	
+	
+	def porcentajeTurnoMañana(Planificacion p){
+		val horarios = p.horariosDePlanificacion
+		horarios.cantMateriasPorTurno(7,13) *100 / cantHorarios(p.asignaciones)
+		
+	}
+	
+	
+	def porcentajeTurnoTarde(Planificacion p){
+		val horarios = p.horariosDePlanificacion
+		horarios.cantMateriasPorTurno(13,18) *100 / cantHorarios(p.asignaciones)
+		
+	}
+	
+	def porcentajeTurnoNoche(Planificacion p){
+		val horarios = p.horariosDePlanificacion
+		horarios.cantMateriasPorTurno(18,22) *100 / cantHorarios(p.asignaciones)		
+	}
+	
+	
+	def porcentajesPorTurnos(Planificacion p){
+		println('''Turno Mañana «p.porcentajeTurnoMañana» ''')
+		println('''Turno Tarde «p.porcentajeTurnoTarde» ''')
+		println('''Turno Noche «p.porcentajeTurnoNoche» ''')
+	}
+}
+
+
+/**
+ *  AULA MAS UTILIZADA  PARA TODAS LAS PLANIFICACIONES JUNTAS!!! 
+ */
+
+//
+//////////////////////
+//	// ->Aula mas usada 
+//	///////////////////
+//	
+//	def aulasUsadas(Iterable<Horario> horarios){
+//		val aulasUsadas = new HashMap<Aula,Integer>()
+//		horarios.forEach[ h | 
+//						if(! aulasUsadas.containsKey(h.aula)){
+//								aulasUsadas.put(h.aula,1)
+//						}
+//						else{
+//								aulasUsadas.put(h.aula,(aulasUsadas.get(h.aula)+1))
+//						}
+//					   ]
+//		return aulasUsadas
+//	}
+//	
+//	
+//	def aulaMasUsada(Model model){
+//		val mapAulas = model.horarios.aulasUsadas
+//		val aulas = mapAulas.keySet
+//		var maximo = 0
+//		var Aula aula = null 
+//		
+//		for(a : aulas){
+//			if(mapAulas.get(a) > maximo){
+//				maximo = mapAulas.get(a)
+//				aula = a
+//			}
+//		}
+//		println('''El aula mas usada es «aula»''')
+//	}
