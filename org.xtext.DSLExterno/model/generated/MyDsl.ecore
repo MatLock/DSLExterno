@@ -6,16 +6,17 @@
         eType="#//Clase" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Clase"/>
-  <eClassifiers xsi:type="ecore:EClass" name="DiasHabilidatos">
+  <eClassifiers xsi:type="ecore:EClass" name="DiasHabilitados">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="dia" eType="#//Dia"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="horaInicio" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="horaFinal" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="diaQueNoPuede" eType="#//Dia"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Profesor" eSuperTypes="#//Clase">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="dedicacion" eType="#//Dedicacion"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="diasQuePuede" upperBound="-1"
-        eType="#//DiasHabilidatos" containment="true"/>
+        eType="#//DiasHabilitados" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Materia" eSuperTypes="#//Clase">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>

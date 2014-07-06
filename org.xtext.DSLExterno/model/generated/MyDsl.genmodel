@@ -30,10 +30,11 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MyDsl.ecore#//Model/clases"/>
     </genClasses>
     <genClasses ecoreClass="MyDsl.ecore#//Clase"/>
-    <genClasses ecoreClass="MyDsl.ecore#//DiasHabilidatos">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MyDsl.ecore#//DiasHabilidatos/dia"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MyDsl.ecore#//DiasHabilidatos/horaInicio"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MyDsl.ecore#//DiasHabilidatos/horaFinal"/>
+    <genClasses ecoreClass="MyDsl.ecore#//DiasHabilitados">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MyDsl.ecore#//DiasHabilitados/dia"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MyDsl.ecore#//DiasHabilitados/horaInicio"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MyDsl.ecore#//DiasHabilitados/horaFinal"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MyDsl.ecore#//DiasHabilitados/diaQueNoPuede"/>
     </genClasses>
     <genClasses ecoreClass="MyDsl.ecore#//Profesor">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MyDsl.ecore#//Profesor/name"/>

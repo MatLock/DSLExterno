@@ -105,14 +105,14 @@ public interface MyDslPackage extends EPackage
   int CLASE_FEATURE_COUNT = 0;
 
   /**
-   * The meta object id for the '{@link org.xtext.example.mydsl.myDsl.impl.DiasHabilidatosImpl <em>Dias Habilidatos</em>}' class.
+   * The meta object id for the '{@link org.xtext.example.mydsl.myDsl.impl.DiasHabilitadosImpl <em>Dias Habilitados</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see org.xtext.example.mydsl.myDsl.impl.DiasHabilidatosImpl
-   * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getDiasHabilidatos()
+   * @see org.xtext.example.mydsl.myDsl.impl.DiasHabilitadosImpl
+   * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getDiasHabilitados()
    * @generated
    */
-  int DIAS_HABILIDATOS = 2;
+  int DIAS_HABILITADOS = 2;
 
   /**
    * The feature id for the '<em><b>Dia</b></em>' attribute.
@@ -121,7 +121,7 @@ public interface MyDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int DIAS_HABILIDATOS__DIA = 0;
+  int DIAS_HABILITADOS__DIA = 0;
 
   /**
    * The feature id for the '<em><b>Hora Inicio</b></em>' attribute.
@@ -130,7 +130,7 @@ public interface MyDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int DIAS_HABILIDATOS__HORA_INICIO = 1;
+  int DIAS_HABILITADOS__HORA_INICIO = 1;
 
   /**
    * The feature id for the '<em><b>Hora Final</b></em>' attribute.
@@ -139,16 +139,25 @@ public interface MyDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int DIAS_HABILIDATOS__HORA_FINAL = 2;
+  int DIAS_HABILITADOS__HORA_FINAL = 2;
 
   /**
-   * The number of structural features of the '<em>Dias Habilidatos</em>' class.
+   * The feature id for the '<em><b>Dia Que No Puede</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int DIAS_HABILIDATOS_FEATURE_COUNT = 3;
+  int DIAS_HABILITADOS__DIA_QUE_NO_PUEDE = 3;
+
+  /**
+   * The number of structural features of the '<em>Dias Habilitados</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DIAS_HABILITADOS_FEATURE_COUNT = 4;
 
   /**
    * The meta object id for the '{@link org.xtext.example.mydsl.myDsl.impl.ProfesorImpl <em>Profesor</em>}' class.
@@ -553,47 +562,58 @@ public interface MyDslPackage extends EPackage
   EClass getClase();
 
   /**
-   * Returns the meta object for class '{@link org.xtext.example.mydsl.myDsl.DiasHabilidatos <em>Dias Habilidatos</em>}'.
+   * Returns the meta object for class '{@link org.xtext.example.mydsl.myDsl.DiasHabilitados <em>Dias Habilitados</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Dias Habilidatos</em>'.
-   * @see org.xtext.example.mydsl.myDsl.DiasHabilidatos
+   * @return the meta object for class '<em>Dias Habilitados</em>'.
+   * @see org.xtext.example.mydsl.myDsl.DiasHabilitados
    * @generated
    */
-  EClass getDiasHabilidatos();
+  EClass getDiasHabilitados();
 
   /**
-   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.myDsl.DiasHabilidatos#getDia <em>Dia</em>}'.
+   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.myDsl.DiasHabilitados#getDia <em>Dia</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the attribute '<em>Dia</em>'.
-   * @see org.xtext.example.mydsl.myDsl.DiasHabilidatos#getDia()
-   * @see #getDiasHabilidatos()
+   * @see org.xtext.example.mydsl.myDsl.DiasHabilitados#getDia()
+   * @see #getDiasHabilitados()
    * @generated
    */
-  EAttribute getDiasHabilidatos_Dia();
+  EAttribute getDiasHabilitados_Dia();
 
   /**
-   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.myDsl.DiasHabilidatos#getHoraInicio <em>Hora Inicio</em>}'.
+   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.myDsl.DiasHabilitados#getHoraInicio <em>Hora Inicio</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the attribute '<em>Hora Inicio</em>'.
-   * @see org.xtext.example.mydsl.myDsl.DiasHabilidatos#getHoraInicio()
-   * @see #getDiasHabilidatos()
+   * @see org.xtext.example.mydsl.myDsl.DiasHabilitados#getHoraInicio()
+   * @see #getDiasHabilitados()
    * @generated
    */
-  EAttribute getDiasHabilidatos_HoraInicio();
+  EAttribute getDiasHabilitados_HoraInicio();
 
   /**
-   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.myDsl.DiasHabilidatos#getHoraFinal <em>Hora Final</em>}'.
+   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.myDsl.DiasHabilitados#getHoraFinal <em>Hora Final</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the attribute '<em>Hora Final</em>'.
-   * @see org.xtext.example.mydsl.myDsl.DiasHabilidatos#getHoraFinal()
-   * @see #getDiasHabilidatos()
+   * @see org.xtext.example.mydsl.myDsl.DiasHabilitados#getHoraFinal()
+   * @see #getDiasHabilitados()
    * @generated
    */
-  EAttribute getDiasHabilidatos_HoraFinal();
+  EAttribute getDiasHabilitados_HoraFinal();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.myDsl.DiasHabilitados#getDiaQueNoPuede <em>Dia Que No Puede</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Dia Que No Puede</em>'.
+   * @see org.xtext.example.mydsl.myDsl.DiasHabilitados#getDiaQueNoPuede()
+   * @see #getDiasHabilitados()
+   * @generated
+   */
+  EAttribute getDiasHabilitados_DiaQueNoPuede();
 
   /**
    * Returns the meta object for class '{@link org.xtext.example.mydsl.myDsl.Profesor <em>Profesor</em>}'.
@@ -1000,14 +1020,14 @@ public interface MyDslPackage extends EPackage
     EClass CLASE = eINSTANCE.getClase();
 
     /**
-     * The meta object literal for the '{@link org.xtext.example.mydsl.myDsl.impl.DiasHabilidatosImpl <em>Dias Habilidatos</em>}' class.
+     * The meta object literal for the '{@link org.xtext.example.mydsl.myDsl.impl.DiasHabilitadosImpl <em>Dias Habilitados</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see org.xtext.example.mydsl.myDsl.impl.DiasHabilidatosImpl
-     * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getDiasHabilidatos()
+     * @see org.xtext.example.mydsl.myDsl.impl.DiasHabilitadosImpl
+     * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getDiasHabilitados()
      * @generated
      */
-    EClass DIAS_HABILIDATOS = eINSTANCE.getDiasHabilidatos();
+    EClass DIAS_HABILITADOS = eINSTANCE.getDiasHabilitados();
 
     /**
      * The meta object literal for the '<em><b>Dia</b></em>' attribute feature.
@@ -1015,7 +1035,7 @@ public interface MyDslPackage extends EPackage
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute DIAS_HABILIDATOS__DIA = eINSTANCE.getDiasHabilidatos_Dia();
+    EAttribute DIAS_HABILITADOS__DIA = eINSTANCE.getDiasHabilitados_Dia();
 
     /**
      * The meta object literal for the '<em><b>Hora Inicio</b></em>' attribute feature.
@@ -1023,7 +1043,7 @@ public interface MyDslPackage extends EPackage
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute DIAS_HABILIDATOS__HORA_INICIO = eINSTANCE.getDiasHabilidatos_HoraInicio();
+    EAttribute DIAS_HABILITADOS__HORA_INICIO = eINSTANCE.getDiasHabilitados_HoraInicio();
 
     /**
      * The meta object literal for the '<em><b>Hora Final</b></em>' attribute feature.
@@ -1031,7 +1051,15 @@ public interface MyDslPackage extends EPackage
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute DIAS_HABILIDATOS__HORA_FINAL = eINSTANCE.getDiasHabilidatos_HoraFinal();
+    EAttribute DIAS_HABILITADOS__HORA_FINAL = eINSTANCE.getDiasHabilitados_HoraFinal();
+
+    /**
+     * The meta object literal for the '<em><b>Dia Que No Puede</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute DIAS_HABILITADOS__DIA_QUE_NO_PUEDE = eINSTANCE.getDiasHabilitados_DiaQueNoPuede();
 
     /**
      * The meta object literal for the '{@link org.xtext.example.mydsl.myDsl.impl.ProfesorImpl <em>Profesor</em>}' class.

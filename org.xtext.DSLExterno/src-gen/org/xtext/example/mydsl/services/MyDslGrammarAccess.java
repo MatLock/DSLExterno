@@ -63,8 +63,8 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		public RuleCall getAulaParserRuleCall_3() { return cAulaParserRuleCall_3; }
 	}
 
-	public class DiasHabilidatosElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "DiasHabilidatos");
+	public class DiasHabilitadosElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "DiasHabilitados");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cPuedeKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final Assignment cDiaAssignment_1 = (Assignment)cGroup.eContents().get(1);
@@ -75,13 +75,17 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cHastaKeyword_4 = (Keyword)cGroup.eContents().get(4);
 		private final Assignment cHoraFinalAssignment_5 = (Assignment)cGroup.eContents().get(5);
 		private final RuleCall cHoraFinalINTTerminalRuleCall_5_0 = (RuleCall)cHoraFinalAssignment_5.eContents().get(0);
+		private final Group cGroup_6 = (Group)cGroup.eContents().get(6);
+		private final Keyword cNoPuedeKeyword_6_0 = (Keyword)cGroup_6.eContents().get(0);
+		private final Assignment cDiaQueNoPuedeAssignment_6_1 = (Assignment)cGroup_6.eContents().get(1);
+		private final RuleCall cDiaQueNoPuedeDiaEnumRuleCall_6_1_0 = (RuleCall)cDiaQueNoPuedeAssignment_6_1.eContents().get(0);
 		
 		////Agregado para bonus 2
-		//DiasHabilidatos:
-		//	"puede:" dia=Dia "de:" horaInicio=INT "hasta:" horaFinal=INT;
+		//DiasHabilitados:
+		//	"puede:" dia=Dia "de:" horaInicio=INT "hasta:" horaFinal=INT ("no puede:" diaQueNoPuede=Dia)?;
 		public ParserRule getRule() { return rule; }
 
-		//"puede:" dia=Dia "de:" horaInicio=INT "hasta:" horaFinal=INT
+		//"puede:" dia=Dia "de:" horaInicio=INT "hasta:" horaFinal=INT ("no puede:" diaQueNoPuede=Dia)?
 		public Group getGroup() { return cGroup; }
 
 		//"puede:"
@@ -110,6 +114,18 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 
 		//INT
 		public RuleCall getHoraFinalINTTerminalRuleCall_5_0() { return cHoraFinalINTTerminalRuleCall_5_0; }
+
+		//("no puede:" diaQueNoPuede=Dia)?
+		public Group getGroup_6() { return cGroup_6; }
+
+		//"no puede:"
+		public Keyword getNoPuedeKeyword_6_0() { return cNoPuedeKeyword_6_0; }
+
+		//diaQueNoPuede=Dia
+		public Assignment getDiaQueNoPuedeAssignment_6_1() { return cDiaQueNoPuedeAssignment_6_1; }
+
+		//Dia
+		public RuleCall getDiaQueNoPuedeDiaEnumRuleCall_6_1_0() { return cDiaQueNoPuedeDiaEnumRuleCall_6_1_0; }
 	}
 
 	public class ProfesorElements extends AbstractParserRuleElementFinder {
@@ -121,15 +137,16 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cDedicacionKeyword_2 = (Keyword)cGroup.eContents().get(2);
 		private final Assignment cDedicacionAssignment_3 = (Assignment)cGroup.eContents().get(3);
 		private final RuleCall cDedicacionDedicacionEnumRuleCall_3_0 = (RuleCall)cDedicacionAssignment_3.eContents().get(0);
-		private final Assignment cDiasQuePuedeAssignment_4 = (Assignment)cGroup.eContents().get(4);
-		private final RuleCall cDiasQuePuedeDiasHabilidatosParserRuleCall_4_0 = (RuleCall)cDiasQuePuedeAssignment_4.eContents().get(0);
+		private final Keyword cLeftCurlyBracketKeyword_4 = (Keyword)cGroup.eContents().get(4);
+		private final Assignment cDiasQuePuedeAssignment_5 = (Assignment)cGroup.eContents().get(5);
+		private final RuleCall cDiasQuePuedeDiasHabilitadosParserRuleCall_5_0 = (RuleCall)cDiasQuePuedeAssignment_5.eContents().get(0);
+		private final Keyword cRightCurlyBracketKeyword_6 = (Keyword)cGroup.eContents().get(6);
 		
 		//Profesor:
-		//	"profesor:" name=ID "dedicacion:" dedicacion=Dedicacion diasQuePuede+=DiasHabilidatos //Agregado para bonus 2 
-		//;
+		//	"profesor:" name=ID "dedicacion:" dedicacion=Dedicacion "{" diasQuePuede+=DiasHabilitados* "}";
 		public ParserRule getRule() { return rule; }
 
-		//"profesor:" name=ID "dedicacion:" dedicacion=Dedicacion diasQuePuede+=DiasHabilidatos //Agregado para bonus 2
+		//"profesor:" name=ID "dedicacion:" dedicacion=Dedicacion "{" diasQuePuede+=DiasHabilitados* "}"
 		public Group getGroup() { return cGroup; }
 
 		//"profesor:"
@@ -150,11 +167,17 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		//Dedicacion
 		public RuleCall getDedicacionDedicacionEnumRuleCall_3_0() { return cDedicacionDedicacionEnumRuleCall_3_0; }
 
-		//diasQuePuede+=DiasHabilidatos
-		public Assignment getDiasQuePuedeAssignment_4() { return cDiasQuePuedeAssignment_4; }
+		//"{"
+		public Keyword getLeftCurlyBracketKeyword_4() { return cLeftCurlyBracketKeyword_4; }
 
-		//DiasHabilidatos
-		public RuleCall getDiasQuePuedeDiasHabilidatosParserRuleCall_4_0() { return cDiasQuePuedeDiasHabilidatosParserRuleCall_4_0; }
+		//diasQuePuede+=DiasHabilitados*
+		public Assignment getDiasQuePuedeAssignment_5() { return cDiasQuePuedeAssignment_5; }
+
+		//DiasHabilitados
+		public RuleCall getDiasQuePuedeDiasHabilitadosParserRuleCall_5_0() { return cDiasQuePuedeDiasHabilitadosParserRuleCall_5_0; }
+
+		//"}"
+		public Keyword getRightCurlyBracketKeyword_6() { return cRightCurlyBracketKeyword_6; }
 	}
 
 	public class MateriaElements extends AbstractParserRuleElementFinder {
@@ -665,7 +688,7 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 	
 	private ModelElements pModel;
 	private ClaseElements pClase;
-	private DiasHabilidatosElements pDiasHabilidatos;
+	private DiasHabilitadosElements pDiasHabilitados;
 	private ProfesorElements pProfesor;
 	private MateriaElements pMateria;
 	private AulaElements pAula;
@@ -736,19 +759,18 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	////Agregado para bonus 2
-	//DiasHabilidatos:
-	//	"puede:" dia=Dia "de:" horaInicio=INT "hasta:" horaFinal=INT;
-	public DiasHabilidatosElements getDiasHabilidatosAccess() {
-		return (pDiasHabilidatos != null) ? pDiasHabilidatos : (pDiasHabilidatos = new DiasHabilidatosElements());
+	//DiasHabilitados:
+	//	"puede:" dia=Dia "de:" horaInicio=INT "hasta:" horaFinal=INT ("no puede:" diaQueNoPuede=Dia)?;
+	public DiasHabilitadosElements getDiasHabilitadosAccess() {
+		return (pDiasHabilitados != null) ? pDiasHabilitados : (pDiasHabilitados = new DiasHabilitadosElements());
 	}
 	
-	public ParserRule getDiasHabilidatosRule() {
-		return getDiasHabilidatosAccess().getRule();
+	public ParserRule getDiasHabilitadosRule() {
+		return getDiasHabilitadosAccess().getRule();
 	}
 
 	//Profesor:
-	//	"profesor:" name=ID "dedicacion:" dedicacion=Dedicacion diasQuePuede+=DiasHabilidatos //Agregado para bonus 2 
-	//;
+	//	"profesor:" name=ID "dedicacion:" dedicacion=Dedicacion "{" diasQuePuede+=DiasHabilitados* "}";
 	public ProfesorElements getProfesorAccess() {
 		return (pProfesor != null) ? pProfesor : (pProfesor = new ProfesorElements());
 	}

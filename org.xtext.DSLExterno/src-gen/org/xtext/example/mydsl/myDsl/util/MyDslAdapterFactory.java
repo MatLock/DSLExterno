@@ -85,9 +85,9 @@ public class MyDslAdapterFactory extends AdapterFactoryImpl
         return createClaseAdapter();
       }
       @Override
-      public Adapter caseDiasHabilidatos(DiasHabilidatos object)
+      public Adapter caseDiasHabilitados(DiasHabilitados object)
       {
-        return createDiasHabilidatosAdapter();
+        return createDiasHabilitadosAdapter();
       }
       @Override
       public Adapter caseProfesor(Profesor object)
@@ -177,16 +177,16 @@ public class MyDslAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link org.xtext.example.mydsl.myDsl.DiasHabilidatos <em>Dias Habilidatos</em>}'.
+   * Creates a new adapter for an object of class '{@link org.xtext.example.mydsl.myDsl.DiasHabilitados <em>Dias Habilitados</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see org.xtext.example.mydsl.myDsl.DiasHabilidatos
+   * @see org.xtext.example.mydsl.myDsl.DiasHabilitados
    * @generated
    */
-  public Adapter createDiasHabilidatosAdapter()
+  public Adapter createDiasHabilitadosAdapter()
   {
     return null;
   }

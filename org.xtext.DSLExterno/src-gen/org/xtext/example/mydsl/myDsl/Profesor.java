@@ -81,7 +81,7 @@ public interface Profesor extends Clase
 
   /**
    * Returns the value of the '<em><b>Dias Que Puede</b></em>' containment reference list.
-   * The list contents are of type {@link org.xtext.example.mydsl.myDsl.DiasHabilidatos}.
+   * The list contents are of type {@link org.xtext.example.mydsl.myDsl.DiasHabilitados}.
    * <!-- begin-user-doc -->
    * <p>
    * If the meaning of the '<em>Dias Que Puede</em>' containment reference list isn't clear,
@@ -93,6 +93,6 @@ public interface Profesor extends Clase
    * @model containment="true"
    * @generated
    */
-  EList<DiasHabilidatos> getDiasQuePuede();
+  EList<DiasHabilitados> getDiasQuePuede();
 
 } // Profesor

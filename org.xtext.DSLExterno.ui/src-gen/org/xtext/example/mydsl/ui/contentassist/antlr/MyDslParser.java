@@ -80,7 +80,8 @@ public class MyDslParser extends AbstractContentAssistParser {
 					put(grammarAccess.getDedicacionAccess().getAlternatives(), "rule__Dedicacion__Alternatives");
 					put(grammarAccess.getRecursosAccess().getAlternatives(), "rule__Recursos__Alternatives");
 					put(grammarAccess.getDiaAccess().getAlternatives(), "rule__Dia__Alternatives");
-					put(grammarAccess.getDiasHabilidatosAccess().getGroup(), "rule__DiasHabilidatos__Group__0");
+					put(grammarAccess.getDiasHabilitadosAccess().getGroup(), "rule__DiasHabilitados__Group__0");
+					put(grammarAccess.getDiasHabilitadosAccess().getGroup_6(), "rule__DiasHabilitados__Group_6__0");
 					put(grammarAccess.getProfesorAccess().getGroup(), "rule__Profesor__Group__0");
 					put(grammarAccess.getMateriaAccess().getGroup(), "rule__Materia__Group__0");
 					put(grammarAccess.getAulaAccess().getGroup(), "rule__Aula__Group__0");
@@ -260,12 +261,13 @@ public class MyDslParser extends AbstractContentAssistParser {
 					put(grammarAccess.getXImportDeclarationAccess().getGroup_1_0(), "rule__XImportDeclaration__Group_1_0__0");
 					put(grammarAccess.getQualifiedNameInStaticImportAccess().getGroup(), "rule__QualifiedNameInStaticImport__Group__0");
 					put(grammarAccess.getModelAccess().getClasesAssignment(), "rule__Model__ClasesAssignment");
-					put(grammarAccess.getDiasHabilidatosAccess().getDiaAssignment_1(), "rule__DiasHabilidatos__DiaAssignment_1");
-					put(grammarAccess.getDiasHabilidatosAccess().getHoraInicioAssignment_3(), "rule__DiasHabilidatos__HoraInicioAssignment_3");
-					put(grammarAccess.getDiasHabilidatosAccess().getHoraFinalAssignment_5(), "rule__DiasHabilidatos__HoraFinalAssignment_5");
+					put(grammarAccess.getDiasHabilitadosAccess().getDiaAssignment_1(), "rule__DiasHabilitados__DiaAssignment_1");
+					put(grammarAccess.getDiasHabilitadosAccess().getHoraInicioAssignment_3(), "rule__DiasHabilitados__HoraInicioAssignment_3");
+					put(grammarAccess.getDiasHabilitadosAccess().getHoraFinalAssignment_5(), "rule__DiasHabilitados__HoraFinalAssignment_5");
+					put(grammarAccess.getDiasHabilitadosAccess().getDiaQueNoPuedeAssignment_6_1(), "rule__DiasHabilitados__DiaQueNoPuedeAssignment_6_1");
 					put(grammarAccess.getProfesorAccess().getNameAssignment_1(), "rule__Profesor__NameAssignment_1");
 					put(grammarAccess.getProfesorAccess().getDedicacionAssignment_3(), "rule__Profesor__DedicacionAssignment_3");
-					put(grammarAccess.getProfesorAccess().getDiasQuePuedeAssignment_4(), "rule__Profesor__DiasQuePuedeAssignment_4");
+					put(grammarAccess.getProfesorAccess().getDiasQuePuedeAssignment_5(), "rule__Profesor__DiasQuePuedeAssignment_5");
 					put(grammarAccess.getMateriaAccess().getNameAssignment_1(), "rule__Materia__NameAssignment_1");
 					put(grammarAccess.getMateriaAccess().getCantidadDeDiasAssignment_4(), "rule__Materia__CantidadDeDiasAssignment_4");
 					put(grammarAccess.getMateriaAccess().getCargaHorariaAssignment_6(), "rule__Materia__CargaHorariaAssignment_6");

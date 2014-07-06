@@ -14,6 +14,9 @@ import org.xtext.example.mydsl.myDsl.Planificacion
 import org.xtext.example.mydsl.myDsl.Profesor
 
 import static org.xtext.example.mydsl.myDsl.Dedicacion.*
+import org.xtext.example.mydsl.myDsl.Dia
+import java.util.List
+import org.xtext.example.mydsl.myDsl.DiasHabilitados
 
 //import org.eclipse.xtext.validation.Check
 
@@ -73,7 +76,7 @@ class MyDslValidator extends AbstractMyDslValidator {
 	}
 	
 	private def  perteneceAAlgunaAsignacion(Materia materia, EList<Asignacion> asignaciones){
-		return asignaciones.exists[tieneMateria(materia)]
+		 asignaciones.exists[tieneMateria(materia)]
 	}
 	
 	private def tieneMateria(Asignacion a, Materia materia) {
@@ -133,22 +136,7 @@ class MyDslValidator extends AbstractMyDslValidator {
 			,horario,MyDslPackage.Literals.HORARIO__AULA)
 		}
 	}
-
-//Check del primer Bonus (inscritos caben en aula)	
-	@Check
-	def checkInscriptosCabenEnAula(Horario h){
-		val planificacion = (h.eContainer.eContainer) as Planificacion
-		val curso = planificacion.cursos.obtenerCursoConMateria(h.materia).get(0)
-		if (curso.inscriptos > h.aula.capacidad){
-			error("La cantidad de inscriptos de la materia: "+h.materia.name+
-			" supera la capacidad del aula: "+h.aula.name,h,MyDslPackage.Literals.HORARIO__MATERIA)
-		}
-	}
-	
-	private def obtenerCursoConMateria(EList<Curso> cursos ,Materia m){
-		cursos.filter[c | c.materia == m ]
-	}
-	
+		
 	// Check super posicion de aulas con horarios
 	@Check
 	def checkSuperposicion(Horario horario){
@@ -166,13 +154,76 @@ class MyDslValidator extends AbstractMyDslValidator {
 	}
 	
 	private def estaEntre(Integer i , Integer i2, Integer i3){
-		return i2 < i  && i < i3
+		return i2 <= i  && i <= i3
 	}
 	
 	private def operator_equals(Horario h1 , Horario h2){
 		return h1.aula == h2.aula && h1.horarioInicio == h2.horarioInicio && 
 			   h1.horarioFin == h2.horarioFin && h1.materia == h2.materia	
-	}	
+	}
+	
+	//Check del primer Bonus (inscritos caben en aula)	
+	@Check
+	def checkInscriptosCabenEnAula(Horario h){
+		val planificacion = (h.eContainer.eContainer) as Planificacion
+		val curso = planificacion.cursos.obtenerCursoConMateria(h.materia).get(0)
+		if (curso.inscriptos > h.aula.capacidad){
+			error("La cantidad de inscriptos de la materia: "+h.materia.name+
+			" supera la capacidad del aula: "+h.aula.name,h,MyDslPackage.Literals.HORARIO__MATERIA)
+		}
+	}
+	
+	private def obtenerCursoConMateria(EList<Curso> cursos ,Materia m){
+		cursos.filter[c | c.materia == m ]
+	}
+	
+	// Check del segundo Bonus ( Restricciones horarias para los profesores //
+	@Check
+	def checkRestriccionHoraria(Planificacion p){
+		val cursos = p.cursos
+		cursos.forEach[c | c.buscarRestriccion(p)]
+		
+	}
+	
+	def  buscarRestriccion(Curso curso, Planificacion p){
+		 val asignacionesConMateria = curso.materia.asignaciones(p)
+		 asignacionesConMateria.forEach[a | a.verificarCondicionHoraria(curso) ]
+	}
+	
+	// asignacion que posee la o las materias que dicta el profesor en ese dia   
+	def verificarCondicionHoraria(Asignacion asignacion, Curso curso){
+		val profesor = curso.dictadaPor
+		val diasQuePuedeElProfesor = profesor.diasQuePuede.map[dq | dq.dia]
+		
+		if(asignacion.dia.estaEntreLosDias(diasQuePuedeElProfesor)){
+			asignacion.verificarHorario(curso)
+		}else{
+			error("el profesor: "+ profesor.name+" no puede dictar clases el dia: "+asignacion.dia
+				,asignacion,MyDslPackage.Literals.ASIGNACION__DIA)
+		}
+	}
+	
+	def verificarHorario(Asignacion a,Curso curso){
+		val profesor = curso.dictadaPor
+		val materiaDeCurso = curso.materia
+		val horarioHabilitadoParaDia = profesor.diasQuePuede.filter([dq | dq.dia == a.dia]).get(0)
+		val horariosDeMateria = a.horarios.filter[h | h.materia == materiaDeCurso]
+		if(horariosDeMateria.algunHorarioNoCumple(horarioHabilitadoParaDia)){
+			error("el profesor: "+profesor.name+" no puede dictar clases en algun horario"
+				,a,MyDslPackage.Literals.ASIGNACION__DIA
+			)
+		}
+	}
+	// materia 8 a 10    //  7 a 22 
+	def boolean algunHorarioNoCumple(Iterable<Horario> horarios, DiasHabilitados d){
+		! (horarios.forall[h | ( h.horarioInicio.estaEntre(d.horaInicio,d.horaFinal)
+									&&   h.horarioFin <= d.horaFinal )	
+					    ])
+	}
+	
+	def estaEntreLosDias(Dia dia, List<Dia> dias) {
+		dias.exists[d | d == dia ] 
+	}
 	
 }
 

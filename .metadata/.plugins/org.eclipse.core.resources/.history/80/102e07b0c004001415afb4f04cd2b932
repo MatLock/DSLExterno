@@ -1,0 +1,71 @@
+grammar org.xtext.example.mydsl.MyDsl with org.eclipse.xtext.xbase.Xbase
+generate myDsl "http://www.xtext.org/example/mydsl/MyDsl"
+
+Model:
+(clases+=Clase)*;
+
+Clase:
+	Profesor | Planificacion | Materia | Aula
+;
+
+DiasHabilitados: //Agregado para bonus 2
+	'puede:' dia= Dia 'de:' horaInicio=INT 'hasta:' horaFinal=INT
+	('no puede:' diaQueNoPuede = Dia)?
+;
+
+Profesor:
+	'profesor:' name= ID 'dedicacion:' dedicacion =  Dedicacion
+ 	(diasQuePuede+=DiasHabilitados)* //Agregado para bonus 2 
+;
+
+Materia:
+    'materia:' name = ID '{'
+	'cantidadDeDias:' cantidadDeDias= INT
+	'cargaHoraria:' cargaHoraria= INT
+	'requiere:' (recursos += Recursos)*
+'}' 
+;
+
+
+Aula:
+    'aula:' name= ID'{'
+	'recursos:' (recursos += Recursos)* 
+	'capacidad:' capacidad=INT  //Agregado para bonus 1
+ '}'
+;
+
+
+
+Planificacion:
+	'planificacion:' anio= INT 'semestre:' semestre= INT'{'
+	'aDictar:' '{' (cursos += Curso)*  '}'//materias
+	(asignaciones += Asignacion)*
+ '}'
+;
+
+Curso:
+	materia = [Materia] 'dictadaPor:' dictadaPor = [Profesor] 'cantidad de inscriptos:' inscriptos= INT
+;
+
+Asignacion:
+	dia= Dia '{' 
+	(horarios += Horario)*
+ '}'
+;   
+
+Horario:
+	'de:' horarioInicio=INT 'hasta:' horarioFin=INT
+	'se dicta la materia:' materia=[Materia] 'en:' aula=[Aula] //aulas
+;
+
+enum Dedicacion:
+	Simple | Semi | Exclusiva
+;
+
+enum Recursos:
+	Internet | Proyector | MaquinasParaAlumnos | MaquinaParaElProfesor
+;
+
+enum Dia:
+	Lunes | Martes | Miercoles | Jueves | Viernes | Sabados
+;

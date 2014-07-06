@@ -8,13 +8,15 @@ Clase:
 	Profesor | Planificacion | Materia | Aula
 ;
 
-DiasHabilidatos: //Agregado para bonus 2
+DiasHabilitados: //Agregado para bonus 2
 	'puede:' dia= Dia 'de:' horaInicio=INT 'hasta:' horaFinal=INT
+	('no puede:' diaQueNoPuede = Dia)?
 ;
 
 Profesor:
-	'profesor:' name= ID 'dedicacion:' dedicacion =  Dedicacion
- 	(diasQuePuede+=DiasHabilidatos) //Agregado para bonus 2 
+	'profesor:' name= ID 'dedicacion:' dedicacion =  Dedicacion '{'
+ 	(diasQuePuede+=DiasHabilitados)*
+ 	'}' 
 ;
 
 Materia:

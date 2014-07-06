@@ -18,7 +18,7 @@ import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.xtext.example.mydsl.myDsl.Dedicacion;
-import org.xtext.example.mydsl.myDsl.DiasHabilidatos;
+import org.xtext.example.mydsl.myDsl.DiasHabilitados;
 import org.xtext.example.mydsl.myDsl.MyDslPackage;
 import org.xtext.example.mydsl.myDsl.Profesor;
 
@@ -87,7 +87,7 @@ public class ProfesorImpl extends ClaseImpl implements Profesor
    * @generated
    * @ordered
    */
-  protected EList<DiasHabilidatos> diasQuePuede;
+  protected EList<DiasHabilitados> diasQuePuede;
 
   /**
    * <!-- begin-user-doc -->
@@ -161,11 +161,11 @@ public class ProfesorImpl extends ClaseImpl implements Profesor
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList<DiasHabilidatos> getDiasQuePuede()
+  public EList<DiasHabilitados> getDiasQuePuede()
   {
     if (diasQuePuede == null)
     {
-      diasQuePuede = new EObjectContainmentEList<DiasHabilidatos>(DiasHabilidatos.class, this, MyDslPackage.PROFESOR__DIAS_QUE_PUEDE);
+      diasQuePuede = new EObjectContainmentEList<DiasHabilitados>(DiasHabilitados.class, this, MyDslPackage.PROFESOR__DIAS_QUE_PUEDE);
     }
     return diasQuePuede;
   }
@@ -225,7 +225,7 @@ public class ProfesorImpl extends ClaseImpl implements Profesor
         return;
       case MyDslPackage.PROFESOR__DIAS_QUE_PUEDE:
         getDiasQuePuede().clear();
-        getDiasQuePuede().addAll((Collection<? extends DiasHabilidatos>)newValue);
+        getDiasQuePuede().addAll((Collection<? extends DiasHabilitados>)newValue);
         return;
     }
     super.eSet(featureID, newValue);

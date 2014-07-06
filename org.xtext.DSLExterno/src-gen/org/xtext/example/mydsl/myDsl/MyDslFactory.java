@@ -41,13 +41,13 @@ public interface MyDslFactory extends EFactory
   Clase createClase();
 
   /**
-   * Returns a new object of class '<em>Dias Habilidatos</em>'.
+   * Returns a new object of class '<em>Dias Habilitados</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Dias Habilidatos</em>'.
+   * @return a new object of class '<em>Dias Habilitados</em>'.
    * @generated
    */
-  DiasHabilidatos createDiasHabilidatos();
+  DiasHabilitados createDiasHabilitados();
 
   /**
    * Returns a new object of class '<em>Profesor</em>'.

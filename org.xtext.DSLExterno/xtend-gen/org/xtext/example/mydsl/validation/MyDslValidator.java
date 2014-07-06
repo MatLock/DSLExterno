@@ -19,6 +19,8 @@ import org.xtext.example.mydsl.myDsl.Asignacion;
 import org.xtext.example.mydsl.myDsl.Aula;
 import org.xtext.example.mydsl.myDsl.Curso;
 import org.xtext.example.mydsl.myDsl.Dedicacion;
+import org.xtext.example.mydsl.myDsl.Dia;
+import org.xtext.example.mydsl.myDsl.DiasHabilitados;
 import org.xtext.example.mydsl.myDsl.Horario;
 import org.xtext.example.mydsl.myDsl.Materia;
 import org.xtext.example.mydsl.myDsl.MyDslPackage;
@@ -249,42 +251,6 @@ public class MyDslValidator extends AbstractMyDslValidator {
   }
   
   @Check
-  public void checkInscriptosCabenEnAula(final Horario h) {
-    EObject _eContainer = h.eContainer();
-    EObject _eContainer_1 = _eContainer.eContainer();
-    final Planificacion planificacion = ((Planificacion) _eContainer_1);
-    EList<Curso> _cursos = planificacion.getCursos();
-    Materia _materia = h.getMateria();
-    Iterable<Curso> _obtenerCursoConMateria = this.obtenerCursoConMateria(_cursos, _materia);
-    final Curso curso = ((Curso[])Conversions.unwrapArray(_obtenerCursoConMateria, Curso.class))[0];
-    int _inscriptos = curso.getInscriptos();
-    Aula _aula = h.getAula();
-    int _capacidad = _aula.getCapacidad();
-    boolean _greaterThan = (_inscriptos > _capacidad);
-    if (_greaterThan) {
-      Materia _materia_1 = h.getMateria();
-      String _name = _materia_1.getName();
-      String _plus = ("La cantidad de inscriptos de la materia: " + _name);
-      String _plus_1 = (_plus + 
-        " supera la capacidad del aula: ");
-      Aula _aula_1 = h.getAula();
-      String _name_1 = _aula_1.getName();
-      String _plus_2 = (_plus_1 + _name_1);
-      this.error(_plus_2, h, MyDslPackage.Literals.HORARIO__MATERIA);
-    }
-  }
-  
-  private Iterable<Curso> obtenerCursoConMateria(final EList<Curso> cursos, final Materia m) {
-    final Function1<Curso, Boolean> _function = new Function1<Curso, Boolean>() {
-      public Boolean apply(final Curso c) {
-        Materia _materia = c.getMateria();
-        return Boolean.valueOf(Objects.equal(_materia, m));
-      }
-    };
-    return IterableExtensions.<Curso>filter(cursos, _function);
-  }
-  
-  @Check
   public void checkSuperposicion(final Horario horario) {
     EObject _eContainer = horario.eContainer();
     final Asignacion asignacionQueContieneAHorario = ((Asignacion) _eContainer);
@@ -342,12 +308,12 @@ public class MyDslValidator extends AbstractMyDslValidator {
   
   private boolean estaEntre(final Integer i, final Integer i2, final Integer i3) {
     boolean _and = false;
-    boolean _lessThan = (i2.compareTo(i) < 0);
-    if (!_lessThan) {
+    boolean _lessEqualsThan = (i2.compareTo(i) <= 0);
+    if (!_lessEqualsThan) {
       _and = false;
     } else {
-      boolean _lessThan_1 = (i.compareTo(i3) < 0);
-      _and = _lessThan_1;
+      boolean _lessEqualsThan_1 = (i.compareTo(i3) <= 0);
+      _and = _lessEqualsThan_1;
     }
     return _and;
   }
@@ -384,5 +350,148 @@ public class MyDslValidator extends AbstractMyDslValidator {
       _and = _equals_3;
     }
     return _and;
+  }
+  
+  @Check
+  public void checkInscriptosCabenEnAula(final Horario h) {
+    EObject _eContainer = h.eContainer();
+    EObject _eContainer_1 = _eContainer.eContainer();
+    final Planificacion planificacion = ((Planificacion) _eContainer_1);
+    EList<Curso> _cursos = planificacion.getCursos();
+    Materia _materia = h.getMateria();
+    Iterable<Curso> _obtenerCursoConMateria = this.obtenerCursoConMateria(_cursos, _materia);
+    final Curso curso = ((Curso[])Conversions.unwrapArray(_obtenerCursoConMateria, Curso.class))[0];
+    int _inscriptos = curso.getInscriptos();
+    Aula _aula = h.getAula();
+    int _capacidad = _aula.getCapacidad();
+    boolean _greaterThan = (_inscriptos > _capacidad);
+    if (_greaterThan) {
+      Materia _materia_1 = h.getMateria();
+      String _name = _materia_1.getName();
+      String _plus = ("La cantidad de inscriptos de la materia: " + _name);
+      String _plus_1 = (_plus + 
+        " supera la capacidad del aula: ");
+      Aula _aula_1 = h.getAula();
+      String _name_1 = _aula_1.getName();
+      String _plus_2 = (_plus_1 + _name_1);
+      this.error(_plus_2, h, MyDslPackage.Literals.HORARIO__MATERIA);
+    }
+  }
+  
+  private Iterable<Curso> obtenerCursoConMateria(final EList<Curso> cursos, final Materia m) {
+    final Function1<Curso, Boolean> _function = new Function1<Curso, Boolean>() {
+      public Boolean apply(final Curso c) {
+        Materia _materia = c.getMateria();
+        return Boolean.valueOf(Objects.equal(_materia, m));
+      }
+    };
+    return IterableExtensions.<Curso>filter(cursos, _function);
+  }
+  
+  @Check
+  public void checkRestriccionHoraria(final Planificacion p) {
+    final EList<Curso> cursos = p.getCursos();
+    final Procedure1<Curso> _function = new Procedure1<Curso>() {
+      public void apply(final Curso c) {
+        MyDslValidator.this.buscarRestriccion(c, p);
+      }
+    };
+    IterableExtensions.<Curso>forEach(cursos, _function);
+  }
+  
+  public void buscarRestriccion(final Curso curso, final Planificacion p) {
+    Materia _materia = curso.getMateria();
+    final Iterable<Asignacion> asignacionesConMateria = this.asignaciones(_materia, p);
+    final Procedure1<Asignacion> _function = new Procedure1<Asignacion>() {
+      public void apply(final Asignacion a) {
+        MyDslValidator.this.verificarCondicionHoraria(a, curso);
+      }
+    };
+    IterableExtensions.<Asignacion>forEach(asignacionesConMateria, _function);
+  }
+  
+  public void verificarCondicionHoraria(final Asignacion asignacion, final Curso curso) {
+    final Profesor profesor = curso.getDictadaPor();
+    EList<DiasHabilitados> _diasQuePuede = profesor.getDiasQuePuede();
+    final Function1<DiasHabilitados, Dia> _function = new Function1<DiasHabilitados, Dia>() {
+      public Dia apply(final DiasHabilitados dq) {
+        return dq.getDia();
+      }
+    };
+    final List<Dia> diasQuePuedeElProfesor = ListExtensions.<DiasHabilitados, Dia>map(_diasQuePuede, _function);
+    Dia _dia = asignacion.getDia();
+    boolean _estaEntreLosDias = this.estaEntreLosDias(_dia, diasQuePuedeElProfesor);
+    if (_estaEntreLosDias) {
+      this.verificarHorario(asignacion, curso);
+    } else {
+      String _name = profesor.getName();
+      String _plus = ("el profesor: " + _name);
+      String _plus_1 = (_plus + " no puede dictar clases el dia: ");
+      Dia _dia_1 = asignacion.getDia();
+      String _plus_2 = (_plus_1 + _dia_1);
+      this.error(_plus_2, asignacion, MyDslPackage.Literals.ASIGNACION__DIA);
+    }
+  }
+  
+  public void verificarHorario(final Asignacion a, final Curso curso) {
+    final Profesor profesor = curso.getDictadaPor();
+    final Materia materiaDeCurso = curso.getMateria();
+    EList<DiasHabilitados> _diasQuePuede = profesor.getDiasQuePuede();
+    final Function1<DiasHabilitados, Boolean> _function = new Function1<DiasHabilitados, Boolean>() {
+      public Boolean apply(final DiasHabilitados dq) {
+        Dia _dia = dq.getDia();
+        Dia _dia_1 = a.getDia();
+        return Boolean.valueOf(Objects.equal(_dia, _dia_1));
+      }
+    };
+    Iterable<DiasHabilitados> _filter = IterableExtensions.<DiasHabilitados>filter(_diasQuePuede, _function);
+    final DiasHabilitados horarioHabilitadoParaDia = ((DiasHabilitados[])Conversions.unwrapArray(_filter, DiasHabilitados.class))[0];
+    EList<Horario> _horarios = a.getHorarios();
+    final Function1<Horario, Boolean> _function_1 = new Function1<Horario, Boolean>() {
+      public Boolean apply(final Horario h) {
+        Materia _materia = h.getMateria();
+        return Boolean.valueOf(Objects.equal(_materia, materiaDeCurso));
+      }
+    };
+    final Iterable<Horario> horariosDeMateria = IterableExtensions.<Horario>filter(_horarios, _function_1);
+    boolean _algunHorarioNoCumple = this.algunHorarioNoCumple(horariosDeMateria, horarioHabilitadoParaDia);
+    if (_algunHorarioNoCumple) {
+      String _name = profesor.getName();
+      String _plus = ("el profesor: " + _name);
+      String _plus_1 = (_plus + " no puede dictar clases en algun horario");
+      this.error(_plus_1, a, MyDslPackage.Literals.ASIGNACION__DIA);
+    }
+  }
+  
+  public boolean algunHorarioNoCumple(final Iterable<Horario> horarios, final DiasHabilitados d) {
+    final Function1<Horario, Boolean> _function = new Function1<Horario, Boolean>() {
+      public Boolean apply(final Horario h) {
+        boolean _and = false;
+        int _horarioInicio = h.getHorarioInicio();
+        int _horaInicio = d.getHoraInicio();
+        int _horaFinal = d.getHoraFinal();
+        boolean _estaEntre = MyDslValidator.this.estaEntre(Integer.valueOf(_horarioInicio), Integer.valueOf(_horaInicio), Integer.valueOf(_horaFinal));
+        if (!_estaEntre) {
+          _and = false;
+        } else {
+          int _horarioFin = h.getHorarioFin();
+          int _horaFinal_1 = d.getHoraFinal();
+          boolean _lessEqualsThan = (_horarioFin <= _horaFinal_1);
+          _and = _lessEqualsThan;
+        }
+        return Boolean.valueOf(_and);
+      }
+    };
+    boolean _forall = IterableExtensions.<Horario>forall(horarios, _function);
+    return (!_forall);
+  }
+  
+  public boolean estaEntreLosDias(final Dia dia, final List<Dia> dias) {
+    final Function1<Dia, Boolean> _function = new Function1<Dia, Boolean>() {
+      public Boolean apply(final Dia d) {
+        return Boolean.valueOf(Objects.equal(d, dia));
+      }
+    };
+    return IterableExtensions.<Dia>exists(dias, _function);
   }
 }
